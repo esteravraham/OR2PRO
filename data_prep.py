@@ -1,43 +1,36 @@
 import pandas as pd
 import random
+import re
 
 try:
     df = pd.read_excel("Database.xlsx", sheet_name=0)
-    original_row_count = len(df)
 
-    expected_source_columns = ['שם וסמל מעון', 'סטטוס הרישוי', 'טלפון', 'בעלות', 'מגזר', 'ישוב', 'כתובת', 'מנהל/ת המעון']
-    
+    expected_source_columns = [
+        'שם וסמל מעון',
+        'סטטוס הרישוי',
+        'טלפון',
+        'בעלות',
+        'מגזר',
+        'ישוב',
+        'כתובת',
+        'מנהל/ת המעון'
+    ]
+
     missing_cols = [col for col in expected_source_columns if col not in df.columns]
     if missing_cols:
-        raise ValueError(f"ERROR: The following required columns are missing from the source file: {missing_cols}.")
+        raise ValueError(f"Missing required columns: {missing_cols}")
 
-    
-    df = df[df['סטטוס הרישוי'] != 'מעון סגור']
+    df = df[df['סטטוס הרישוי'] != 'מעון סגור'].copy()
 
     df['id'] = df['שם וסמל מעון'].astype(str).str.extract(r'(\d+)')
-    
-    existing_ids = set(df['id'].dropna().unique())
-    def generate_unique_id():
-        while True:
-            new_id = str(random.randint(10000, 99999))
-            if new_id not in existing_ids:
-                existing_ids.add(new_id)
-                return new_id
-    
-    df['id'] = df['id'].apply(lambda x: generate_unique_id() if pd.isna(x) else x)
-    
-    df['name'] = df['שם וסמל מעון'].astype(str).str.replace(r'\d+', '', regex=True).str.replace('-', '', regex=False).str.strip()
-    
-    if 'שם וסמל מעון' in df.columns:
-        df = df.drop(columns=['שם וסמל מעון'])
-    if 'סמל זרוע העבודה' in df.columns:
-        df = df.drop(columns=['סמל זרוע העבודה'])
 
-    df['phone'] = df['טלפון'].astype(str).str.replace(r'[^0-9]', '', regex=True)
-    df['phone'] = df['phone'].replace(['nan', 'None', ''], None)
-    df['phone'] = df['phone'].apply(lambda x: f"0{x[3:]}" if pd.notna(x) and str(x).startswith('972') else x)
-    df['phone'] = df['phone'].apply(lambda x: f"0{x}" if pd.notna(x) and not str(x).startswith('0') else x)
-    df['phone'] = df['phone'].fillna('Unknown')
+    df['name'] = (
+        df['שם וסמל מעון']
+        .astype(str)
+        .str.replace(r'\d+', '', regex=True)
+        .str.replace('-', '', regex=False)
+        .str.strip()
+    )
 
     rename_map = {
         'בעלות': 'ownership',
@@ -47,27 +40,291 @@ try:
         'כתובת': 'address',
         'מנהל/ת המעון': 'manager'
     }
+
     df = df.rename(columns=rename_map)
 
-    df['ownership'] = df['ownership'].fillna('Unknown')
-    df['sector'] = df['sector'].fillna('Unknown')
-    df['manager'] = df['manager'].fillna('Unknown')
+    df = df.drop(
+        columns=[col for col in ['שם וסמל מעון', 'סמל זרוע העבודה'] if col in df.columns]
+    )
 
-    cols_order = ['id', 'name', 'city', 'address', 'phone', 'ownership', 'sector', 'manager', 'license_status']
-    
-    missing_final_cols = [col for col in cols_order if col not in df.columns]
-    if missing_final_cols:
-        raise ValueError(f"ERROR: Processing failed to create these columns: {missing_final_cols}")
+    text_cols = ['name', 'city', 'address', 'ownership', 'sector', 'manager', 'license_status']
+
+    for col in text_cols:
+        df[col] = df[col].astype(str).str.strip()
+        df[col] = df[col].replace(['nan', 'None', ''], 'Unknown')
+
+    df['phone'] = df['טלפון'].astype(str).str.replace(r'[^0-9]', '', regex=True)
+    df['phone'] = df['phone'].replace(['nan', 'None', ''], None)
+
+    df['phone'] = df['phone'].apply(
+        lambda x: f"0{x[3:]}" if pd.notna(x) and str(x).startswith('972') else x
+    )
+
+    df['phone'] = df['phone'].apply(
+        lambda x: f"0{x}" if pd.notna(x) and not str(x).startswith('0') else x
+    )
+
+    df['phone'] = df['phone'].fillna('Unknown')
+
+    if 'טלפון' in df.columns:
+        df = df.drop(columns=['טלפון'])
+
+    def normalize_text(value, remove_numbers=True):
+        if pd.isna(value):
+            return ''
+
+        value = str(value).strip()
+        if remove_numbers:
+            value = re.sub(r'\d+', '', value)
+        value = re.sub(r'[-–—״"\'.,()]', ' ', value)
+        value = re.sub(r'\s+', ' ', value)
+
+        return value.strip()
+
+    def is_empty(value):
+        return pd.isna(value) or value == '' or value == 'Unknown'
+
+    def completeness_score(row):
+        return sum(1 for value in row if not is_empty(value))
+
+    def merge_values(values):
+        clean_values = []
+
+        for value in values:
+            if not is_empty(value):
+                value = str(value).strip()
+                if value not in clean_values:
+                    clean_values.append(value)
+
+        if not clean_values:
+            return 'Unknown'
+
+        return ' | '.join(clean_values)
+
+    def merge_license_status(values):
+        status_priority = {
+            'רישיון בתוקף': 1,
+            'בתהליך רישוי': 2,
+            'לא הוגשה בקשה לרישוי': 3,
+            'Unknown': 9
+        }
+
+        clean_values = [value for value in values if not is_empty(value)]
+
+        if not clean_values:
+            return 'Unknown'
+
+        return min(clean_values, key=lambda value: status_priority.get(value, 9))
+
+    def name_match(name1, name2):
+        if is_empty(name1) or is_empty(name2):
+            return False
+
+        name1 = normalize_text(name1)
+        name2 = normalize_text(name2)
+
+        if name1 == '' or name2 == '':
+            return False
+
+        if name1 == name2:
+            return True
+
+        short_name = min(name1, name2, key=len)
+        long_name = max(name1, name2, key=len)
+
+        if len(short_name) < 4:
+            return False
+
+        return short_name in long_name
+
+    def exact_strong_match(value1, value2):
+        if is_empty(value1) or is_empty(value2):
+            return False
+
+        value1 = normalize_text(value1)
+        value2 = normalize_text(value2)
+
+        if value1 == '' or value2 == '':
+            return False
+
+        return value1 == value2
+
+    def ownership_match(value1, value2):
+        if is_empty(value1) or is_empty(value2):
+            return False
+
+        value1 = normalize_text(value1)
+        value2 = normalize_text(value2)
+
+        weak_values = {'פרטי', 'ציבורי', 'עירוני', 'עמותה', 'חברה', 'Unknown'}
+
+        if value1 in weak_values or value2 in weak_values:
+            return False
+
+        return value1 == value2
+
+    def rows_are_duplicates(row1, row2):
+        if row1['city_norm'] != row2['city_norm']:
+            return False
+
+        if row1['address_norm'] != row2['address_norm']:
+            return False
+
+        if exact_strong_match(row1['phone'], row2['phone']):
+            return True
+
+        if name_match(row1['name_norm'], row2['name_norm']):
+            return True
+
+        if exact_strong_match(row1['manager_norm'], row2['manager_norm']):
+            return True
+
+        if ownership_match(row1['ownership_norm'], row2['ownership_norm']):
+            return True
+
+        return False
+
+    df['name_norm'] = df['name'].apply(lambda x: normalize_text(x, remove_numbers=True))
+    df['city_norm'] = df['city'].apply(lambda x: normalize_text(x, remove_numbers=False))
+    df['address_norm'] = df['address'].apply(lambda x: normalize_text(x, remove_numbers=False))
+    df['manager_norm'] = df['manager'].apply(lambda x: normalize_text(x, remove_numbers=True))
+    df['ownership_norm'] = df['ownership'].apply(lambda x: normalize_text(x, remove_numbers=True))
+    df['has_real_id'] = df['id'].notna()
+    df['completeness_score'] = df.apply(completeness_score, axis=1)
+
+    df = df.sort_values(
+        by=['has_real_id', 'completeness_score'],
+        ascending=[False, False]
+    )
+
+    merged_rows = []
+    recycle_bin_rows = []
+
+    for _, address_group in df.groupby(['city_norm', 'address_norm'], dropna=False):
+        address_group = address_group.copy()
+        used_indexes = set()
+
+        for idx, row in address_group.iterrows():
+            if idx in used_indexes:
+                continue
+
+            cluster_indexes = [idx]
+            used_indexes.add(idx)
+
+            changed = True
+
+            while changed:
+                changed = False
+
+                for other_idx, other_row in address_group.iterrows():
+                    if other_idx in used_indexes:
+                        continue
+
+                    for cluster_idx in cluster_indexes:
+                        cluster_row = address_group.loc[cluster_idx]
+
+                        if rows_are_duplicates(cluster_row, other_row):
+                            cluster_indexes.append(other_idx)
+                            used_indexes.add(other_idx)
+                            changed = True
+                            break
+
+            similar_group = address_group.loc[cluster_indexes].copy()
+
+            similar_group = similar_group.sort_values(
+                by=['has_real_id', 'completeness_score'],
+                ascending=[False, False]
+            )
+
+            main_row = similar_group.iloc[0].copy()
+            duplicate_rows = similar_group.iloc[1:].copy()
+
+            for col in df.columns:
+                if col in [
+                    'id',
+                    'city',
+                    'address',
+                    'name_norm',
+                    'city_norm',
+                    'address_norm',
+                    'manager_norm',
+                    'ownership_norm',
+                    'has_real_id',
+                    'completeness_score'
+                ]:
+                    continue
+
+                if col == 'license_status':
+                    main_row[col] = merge_license_status(similar_group[col])
+                else:
+                    main_row[col] = merge_values(similar_group[col])
+
+            merged_rows.append(main_row)
+
+            if not duplicate_rows.empty:
+                duplicate_rows['duplicate_reason'] = 'Same city and address with one strong matching field'
+                recycle_bin_rows.append(duplicate_rows)
+
+    df = pd.DataFrame(merged_rows)
+
+    if recycle_bin_rows:
+        recycle_bin_df = pd.concat(recycle_bin_rows, ignore_index=True)
+    else:
+        recycle_bin_df = pd.DataFrame(columns=list(df.columns) + ['duplicate_reason'])
+
+    helper_cols = [
+        'name_norm',
+        'city_norm',
+        'address_norm',
+        'manager_norm',
+        'ownership_norm',
+        'has_real_id',
+        'completeness_score'
+    ]
+
+    df = df.drop(columns=helper_cols, errors='ignore')
+    recycle_bin_df = recycle_bin_df.drop(columns=helper_cols, errors='ignore')
+
+    existing_ids = set(df['id'].dropna().astype(str).unique())
+
+    def generate_unique_id():
+        while True:
+            new_id = str(random.randint(10000, 99999))
+            if new_id not in existing_ids:
+                existing_ids.add(new_id)
+                return new_id
+
+    df['id'] = df['id'].apply(
+        lambda x: generate_unique_id() if pd.isna(x) or x == '' or x == 'Unknown' else str(x)
+    )
+
+    cols_order = [
+        'id',
+        'name',
+        'city',
+        'address',
+        'phone',
+        'ownership',
+        'sector',
+        'manager',
+        'license_status'
+    ]
 
     df = df[cols_order]
 
-    df.to_excel("Cleaned_Database.xlsx", index=False)
-    
+    recycle_cols_order = cols_order + ['duplicate_reason']
+    recycle_bin_df = recycle_bin_df[
+        [col for col in recycle_cols_order if col in recycle_bin_df.columns]
+    ]
 
-    print("\n✅ Success: Data processed and validated successfully.")
-    
+    with pd.ExcelWriter("Cleaned_Database.xlsx", engine="openpyxl") as writer:
+        df.to_excel(writer, sheet_name="Cleaned_Data", index=False)
+        recycle_bin_df.to_excel(writer, sheet_name="Duplicates_Recycle_Bin", index=False)
+
+    print(f"✅ Done | Active: {len(df)} | Recycle: {len(recycle_bin_df)}")
 
 except FileNotFoundError:
-    print("\n❌ Error: Could not find Database.xlsx.\n")
+    print("❌ Database.xlsx not found")
+
 except Exception as e:
-    print(f"\n❌ SCRIPT HALTED - ERROR DETECTED:\n{e}\n")
+    print(f"❌ Error: {e}")
