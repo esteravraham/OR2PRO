@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-02T09:14:03",
+  "generated_at": "2026-06-02T08:50:00",
   "source_file": "Parent_Input_Data_Structure.xlsx",
   "total_gardens": 129,
   "gardens": [
@@ -1058,9 +1058,9 @@
         "has_cameras": null,
         "cameras_open_to_parents": null,
         "has_protected_space": null,
-        "profile_data_status": "official_and_community_reported",
-        "last_verified_at": "1.06.2026",
-        "verified_by": "Noa"
+        "profile_data_status": "official_only",
+        "last_verified_at": null,
+        "verified_by": null
       },
       "community": {
         "has_community_info": true,
@@ -1280,9 +1280,9 @@
         "has_cameras": null,
         "cameras_open_to_parents": null,
         "has_protected_space": null,
-        "profile_data_status": "official_and_community_reported",
-        "last_verified_at": "1.06.2026",
-        "verified_by": "Noa"
+        "profile_data_status": "official_only",
+        "last_verified_at": null,
+        "verified_by": null
       },
       "community": {
         "has_community_info": true,
@@ -1712,23 +1712,21 @@
         "has_cameras": null,
         "cameras_open_to_parents": null,
         "has_protected_space": null,
-        "profile_data_status": "official_and_community_reported",
-        "last_verified_at": "1.06.2026",
-        "verified_by": "Noa"
+        "profile_data_status": "official_only",
+        "last_verified_at": null,
+        "verified_by": null
       },
       "community": {
         "has_community_info": true,
         "reviews": {
-          "num_reviews": 1,
+          "num_reviews": 0,
           "avg_rating": null,
-          "price_min": 4600,
-          "price_max": 4600,
-          "price_avg": 4600,
+          "price_min": null,
+          "price_max": null,
+          "price_avg": null,
           "price_without_friday": null,
           "price_with_friday": null,
-          "price_details": [
-            "4600 בלי שישי 5000 עם ימי שישי"
-          ],
+          "price_details": [],
           "parent_feeling_summary": null,
           "review_texts": []
         },
@@ -1822,9 +1820,9 @@
         "has_cameras": null,
         "cameras_open_to_parents": null,
         "has_protected_space": "כן",
-        "profile_data_status": "official_and_community_reported",
-        "last_verified_at": "1.06.2026",
-        "verified_by": "Noa"
+        "profile_data_status": "official_only",
+        "last_verified_at": null,
+        "verified_by": null
       },
       "community": {
         "has_community_info": true,
@@ -2202,9 +2200,9 @@
         "has_cameras": null,
         "cameras_open_to_parents": null,
         "has_protected_space": null,
-        "profile_data_status": "official_and_community_reported",
-        "last_verified_at": "1.06.2026",
-        "verified_by": "Noa"
+        "profile_data_status": "official_only",
+        "last_verified_at": null,
+        "verified_by": null
       },
       "community": {
         "has_community_info": true,
@@ -2852,9 +2850,9 @@
         "has_cameras": null,
         "cameras_open_to_parents": null,
         "has_protected_space": null,
-        "profile_data_status": "official_and_community_reported",
-        "last_verified_at": "1.06.2026",
-        "verified_by": "Noa"
+        "profile_data_status": "official_only",
+        "last_verified_at": null,
+        "verified_by": null
       },
       "community": {
         "has_community_info": true,
@@ -3232,14 +3230,14 @@
         "has_cameras": null,
         "cameras_open_to_parents": null,
         "has_protected_space": null,
-        "profile_data_status": "official_and_community_reported",
-        "last_verified_at": "1.06.2026",
-        "verified_by": "Noa"
+        "profile_data_status": "official_only",
+        "last_verified_at": null,
+        "verified_by": null
       },
       "community": {
         "has_community_info": true,
         "reviews": {
-          "num_reviews": 1,
+          "num_reviews": 0,
           "avg_rating": null,
           "price_min": null,
           "price_max": null,
@@ -3248,9 +3246,7 @@
           "price_with_friday": null,
           "price_details": [],
           "parent_feeling_summary": null,
-          "review_texts": [
-            "ממש ממש לא מה שהיה פעם... בעיות צוות סוגרים לפעמים את הגן כי אין אנשים. חלק מהצוות מדהים וחלק ממש לא משהו. מבאס"
-          ]
+          "review_texts": []
         },
         "suggestions": {
           "approved_updates": {},
@@ -3882,18 +3878,18 @@
         "has_cameras": null,
         "cameras_open_to_parents": null,
         "has_protected_space": null,
-        "profile_data_status": "official_and_community_reported",
-        "last_verified_at": "1.06.2026",
-        "verified_by": "Noa"
+        "profile_data_status": "official_only",
+        "last_verified_at": null,
+        "verified_by": null
       },
       "community": {
         "has_community_info": true,
         "reviews": {
-          "num_reviews": 1,
+          "num_reviews": 0,
           "avg_rating": null,
-          "price_min": 5600,
-          "price_max": 5600,
-          "price_avg": 5600,
+          "price_min": null,
+          "price_max": null,
+          "price_avg": null,
           "price_without_friday": null,
           "price_with_friday": null,
           "price_details": [],
@@ -4098,18 +4094,18 @@
         "has_cameras": null,
         "cameras_open_to_parents": null,
         "has_protected_space": null,
-        "profile_data_status": "official_and_community_reported",
-        "last_verified_at": "1.06.2026",
-        "verified_by": "Noa"
+        "profile_data_status": "official_only",
+        "last_verified_at": null,
+        "verified_by": null
       },
       "community": {
         "has_community_info": true,
         "reviews": {
-          "num_reviews": 1,
+          "num_reviews": 0,
           "avg_rating": null,
-          "price_min": 5500,
-          "price_max": 5500,
-          "price_avg": 5500,
+          "price_min": null,
+          "price_max": null,
+          "price_avg": null,
           "price_without_friday": null,
           "price_with_friday": null,
           "price_details": [],
@@ -4314,9 +4310,9 @@
         "has_cameras": null,
         "cameras_open_to_parents": null,
         "has_protected_space": null,
-        "profile_data_status": "official_and_community_reported",
-        "last_verified_at": "1.06.2026",
-        "verified_by": "Noa"
+        "profile_data_status": "official_only",
+        "last_verified_at": null,
+        "verified_by": null
       },
       "community": {
         "has_community_info": true,
@@ -5988,18 +5984,18 @@
         "has_cameras": null,
         "cameras_open_to_parents": null,
         "has_protected_space": null,
-        "profile_data_status": "official_and_community_reported",
-        "last_verified_at": "1.06.2026",
-        "verified_by": "Noa"
+        "profile_data_status": "official_only",
+        "last_verified_at": null,
+        "verified_by": null
       },
       "community": {
         "has_community_info": true,
         "reviews": {
-          "num_reviews": 1,
+          "num_reviews": 0,
           "avg_rating": null,
-          "price_min": 5250,
-          "price_max": 5250,
-          "price_avg": 5250,
+          "price_min": null,
+          "price_max": null,
+          "price_avg": null,
           "price_without_friday": null,
           "price_with_friday": null,
           "price_details": [],
@@ -6798,9 +6794,9 @@
         "has_cameras": null,
         "cameras_open_to_parents": null,
         "has_protected_space": null,
-        "profile_data_status": "official_and_community_reported",
-        "last_verified_at": "1.06.2026",
-        "verified_by": "Noa"
+        "profile_data_status": "official_only",
+        "last_verified_at": null,
+        "verified_by": null
       },
       "community": {
         "has_community_info": true,
