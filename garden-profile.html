@@ -4,61 +4,475 @@
     <meta charset="UTF-8">
     <title>פרופיל גן</title>
     <link rel="stylesheet" href="optionA.css">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            background: #F8FBF9;
+            color: #24352E;
+        }
+
+        .profile-page {
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 28px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .brand-icon {
+            width: 54px;
+            height: 54px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #FFB6A3, #FFD86B, #A8E6CF);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+        }
+
+        .brand-title {
+            margin: 0;
+            color: #2D5C4A;
+            font-size: 28px;
+        }
+
+        .profile-hero {
+            background: linear-gradient(135deg, #DDF7E3, #DCEEFF, #FFF1D6);
+            border-radius: 26px;
+            padding: 28px;
+            margin-bottom: 22px;
+            box-shadow: 0 8px 22px rgba(0,0,0,0.06);
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .profile-hero h1 {
+            margin: 0 0 8px;
+            color: #2D5C4A;
+            font-size: 34px;
+        }
+
+        .profile-subtitle {
+            margin: 0;
+            color: #52635B;
+            font-size: 16px;
+        }
+
+        .license-badge {
+            background-color: #FFF1C7;
+            color: #7A5A00;
+            padding: 9px 14px;
+            border-radius: 999px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .source-note {
+            color: #52635B;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+
+        .profile-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+
+        .gallery-placeholder {
+            background: white;
+            border: 1px dashed #CDEEDB;
+            border-radius: 18px;
+            height: 130px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #3B7058;
+            box-shadow: 0 5px 14px rgba(0,0,0,0.04);
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .profile-card {
+            background: white;
+            border: 1px solid #E2EFE7;
+            border-radius: 18px;
+            padding: 20px;
+            line-height: 1.75;
+            box-shadow: 0 5px 14px rgba(0,0,0,0.05);
+        }
+
+        .profile-card h2 {
+            margin-top: 0;
+            margin-bottom: 12px;
+            color: #2D5C4A;
+        }
+
+        .profile-card p {
+            margin: 7px 0;
+        }
+
+        .tags {
+            margin-top: 10px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 999px;
+            font-size: 13px;
+            margin-left: 6px;
+            margin-top: 6px;
+        }
+
+        .tag.community {
+            background-color: #E2F7EA;
+            color: #2D7A4E;
+        }
+
+        .tag.no-community {
+            background-color: #F1F1F1;
+            color: #666;
+        }
+
+        .tag.extra {
+            background-color: #E9F2FF;
+            color: #2C5F9E;
+        }
+
+        .rating {
+            font-size: 22px;
+            color: #F5A623;
+            margin-bottom: 10px;
+        }
+
+        .review-box {
+            background: #F8FBF9;
+            border: 1px solid #E2EFE7;
+            border-radius: 14px;
+            padding: 12px;
+            margin-bottom: 10px;
+        }
+
+        .secondary-button {
+            margin-top: 10px;
+            padding: 10px 14px;
+            border: none;
+            border-radius: 999px;
+            background: #FF9F80;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .secondary-button:hover {
+            background: #F47F61;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 18px;
+            text-decoration: none;
+            color: white;
+            background: #64B6AC;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        .back-link:hover {
+            background: #4EA197;
+        }
+
+        .empty-message {
+            background: white;
+            padding: 24px;
+            border-radius: 18px;
+            border: 1px solid #E2EFE7;
+            text-align: center;
+            color: #52635B;
+        }
+
+        @media (max-width: 800px) {
+            .profile-hero {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .profile-gallery,
+            .profile-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
-<body class="inner-page">
 
-    <section class="garden-profile">
+<body>
+    <main class="profile-page">
 
-        <div class="profile-header">
+        <div class="brand">
+            <div class="brand-icon">🌈</div>
             <div>
-                <h1>גן הרימון</h1>
-                <p class="profile-subtitle">רמת גן · רחוב לדוגמה 12</p>
+                <h2 class="brand-title">Ganim</h2>
+                <div>מערכת מידע לגני ילדים</div>
             </div>
-            <span class="license-badge">רישיון בתוקף</span>
         </div>
 
-        <div class="profile-gallery">
-            <div class="gallery-placeholder">תמונה 1</div>
-            <div class="gallery-placeholder">תמונה 2</div>
-            <div class="gallery-placeholder">תמונה 3</div>
-        </div>
+        <section id="profileContainer">
+            <div class="empty-message">טוען פרופיל גן...</div>
+        </section>
 
-        <div class="profile-grid">
+    </main>
 
-            <section class="profile-card">
-                <h2>מידע רשמי</h2>
-                <p><strong>טלפון:</strong> 03-1234567</p>
-                <p><strong>בעלות:</strong> פרטית</p>
-                <p><strong>מגזר:</strong> כללי</p>
-                <p><strong>מנהלת:</strong> אתי כהן</p>
-            </section>
+    <script>
+        function cleanValue(value) {
+            if (value === null || value === undefined || value === "") {
+                return "לא ידוע";
+            }
+            return value;
+        }
 
-            <section class="profile-card">
-                <h2>מידע משלים</h2>
-                <p><strong>שעות פעילות:</strong> 07:30-16:30</p>
-                <p><strong>אתר:</strong> לא נמצא</p>
-                <p><strong>שכונה:</strong> לא ידוע</p>
-                <p><strong>מקורות:</strong> משרד החינוך, Google</p>
-            </section>
+        function getGardenIdFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get("id");
+        }
 
-            <section class="profile-card">
-                <h2>מידע מהקהילה</h2>
-                <p><strong>מצלמות להורים:</strong> לא ידוע</p>
-                <p><strong>מרחב מוגן:</strong> לא ידוע</p>
-                <p><strong>מחיר חודשי:</strong> לא ידוע</p>
-                <p><strong>יחס צוות-ילדים:</strong> לא ידוע</p>
-            </section>
+        function formatPrice(reviews) {
+            if (!reviews) return "לא ידוע";
 
-            <section class="profile-card">
-                <h2>חוות דעת הורים</h2>
-                <p class="rating">★★★★☆</p>
-                <p>“צוות חם ומסור, חצר נעימה ותקשורת טובה עם ההורים.”</p>
-                <button class="secondary-button">הוספת חוות דעת</button>
-            </section>
+            if (reviews.price_with_friday || reviews.price_without_friday) {
+                const parts = [];
 
-        </div>
+                if (reviews.price_without_friday) {
+                    parts.push(`ללא שישי: ${reviews.price_without_friday} ₪`);
+                }
 
-    </section>
+                if (reviews.price_with_friday) {
+                    parts.push(`כולל שישי: ${reviews.price_with_friday} ₪`);
+                }
 
+                return parts.join(" | ");
+            }
+
+            if (reviews.price_min && reviews.price_max) {
+                if (reviews.price_min === reviews.price_max) {
+                    return `${reviews.price_min} ₪`;
+                }
+
+                return `${reviews.price_min}–${reviews.price_max} ₪`;
+            }
+
+            return "לא ידוע";
+        }
+
+        function formatRating(avgRating) {
+            if (!avgRating) {
+                return "אין עדיין דירוג";
+            }
+
+            const rounded = Math.round(avgRating);
+            return "★".repeat(rounded) + "☆".repeat(5 - rounded) + ` (${avgRating})`;
+        }
+
+        function formatReviewTexts(reviewTexts) {
+            if (!reviewTexts || reviewTexts.length === 0) {
+                return "<p>אין עדיין חוות דעת כתובות.</p>";
+            }
+
+            return reviewTexts
+                .map(text => `<div class="review-box">“${text}”</div>`)
+                .join("");
+        }
+
+        function formatExternalLink(link) {
+            if (!link) {
+                return "לא נמצא";
+            }
+
+            return `<a href="${link}" target="_blank">מעבר לקישור</a>`;
+        }
+
+        function hasCommunityInfo(garden) {
+            return garden.community && garden.community.has_community_info === true;
+        }
+
+        function buildTags(garden) {
+            const profile = garden.profile || {};
+            const tags = [];
+
+            if (hasCommunityInfo(garden)) {
+                tags.push(`<span class="tag community">יש מידע קהילתי</span>`);
+            } else {
+                tags.push(`<span class="tag no-community">אין עדיין מידע קהילתי</span>`);
+            }
+
+            if (profile.has_protected_space === "כן") {
+                tags.push(`<span class="tag extra">מרחב מוגן</span>`);
+            }
+
+            if (profile.cameras_open_to_parents === "כן") {
+                tags.push(`<span class="tag extra">מצלמות פתוחות</span>`);
+            }
+
+            if (profile.friday === "כן") {
+                tags.push(`<span class="tag extra">פעיל בשישי</span>`);
+            }
+
+            return tags.join("");
+        }
+
+        async function loadGardenProfile() {
+            const gardenId = getGardenIdFromUrl();
+            const container = document.getElementById("profileContainer");
+
+            if (!gardenId) {
+                container.innerHTML = `
+                    <div class="empty-message">
+                        לא נבחר גן להצגה.
+                    </div>
+                `;
+                return;
+            }
+
+            try {
+                const response = await fetch("gardens.json");
+                const data = await response.json();
+
+                const garden = data.gardens.find(g => String(g.id) === String(gardenId));
+
+                if (!garden) {
+                    container.innerHTML = `
+                        <div class="empty-message">
+                            לא נמצא גן עם המזהה ${gardenId}.
+                        </div>
+                    `;
+                    return;
+                }
+
+                renderGardenProfile(garden);
+
+            } catch (error) {
+                console.error("Error loading garden profile:", error);
+                container.innerHTML = `
+                    <div class="empty-message">
+                        לא הצלחנו לטעון את פרופיל הגן.
+                        <br>
+                        ודאי שהאתר רץ דרך Live Server.
+                    </div>
+                `;
+            }
+        }
+
+        function renderGardenProfile(garden) {
+            const container = document.getElementById("profileContainer");
+
+            const profile = garden.profile || {};
+            const community = garden.community || {};
+            const reviews = community.reviews || {};
+
+            container.innerHTML = `
+                <section class="profile-hero">
+                    <div>
+                        <h1>${cleanValue(garden.display_name || garden.name)}</h1>
+                        <p class="profile-subtitle">
+                            ${cleanValue(garden.city)} · ${cleanValue(garden.address)}
+                        </p>
+
+                        ${
+                            garden.official_name &&
+                            garden.display_name &&
+                            garden.official_name !== garden.display_name
+                                ? `<p class="source-note">שם רשמי במשרד החינוך: ${garden.official_name}</p>`
+                                : ""
+                        }
+
+                        <div class="tags">
+                            ${buildTags(garden)}
+                        </div>
+                    </div>
+
+                    <span class="license-badge">${cleanValue(garden.license_status)}</span>
+                </section>
+
+                <div class="profile-gallery">
+                    <div class="gallery-placeholder">🧸 תמונת גן</div>
+                    <div class="gallery-placeholder">🎨 פעילות</div>
+                    <div class="gallery-placeholder">🌿 חצר / מרחב</div>
+                </div>
+
+                <div class="profile-grid">
+
+                    <section class="profile-card">
+                        <h2>מידע רשמי</h2>
+                        <p><strong>טלפון:</strong> ${cleanValue(garden.display_phone || garden.official_phone)}</p>
+
+                        ${
+                            garden.official_phone &&
+                            garden.display_phone &&
+                            garden.official_phone !== garden.display_phone
+                                ? `<p class="source-note">טלפון רשמי: ${garden.official_phone}</p>`
+                                : ""
+                        }
+
+                        <p><strong>בעלות:</strong> ${cleanValue(garden.ownership)}</p>
+                        <p><strong>מגזר:</strong> ${cleanValue(garden.sector)}</p>
+                        <p><strong>מנהלת:</strong> ${cleanValue(garden.manager)}</p>
+                    </section>
+
+                    <section class="profile-card">
+                        <h2>מידע משלים</h2>
+                        <p><strong>סוג מסגרת:</strong> ${cleanValue(profile.garden_type)}</p>
+                        <p><strong>גילאים:</strong> ${cleanValue(profile.ages)}</p>
+                        <p><strong>שעות פעילות:</strong> ${cleanValue(profile.activity_hours)}</p>
+                        <p><strong>שישי:</strong> ${cleanValue(profile.friday)}</p>
+                        <p><strong>סוג חינוך:</strong> ${cleanValue(profile.education_type)}</p>
+                        <p><strong>זיקה דתית:</strong> ${cleanValue(profile.religious_orientation)}</p>
+                        <p><strong>תזונה:</strong> ${cleanValue(profile.nutrition_type)}</p>
+                        <p><strong>אתר / קישור:</strong> ${formatExternalLink(profile.external_link)}</p>
+                        <p class="source-note"><strong>סטטוס מידע:</strong> ${cleanValue(profile.profile_data_status)}</p>
+                    </section>
+
+                    <section class="profile-card">
+                        <h2>מידע מהקהילה</h2>
+                        <p><strong>מצלמות בגן:</strong> ${cleanValue(profile.has_cameras)}</p>
+                        <p><strong>מצלמות פתוחות להורים:</strong> ${cleanValue(profile.cameras_open_to_parents)}</p>
+                        <p><strong>מרחב מוגן:</strong> ${cleanValue(profile.has_protected_space)}</p>
+                        <p><strong>מחיר חודשי:</strong> ${formatPrice(reviews)}</p>
+                        <p><strong>מספר ביקורות:</strong> ${reviews.num_reviews || 0}</p>
+                    </section>
+
+                    <section class="profile-card">
+                        <h2>חוות דעת הורים</h2>
+                        <p class="rating">${formatRating(reviews.avg_rating)}</p>
+                        ${formatReviewTexts(reviews.review_texts)}
+                        <a class="secondary-button" href="add-review.html?id=${garden.id}">הוספת חוות דעת</a>
+                    </section>
+
+                </div>
+
+                <a class="back-link" href="search-results.html">חזרה לחיפוש</a>
+            `;
+        }
+
+        loadGardenProfile();
+    </script>
 </body>
 </html>

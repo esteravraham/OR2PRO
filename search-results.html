@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>תוצאות חיפוש גנים</title>
+    <link rel="stylesheet" href="optionA.css">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            background: #F8FBF9;
+            color: #24352E;
+        }
+
+        .results-page {
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 28px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .brand-icon {
+            width: 54px;
+            height: 54px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #FFB6A3, #FFD86B, #A8E6CF);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+        }
+
+        .brand-title {
+            margin: 0;
+            color: #2D5C4A;
+            font-size: 28px;
+        }
+
+        .results-hero {
+            background: linear-gradient(135deg, #DDF7E3, #DCEEFF, #FFF1D6);
+            border-radius: 26px;
+            padding: 28px;
+            margin-bottom: 22px;
+            box-shadow: 0 8px 22px rgba(0,0,0,0.06);
+        }
+
+        .results-hero h1 {
+            margin: 0 0 8px;
+            color: #2D5C4A;
+            font-size: 32px;
+        }
+
+        .results-hero p {
+            margin: 0 0 20px;
+            color: #52635B;
+        }
+
+        .search-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 14px 18px;
+            font-size: 16px;
+            border-radius: 999px;
+            border: 2px solid #BFE8D2;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: #72C7A3;
+        }
+
+        .search-button {
+            border: none;
+            border-radius: 999px;
+            padding: 0 24px;
+            font-size: 16px;
+            cursor: pointer;
+            background: #FF9F80;
+            color: white;
+            font-weight: bold;
+        }
+
+        .search-button:hover {
+            background: #F47F61;
+        }
+
+        .filters-panel {
+            background: white;
+            border: 1px solid #E2EFE7;
+            border-radius: 22px;
+            padding: 20px;
+            margin-bottom: 18px;
+            box-shadow: 0 5px 14px rgba(0,0,0,0.04);
+        }
+
+        .filters-title {
+            margin: 0 0 14px;
+            color: #2D5C4A;
+            font-size: 20px;
+        }
+
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .filter-group label {
+            font-size: 14px;
+            color: #52635B;
+            font-weight: bold;
+        }
+
+        .filter-group select {
+            padding: 10px;
+            border-radius: 12px;
+            border: 1px solid #CFE6D8;
+            background: #FBFEFC;
+        }
+
+        .checkbox-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .filter-chip {
+            background: #F3FBF6;
+            border: 1px solid #CDEEDB;
+            padding: 9px 13px;
+            border-radius: 999px;
+            font-size: 14px;
+            color: #3B7058;
+            cursor: pointer;
+        }
+
+        .filter-chip input {
+            margin-left: 5px;
+        }
+
+        .reset-button {
+            margin-top: 16px;
+            border: none;
+            border-radius: 999px;
+            padding: 10px 16px;
+            background: #64B6AC;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .reset-button:hover {
+            background: #4EA197;
+        }
+
+        .results-count {
+            margin: 10px 0 18px;
+            color: #52635B;
+            font-weight: bold;
+        }
+
+        .garden-card {
+            background: white;
+            border: 1px solid #E2EFE7;
+            border-radius: 18px;
+            padding: 18px;
+            margin-bottom: 14px;
+            box-shadow: 0 5px 14px rgba(0,0,0,0.05);
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .garden-card h3 {
+            margin: 0 0 8px;
+            color: #2D5C4A;
+            font-size: 22px;
+        }
+
+        .garden-details {
+            line-height: 1.7;
+            color: #364B40;
+        }
+
+        .tags {
+            margin-top: 10px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 999px;
+            font-size: 13px;
+            margin-left: 6px;
+            margin-top: 6px;
+        }
+
+        .tag.community {
+            background-color: #E2F7EA;
+            color: #2D7A4E;
+        }
+
+        .tag.no-community {
+            background-color: #F1F1F1;
+            color: #666;
+        }
+
+        .tag.license {
+            background-color: #FFF1C7;
+            color: #7A5A00;
+        }
+
+        .tag.extra {
+            background-color: #E9F2FF;
+            color: #2C5F9E;
+        }
+
+        .profile-link {
+            text-decoration: none;
+            color: white;
+            background: #64B6AC;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .profile-link:hover {
+            background: #4EA197;
+        }
+
+        .empty-message {
+            background: white;
+            padding: 24px;
+            border-radius: 18px;
+            border: 1px solid #E2EFE7;
+            text-align: center;
+            color: #52635B;
+        }
+
+        @media (max-width: 850px) {
+            .filters-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .search-row {
+                flex-direction: column;
+            }
+
+            .search-button {
+                padding: 13px;
+            }
+
+            .garden-card {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-link {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="results-page">
+
+        <div class="brand">
+            <div class="brand-icon">🌈</div>
+            <div>
+                <h2 class="brand-title">Ganim</h2>
+                <div>מערכת מידע לגני ילדים</div>
+            </div>
+        </div>
+
+        <section class="results-hero">
+            <h1>תוצאות חיפוש</h1>
+            <p>אפשר לחפש לפי שם גן, כתובת, מנהלת, בעלות, סוג מידע או מילת מפתח.</p>
+
+            <form class="search-row" onsubmit="performSearch(event)">
+                <input
+                    id="searchInput"
+                    class="search-input"
+                    type="text"
+                    placeholder="חפשי גן, כתובת או מילת מפתח..."
+                    autocomplete="off"
+                >
+
+                <button class="search-button" type="submit">חיפוש</button>
+            </form>
+        </section>
+
+        <section class="filters-panel">
+            <h2 class="filters-title">סינון תוצאות</h2>
+
+            <div class="filters-grid">
+                <div class="filter-group">
+                    <label for="educationFilter">סוג חינוך</label>
+                    <select id="educationFilter">
+                        <option value="">הכול</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="nutritionFilter">תזונה</label>
+                    <select id="nutritionFilter">
+                        <option value="">הכול</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="religiousFilter">זיקה דתית</label>
+                    <select id="religiousFilter">
+                        <option value="">הכול</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="checkbox-row">
+                <label class="filter-chip">
+                    <input type="checkbox" id="communityOnly">
+                    רק גנים עם מידע קהילתי
+                </label>
+
+                <label class="filter-chip">
+                    <input type="checkbox" id="licensedOnly">
+                    רק רישיון בתוקף
+                </label>
+
+                <label class="filter-chip">
+                    <input type="checkbox" id="openCamerasOnly">
+                    מצלמות פתוחות להורים
+                </label>
+
+                <label class="filter-chip">
+                    <input type="checkbox" id="protectedSpaceOnly">
+                    מרחב מוגן / ממ״ד
+                </label>
+
+                <label class="filter-chip">
+                    <input type="checkbox" id="fridayOnly">
+                    פעילות ביום שישי
+                </label>
+            </div>
+
+            <button class="reset-button" onclick="resetFilters()">איפוס סינון</button>
+        </section>
+
+        <div id="resultsCount" class="results-count"></div>
+
+        <div id="resultsContainer"></div>
+
+    </main>
+
+    <script>
+        let allGardens = [];
+
+        function getQueryFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get("q") || "";
+        }
+
+        async function loadGardens() {
+            try {
+                const response = await fetch("gardens.json");
+                const data = await response.json();
+
+                allGardens = data.gardens || [];
+
+                populateDynamicFilters();
+
+                const query = getQueryFromUrl();
+                document.getElementById("searchInput").value = query;
+
+                filterGardens();
+
+            } catch (error) {
+                console.error("Error loading gardens.json:", error);
+
+                document.getElementById("resultsContainer").innerHTML = `
+                    <div class="empty-message">
+                        לא הצלחנו לטעון את קובץ הנתונים gardens.json.
+                        <br>
+                        ודאי שהאתר רץ דרך Live Server.
+                    </div>
+                `;
+            }
+        }
+
+        function cleanValue(value) {
+            if (value === null || value === undefined || value === "") {
+                return "לא ידוע";
+            }
+
+            return value;
+        }
+
+        function hasCommunityInfo(garden) {
+            return garden.community && garden.community.has_community_info === true;
+        }
+
+        function populateSelect(selectId, values) {
+            const select = document.getElementById(selectId);
+
+            values.forEach(value => {
+                const option = document.createElement("option");
+                option.value = value;
+                option.textContent = value;
+                select.appendChild(option);
+            });
+        }
+
+        function populateDynamicFilters() {
+            const educationOptions = [
+                "רגיל / כללי",
+                "מונטסורי",
+                "אנתרופוסופי / וולדורף",
+                "דמוקרטי",
+                "טבע / יער",
+                "רג׳יו אמיליה",
+                "דו-לשוני",
+                "חינוך מיוחד",
+                "שילוב",
+                "אומנויות",
+                "מוזיקה",
+                "מדעים / STEM",
+                "ספורט / תנועה",
+                "אחר"
+            ];
+
+            const nutritionOptions = [
+                "רגילה",
+                "כשרה",
+                "כשרה למהדרין",
+                "צמחונית",
+                "טבעונית",
+                "ללא גלוטן",
+                "ללא אלרגנים",
+                "ביתית",
+                "קייטרינג",
+                "הורה מביא אוכל",
+                "אחר"
+            ];
+
+            const religiousOptions = [
+                "חילוני",
+                "מסורתי",
+                "דתי",
+                "ממלכתי דתי",
+                "חרדי",
+                "מעורב",
+                "אחר",
+                "לא ידוע"
+            ];
+
+            populateSelect("educationFilter", educationOptions);
+            populateSelect("nutritionFilter", nutritionOptions);
+            populateSelect("religiousFilter", religiousOptions);
+        }
+
+        function performSearch(event) {
+            event.preventDefault();
+
+            const query = document.getElementById("searchInput").value.trim();
+            const encodedQuery = encodeURIComponent(query);
+
+            window.history.replaceState(null, "", `search-results.html?q=${encodedQuery}`);
+
+            filterGardens();
+        }
+
+        function filterGardens() {
+            const searchValue = document.getElementById("searchInput").value.trim().toLowerCase();
+
+            const communityOnly = document.getElementById("communityOnly").checked;
+            const licensedOnly = document.getElementById("licensedOnly").checked;
+            const openCamerasOnly = document.getElementById("openCamerasOnly").checked;
+            const protectedSpaceOnly = document.getElementById("protectedSpaceOnly").checked;
+            const fridayOnly = document.getElementById("fridayOnly").checked;
+
+            const educationFilter = document.getElementById("educationFilter").value;
+            const nutritionFilter = document.getElementById("nutritionFilter").value;
+            const religiousFilter = document.getElementById("religiousFilter").value;
+
+            const filtered = allGardens.filter(garden => {
+                const profile = garden.profile || {};
+                const searchText = garden.search_text || "";
+
+                const matchesSearch =
+                    searchValue === "" ||
+                    searchText.includes(searchValue) ||
+                    String(garden.name || "").toLowerCase().includes(searchValue) ||
+                    String(garden.display_name || "").toLowerCase().includes(searchValue) ||
+                    String(garden.address || "").toLowerCase().includes(searchValue);
+
+                const matchesCommunity =
+                    !communityOnly || hasCommunityInfo(garden);
+
+                const matchesLicense =
+                    !licensedOnly || String(garden.license_status || "").includes("רישיון בתוקף");
+
+                const matchesCameras =
+                    !openCamerasOnly || profile.cameras_open_to_parents === "כן";
+
+                const matchesProtected =
+                    !protectedSpaceOnly || profile.has_protected_space === "כן";
+
+                const matchesFriday =
+                    !fridayOnly || profile.friday === "כן";
+
+                const matchesEducation =
+                    !educationFilter || profile.education_type === educationFilter;
+
+                const matchesNutrition =
+                    !nutritionFilter || profile.nutrition_type === nutritionFilter;
+
+                const matchesReligious =
+                    !religiousFilter || profile.religious_orientation === religiousFilter;
+
+                return (
+                    matchesSearch &&
+                    matchesCommunity &&
+                    matchesLicense &&
+                    matchesCameras &&
+                    matchesProtected &&
+                    matchesFriday &&
+                    matchesEducation &&
+                    matchesNutrition &&
+                    matchesReligious
+                );
+            });
+
+            renderResults(filtered);
+        }
+
+        function resetFilters() {
+            document.getElementById("searchInput").value = "";
+
+            document.getElementById("communityOnly").checked = false;
+            document.getElementById("licensedOnly").checked = false;
+            document.getElementById("openCamerasOnly").checked = false;
+            document.getElementById("protectedSpaceOnly").checked = false;
+            document.getElementById("fridayOnly").checked = false;
+
+            document.getElementById("educationFilter").value = "";
+            document.getElementById("nutritionFilter").value = "";
+            document.getElementById("religiousFilter").value = "";
+
+            window.history.replaceState(null, "", "search-results.html");
+
+            filterGardens();
+        }
+
+        function renderResults(gardens) {
+            const resultsContainer = document.getElementById("resultsContainer");
+            const resultsCount = document.getElementById("resultsCount");
+
+            resultsCount.textContent = `נמצאו ${gardens.length} גנים`;
+
+            if (gardens.length === 0) {
+                resultsContainer.innerHTML = `
+                    <div class="empty-message">
+                        לא נמצאו גנים מתאימים לחיפוש.
+                        <br>
+                        נסי לחפש לפי שם אחר, כתובת או לשנות את הסינון.
+                    </div>
+                `;
+                return;
+            }
+
+            resultsContainer.innerHTML = gardens.map(garden => {
+                const profile = garden.profile || {};
+
+                const communityTag = hasCommunityInfo(garden)
+                    ? `<span class="tag community">יש מידע קהילתי</span>`
+                    : `<span class="tag no-community">אין עדיין מידע קהילתי</span>`;
+
+                const protectedTag = profile.has_protected_space === "כן"
+                    ? `<span class="tag extra">מרחב מוגן</span>`
+                    : "";
+
+                const camerasTag = profile.cameras_open_to_parents === "כן"
+                    ? `<span class="tag extra">מצלמות פתוחות</span>`
+                    : "";
+
+                const fridayTag = profile.friday === "כן"
+                    ? `<span class="tag extra">פעיל בשישי</span>`
+                    : "";
+
+                return `
+                    <article class="garden-card">
+                        <div>
+                            <h3>${cleanValue(garden.display_name || garden.name)}</h3>
+
+                            <div class="garden-details">
+                                <div><strong>כתובת:</strong> ${cleanValue(garden.address)}</div>
+                                <div><strong>טלפון:</strong> ${cleanValue(garden.display_phone || garden.official_phone)}</div>
+                                <div><strong>מנהלת:</strong> ${cleanValue(garden.manager)}</div>
+                                <div><strong>בעלות:</strong> ${cleanValue(garden.ownership)}</div>
+                            </div>
+
+                            <div class="tags">
+                                ${communityTag}
+                                <span class="tag license">${cleanValue(garden.license_status)}</span>
+                                ${protectedTag}
+                                ${camerasTag}
+                                ${fridayTag}
+                            </div>
+                        </div>
+
+                        <a class="profile-link" href="garden-profile.html?id=${garden.id}">
+                            לפרופיל הגן
+                        </a>
+                    </article>
+                `;
+            }).join("");
+        }
+
+        [
+            "communityOnly",
+            "licensedOnly",
+            "openCamerasOnly",
+            "protectedSpaceOnly",
+            "fridayOnly",
+            "educationFilter",
+            "nutritionFilter",
+            "religiousFilter"
+        ].forEach(id => {
+            document.getElementById(id).addEventListener("change", filterGardens);
+        });
+
+        document.getElementById("searchInput").addEventListener("input", filterGardens);
+
+        loadGardens();
+    </script>
+</body>
+</html>

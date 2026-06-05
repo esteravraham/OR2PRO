@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>הוספת חוות דעת</title>
+    <link rel="stylesheet" href="optionA.css">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            background: #F8FBF9;
+            color: #24352E;
+        }
+
+        .review-page {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 28px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .brand-icon {
+            width: 54px;
+            height: 54px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #FFB6A3, #FFD86B, #A8E6CF);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+        }
+
+        .brand-title {
+            margin: 0;
+            color: #2D5C4A;
+            font-size: 28px;
+        }
+
+        .review-hero {
+            background: linear-gradient(135deg, #DDF7E3, #DCEEFF, #FFF1D6);
+            border-radius: 26px;
+            padding: 28px;
+            margin-bottom: 22px;
+            box-shadow: 0 8px 22px rgba(0,0,0,0.06);
+        }
+
+        .review-hero h1 {
+            margin: 0 0 8px;
+            color: #2D5C4A;
+            font-size: 32px;
+        }
+
+        .review-hero p {
+            margin: 0;
+            color: #52635B;
+            line-height: 1.6;
+        }
+
+        .review-form {
+            background: white;
+            border: 1px solid #E2EFE7;
+            border-radius: 22px;
+            padding: 24px;
+            box-shadow: 0 5px 14px rgba(0,0,0,0.05);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-weight: bold;
+            color: #3B7058;
+            font-size: 14px;
+        }
+
+        input,
+        select,
+        textarea {
+            padding: 11px 12px;
+            border-radius: 12px;
+            border: 1px solid #CFE6D8;
+            background: #FBFEFC;
+            font-size: 15px;
+            font-family: Arial, sans-serif;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 22px;
+        }
+
+        .primary-button,
+        .secondary-link {
+            border: none;
+            border-radius: 999px;
+            padding: 11px 18px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .primary-button {
+            background: #FF9F80;
+            color: white;
+        }
+
+        .primary-button:hover {
+            background: #F47F61;
+        }
+
+        .secondary-link {
+            background: #64B6AC;
+            color: white;
+        }
+
+        .secondary-link:hover {
+            background: #4EA197;
+        }
+
+        .success-message {
+            display: none;
+            margin-top: 18px;
+            background: #E2F7EA;
+            color: #2D7A4E;
+            border: 1px solid #BFE8D2;
+            padding: 14px;
+            border-radius: 14px;
+            line-height: 1.6;
+        }
+
+        .note {
+            margin-top: 14px;
+            color: #66756E;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 700px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="review-page">
+
+        <div class="brand">
+            <div class="brand-icon">🌈</div>
+            <div>
+                <h2 class="brand-title">Ganim</h2>
+                <div>מערכת מידע לגני ילדים</div>
+            </div>
+        </div>
+
+        <section class="review-hero">
+            <h1>הוספת חוות דעת</h1>
+            <p id="gardenInfo">טוען את פרטי הגן...</p>
+        </section>
+
+        <form class="review-form" onsubmit="submitReview(event)">
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label for="rating">דירוג כללי</label>
+                    <select id="rating">
+                        <option value="">בחרי דירוג</option>
+                        <option value="5">5 - מצוין</option>
+                        <option value="4">4 - טוב מאוד</option>
+                        <option value="3">3 - בינוני</option>
+                        <option value="2">2 - לא טוב</option>
+                        <option value="1">1 - גרוע</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="parentFeeling">תחושת הורים</label>
+                    <select id="parentFeeling">
+                        <option value="">בחרי תחושה</option>
+                        <option value="מאוד מרוצה">מאוד מרוצה</option>
+                        <option value="מרוצה">מרוצה</option>
+                        <option value="ניטרלי">ניטרלי</option>
+                        <option value="לא מרוצה">לא מרוצה</option>
+                        <option value="מאוד לא מרוצה">מאוד לא מרוצה</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="priceWithoutFriday">מחיר ללא שישי</label>
+                    <input id="priceWithoutFriday" type="number" placeholder="לדוגמה: 5200">
+                </div>
+
+                <div class="form-group">
+                    <label for="priceWithFriday">מחיר כולל שישי</label>
+                    <input id="priceWithFriday" type="number" placeholder="לדוגמה: 5600">
+                </div>
+
+                <div class="form-group">
+                    <label for="priceDetails">הערות על המחיר</label>
+                    <input id="priceDetails" type="text" placeholder="לדוגמה: תלוי גיל / כולל צהרון">
+                </div>
+
+                <div class="form-group">
+                    <label for="hasCameras">מצלמות פתוחות להורים</label>
+                    <select id="hasCameras">
+                        <option value="">לא ידוע</option>
+                        <option value="כן">כן</option>
+                        <option value="לא">לא</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="protectedSpace">מרחב מוגן / ממ״ד</label>
+                    <select id="protectedSpace">
+                        <option value="">לא ידוע</option>
+                        <option value="כן">כן</option>
+                        <option value="לא">לא</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="friday">פעילות ביום שישי</label>
+                    <select id="friday">
+                        <option value="">לא ידוע</option>
+                        <option value="כן">כן</option>
+                        <option value="לא">לא</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="staffCount">מספר אנשי צוות</label>
+                    <input id="staffCount" type="number" placeholder="לדוגמה: 4">
+                </div>
+
+                <div class="form-group">
+                    <label for="childrenCount">מספר ילדים</label>
+                    <input id="childrenCount" type="number" placeholder="לדוגמה: 24">
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="reviewText">חוות דעת חופשית</label>
+                    <textarea id="reviewText" placeholder="כתבי כאן חוות דעת כנה על הגן, הצוות, התקשורת עם ההורים, האווירה, בטיחות וכו׳"></textarea>
+                </div>
+
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="primary-button">שליחת חוות דעת</button>
+                <a id="backToProfile" class="secondary-link" href="search-results.html">חזרה לפרופיל הגן</a>
+            </div>
+
+            <div id="successMessage" class="success-message">
+                חוות הדעת נשמרה בהצלחה לצורך הדמו.
+                <br>
+                בשלב הבא של המערכת, הנתונים האלה יישמרו בבסיס נתונים או יועברו לבדיקה לפני פרסום.
+            </div>
+
+            <p class="note">
+                הערה: כרגע האתר הוא סטטי, ולכן הטופס שומר את המידע זמנית בדפדפן בלבד. בהמשך נחבר את הטופס למנגנון שמירה אמיתי.
+            </p>
+        </form>
+
+    </main>
+
+    <script>
+        let currentGarden = null;
+
+        function getGardenIdFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get("id");
+        }
+
+        function cleanValue(value) {
+            if (value === null || value === undefined || value === "") {
+                return "לא ידוע";
+            }
+            return value;
+        }
+
+        async function loadGarden() {
+            const gardenId = getGardenIdFromUrl();
+            const gardenInfo = document.getElementById("gardenInfo");
+            const backToProfile = document.getElementById("backToProfile");
+
+            if (!gardenId) {
+                gardenInfo.textContent = "לא נבחר גן.";
+                return;
+            }
+
+            backToProfile.href = `garden-profile.html?id=${gardenId}`;
+
+            try {
+                const response = await fetch("gardens.json");
+                const data = await response.json();
+
+                currentGarden = data.gardens.find(g => String(g.id) === String(gardenId));
+
+                if (!currentGarden) {
+                    gardenInfo.textContent = "לא נמצא הגן המבוקש.";
+                    return;
+                }
+
+                gardenInfo.textContent = `${cleanValue(currentGarden.display_name || currentGarden.name)} · ${cleanValue(currentGarden.address)}`;
+
+            } catch (error) {
+                console.error("Error loading garden:", error);
+                gardenInfo.textContent = "לא הצלחנו לטעון את פרטי הגן.";
+            }
+        }
+
+        function getNumberValue(id) {
+            const value = document.getElementById(id).value.trim();
+            return value ? Number(value) : null;
+        }
+
+        function getTextValue(id) {
+            const value = document.getElementById(id).value.trim();
+            return value || null;
+        }
+
+async function submitReview(event) {
+    event.preventDefault();
+
+    const gardenId = getGardenIdFromUrl();
+
+    const staffCount = getNumberValue("staffCount");
+    const childrenCount = getNumberValue("childrenCount");
+
+    let staffChildRatio = null;
+    if (staffCount && childrenCount) {
+        staffChildRatio = `${staffCount}:${childrenCount}`;
+    }
+
+    const review = {
+        garden_id: gardenId,
+        garden_name: currentGarden ? (currentGarden.display_name || currentGarden.name) : null,
+
+        rating_1_to_5: getNumberValue("rating"),
+        parent_feeling: getTextValue("parentFeeling"),
+
+        price_without_friday: getNumberValue("priceWithoutFriday"),
+        price_with_friday: getNumberValue("priceWithFriday"),
+        price_details: getTextValue("priceDetails"),
+
+        cameras_open_to_parents: getTextValue("hasCameras"),
+        has_protected_space: getTextValue("protectedSpace"),
+        friday: getTextValue("friday"),
+
+        staff_count: staffCount,
+        children_count: childrenCount,
+        staff_child_ratio: staffChildRatio,
+
+        review_text: getTextValue("reviewText"),
+        created_at: new Date().toISOString()
+    };
+
+    try {
+        const response = await fetch("/submit_review", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(review)
+        });
+
+        const result = await response.json();
+
+        if (!response.ok || !result.success) {
+            alert("אירעה שגיאה בשליחת חוות הדעת");
+            console.error(result);
+            return;
+        }
+
+        document.getElementById("successMessage").style.display = "block";
+        event.target.reset();
+
+    } catch (error) {
+        alert("לא הצלחנו לשלוח את חוות הדעת. ודאי שהאתר רץ דרך Flask ולא דרך Live Server.");
+        console.error("Submit review error:", error);
+    }
+}
+            const review = {
+                review_id: Date.now(),
+                garden_id: gardenId,
+                garden_name: currentGarden ? (currentGarden.display_name || currentGarden.name) : null,
+
+                rating_1_to_5: getNumberValue("rating"),
+                parent_feeling: getTextValue("parentFeeling"),
+
+                price_without_friday: getNumberValue("priceWithoutFriday"),
+                price_with_friday: getNumberValue("priceWithFriday"),
+                price_details: getTextValue("priceDetails"),
+
+                cameras_open_to_parents: getTextValue("hasCameras"),
+                has_protected_space: getTextValue("protectedSpace"),
+                friday: getTextValue("friday"),
+
+                staff_count: staffCount,
+                children_count: childrenCount,
+                staff_child_ratio: staffChildRatio,
+
+                review_text: getTextValue("reviewText"),
+                created_at: new Date().toISOString(),
+                status: "pending_review",
+                source: "website_demo"
+            };
+
+            const existingReviews = JSON.parse(localStorage.getItem("parent_reviews_demo") || "[]");
+            existingReviews.push(review);
+
+            localStorage.setItem("parent_reviews_demo", JSON.stringify(existingReviews));
+
+            document.getElementById("successMessage").style.display = "block";
+
+            event.target.reset();
+        }
+
+        loadGarden();
+    </script>
+</body>
+</html>

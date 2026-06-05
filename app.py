@@ -1,160 +1,95 @@
-from flask import Flask, request, render_template_string, send_from_directory
-import pandas as pd
+from flask import Flask, request, jsonify, send_from_directory
+import json
+import os
+from datetime import datetime
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder=".", static_url_path="")
 
-EXCEL_FILE = "Cleaned_Database.xlsx"
+SUBMISSIONS_FILE = "parent_reviews_submissions.json"
+GARDENS_FILE = "gardens.json"
 
-def load_data():
-    try:
-        df = pd.read_excel(EXCEL_FILE, sheet_name="Cleaned_Data")
-    except ValueError:
-        df = pd.read_excel(EXCEL_FILE, sheet_name=0)
 
-    df = df.fillna("Unknown")
-    df["id"] = df["id"].astype(str)
-    return df
+def load_json_file(file_path, default_value):
+    if not os.path.exists(file_path):
+        return default_value
+
+    with open(file_path, "r", encoding="utf-8") as file:
+        return json.load(file)
+
+
+def save_json_file(file_path, data):
+    with open(file_path, "w", encoding="utf-8") as file:
+        json.dump(data, file, ensure_ascii=False, indent=2)
+
+
+def garden_exists(garden_id):
+    data = load_json_file(GARDENS_FILE, {"gardens": []})
+    gardens = data.get("gardens", [])
+
+    return any(str(garden.get("id")) == str(garden_id) for garden in gardens)
+
 
 @app.route("/")
 def index():
     return send_from_directory(".", "index.html")
 
+
 @app.route("/<path:filename>")
-def static_files(filename):
+def serve_static_file(filename):
     return send_from_directory(".", filename)
 
-@app.route("/search")
-def search():
-    query = request.args.get("q", "").strip()
-    df = load_data()
 
-    if query:
-        results = df[
-            df["name"].astype(str).str.contains(query, case=False, na=False) |
-            df["city"].astype(str).str.contains(query, case=False, na=False) |
-            df["address"].astype(str).str.contains(query, case=False, na=False)
-        ]
-    else:
-        results = df
+@app.route("/submit_review", methods=["POST"])
+def submit_review():
+    review_data = request.get_json()
 
-    return render_template_string("""
-    <!DOCTYPE html>
-    <html lang="he" dir="rtl">
-    <head>
-        <meta charset="UTF-8">
-        <title>תוצאות חיפוש</title>
-        <link rel="stylesheet" href="/optionA.css">
-    </head>
-    <body class="inner-page">
-        <h1>תוצאות חיפוש</h1>
+    if not review_data:
+        return jsonify({
+            "success": False,
+            "message": "No review data received"
+        }), 400
 
-        {% if query %}
-            <p>נמצאו {{ results|length }} תוצאות עבור: <strong>{{ query }}</strong></p>
-        {% else %}
-            <p>מציג את כל הגנים במאגר</p>
-        {% endif %}
+    garden_id = review_data.get("garden_id")
 
-        <table class="data-table">
-            <thead>
-                <tr>
-                    <th>שם הגן</th>
-                    <th>עיר</th>
-                    <th>כתובת</th>
-                    <th>סטטוס רישוי</th>
-                    <th>פרופיל</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for garden in results %}
-                <tr>
-                    <td>{{ garden.name }}</td>
-                    <td>{{ garden.city }}</td>
-                    <td>{{ garden.address }}</td>
-                    <td>{{ garden.license_status }}</td>
-                    <td><a href="/garden/{{ garden.id }}">צפייה</a></td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </body>
-    </html>
-    """, results=results.to_dict(orient="records"), query=query)
+    if not garden_id:
+        return jsonify({
+            "success": False,
+            "message": "Missing garden_id"
+        }), 400
 
-@app.route("/garden/<garden_id>")
-def garden_profile(garden_id):
-    df = load_data()
-    garden = df[df["id"] == str(garden_id)]
+    if not garden_exists(garden_id):
+        return jsonify({
+            "success": False,
+            "message": "Garden ID not found"
+        }), 404
 
-    if garden.empty:
-        return "גן לא נמצא"
+    submissions = load_json_file(SUBMISSIONS_FILE, [])
 
-    garden = garden.iloc[0].to_dict()
+    review_data["submission_id"] = len(submissions) + 1
+    review_data["server_created_at"] = datetime.now().isoformat(timespec="seconds")
+    review_data["status"] = "pending_review"
+    review_data["source"] = "website_form"
 
-    return render_template_string("""
-    <!DOCTYPE html>
-    <html lang="he" dir="rtl">
-    <head>
-        <meta charset="UTF-8">
-        <title>פרופיל גן</title>
-        <link rel="stylesheet" href="/optionA.css">
-    </head>
-    <body class="inner-page">
+    submissions.append(review_data)
 
-        <section class="garden-profile">
+    save_json_file(SUBMISSIONS_FILE, submissions)
 
-            <div class="profile-header">
-                <div>
-                    <h1>{{ garden.name }}</h1>
-                    <p class="profile-subtitle">{{ garden.city }} · {{ garden.address }}</p>
-                </div>
-                <span class="license-badge">{{ garden.license_status }}</span>
-            </div>
+    return jsonify({
+        "success": True,
+        "message": "Review submitted successfully",
+        "submission_id": review_data["submission_id"]
+    })
 
-            <div class="profile-gallery">
-                <div class="gallery-placeholder">תמונה 1</div>
-                <div class="gallery-placeholder">תמונה 2</div>
-                <div class="gallery-placeholder">תמונה 3</div>
-            </div>
 
-            <div class="profile-grid">
+@app.route("/admin/submissions")
+def view_submissions():
+    submissions = load_json_file(SUBMISSIONS_FILE, [])
 
-                <section class="profile-card">
-                    <h2>מידע רשמי</h2>
-                    <p><strong>טלפון:</strong> {{ garden.phone }}</p>
-                    <p><strong>בעלות:</strong> {{ garden.ownership }}</p>
-                    <p><strong>מגזר:</strong> {{ garden.sector }}</p>
-                    <p><strong>מנהלת:</strong> {{ garden.manager }}</p>
-                </section>
+    return jsonify({
+        "total_submissions": len(submissions),
+        "submissions": submissions
+    })
 
-                <section class="profile-card">
-                    <h2>מידע משלים</h2>
-                    <p><strong>שעות פעילות:</strong> לא ידוע</p>
-                    <p><strong>אתר:</strong> לא נמצא</p>
-                    <p><strong>שכונה:</strong> לא ידוע</p>
-                    <p><strong>מקורות:</strong> משרד החינוך</p>
-                </section>
-
-                <section class="profile-card">
-                    <h2>מידע מהקהילה</h2>
-                    <p><strong>מצלמות להורים:</strong> לא ידוע</p>
-                    <p><strong>מרחב מוגן:</strong> לא ידוע</p>
-                    <p><strong>מחיר חודשי:</strong> לא ידוע</p>
-                    <p><strong>יחס צוות-ילדים:</strong> לא ידוע</p>
-                </section>
-
-                <section class="profile-card">
-                    <h2>חוות דעת הורים</h2>
-                    <p>עדיין לא נוספו חוות דעת.</p>
-                    <button class="secondary-button">הוספת חוות דעת</button>
-                </section>
-
-            </div>
-
-        </section>
-
-    </body>
-    </html>
-    """, garden=garden)
 
 if __name__ == "__main__":
     app.run(debug=True)
