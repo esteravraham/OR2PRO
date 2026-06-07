@@ -4,9 +4,15 @@ import os
 import shutil
 from datetime import datetime
 
-INPUT_FILE = "Parent_Input_Data_Structure.xlsx"
+OFFICIAL_FILE = "Cleaned_Database.xlsx"
+EXTERNAL_FILE = "Ramat_Gan_API_Match_Report.xlsx"
+COMMUNITY_FILE = "Parent_Input_Data_Structure.xlsx"
+
 OUTPUT_FILE = "gardens.json"
 BACKUP_FILE = "gardens_backup.json"
+
+OFFICIAL_SHEET = "Cleaned_Data"
+EXTERNAL_MATCHED_SHEET = "Matched_Data"
 
 GARDEN_PROFILE_SHEET = "Garden_Profile"
 PARENT_REVIEWS_SHEET = "Parent_Reviews_Template"
@@ -43,6 +49,20 @@ def clean_number(value):
 def is_approved(row):
     status = clean_value(row.get("status"))
     return status == "approved"
+
+
+def load_excel_sheet(file_path, sheet_name, required=False):
+    if not os.path.exists(file_path):
+        if required:
+            raise FileNotFoundError(f"{file_path} not found")
+        return pd.DataFrame()
+
+    try:
+        return pd.read_excel(file_path, sheet_name=sheet_name)
+    except Exception:
+        if required:
+            raise
+        return pd.DataFrame()
 
 
 def summarize_reviews(reviews_df):
@@ -101,29 +121,19 @@ def summarize_reviews(reviews_df):
     )
 
     price_details = (
-        approved_reviews["price_details"]
-        .apply(clean_value)
-        .dropna()
-        .tolist()
+        approved_reviews["price_details"].apply(clean_value).dropna().tolist()
         if "price_details" in approved_reviews.columns
         else []
     )
 
     feelings = (
-        approved_reviews["parent_feeling"]
-        .apply(clean_value)
-        .dropna()
-        .value_counts()
-        .to_dict()
+        approved_reviews["parent_feeling"].apply(clean_value).dropna().value_counts().to_dict()
         if "parent_feeling" in approved_reviews.columns
         else {}
     )
 
     review_texts = (
-        approved_reviews["review_text"]
-        .apply(clean_value)
-        .dropna()
-        .tolist()
+        approved_reviews["review_text"].apply(clean_value).dropna().tolist()
         if "review_text" in approved_reviews.columns
         else []
     )
@@ -181,27 +191,66 @@ def build_search_text(values):
     return " ".join(clean_values).lower()
 
 
+def build_external_lookup(external_df):
+    lookup = {}
+
+    if external_df.empty or "id" not in external_df.columns:
+        return lookup
+
+    for _, row in external_df.iterrows():
+        garden_id = clean_value(row.get("id"))
+
+        if not garden_id:
+            continue
+
+        lookup[str(garden_id)] = {
+            "neighborhood": clean_value(row.get("neighborhood")),
+            "x": clean_number(row.get("x")),
+            "y": clean_number(row.get("y")),
+            "api_name": clean_value(row.get("api_name")),
+            "api_address": clean_value(row.get("api_address"))
+        }
+
+    return lookup
+
+
+def build_community_lookup(garden_profile_df):
+    lookup = {}
+
+    if garden_profile_df.empty or "garden_id" not in garden_profile_df.columns:
+        return lookup
+
+    for _, row in garden_profile_df.iterrows():
+        garden_id = clean_value(row.get("garden_id"))
+
+        if not garden_id:
+            continue
+
+        lookup[str(garden_id)] = row
+
+    return lookup
+
+
+def get_matching_rows_by_garden_id(df, garden_id):
+    if df.empty or "garden_id" not in df.columns:
+        return pd.DataFrame()
+
+    return df[df["garden_id"].astype(str) == str(garden_id)]
+
+
 def main():
-    if not os.path.exists(INPUT_FILE):
-        print(f"❌ {INPUT_FILE} not found")
-        return
+    official_df = load_excel_sheet(OFFICIAL_FILE, OFFICIAL_SHEET, required=True)
+    external_df = load_excel_sheet(EXTERNAL_FILE, EXTERNAL_MATCHED_SHEET, required=False)
 
-    garden_profile = pd.read_excel(INPUT_FILE, sheet_name=GARDEN_PROFILE_SHEET)
+    garden_profile_df = load_excel_sheet(COMMUNITY_FILE, GARDEN_PROFILE_SHEET, required=False)
+    parent_reviews_df = load_excel_sheet(COMMUNITY_FILE, PARENT_REVIEWS_SHEET, required=False)
+    suggested_updates_df = load_excel_sheet(COMMUNITY_FILE, SUGGESTED_UPDATES_SHEET, required=False)
 
-    try:
-        parent_reviews = pd.read_excel(INPUT_FILE, sheet_name=PARENT_REVIEWS_SHEET)
-    except Exception:
-        parent_reviews = pd.DataFrame()
-
-    try:
-        suggested_updates = pd.read_excel(INPUT_FILE, sheet_name=SUGGESTED_UPDATES_SHEET)
-    except Exception:
-        suggested_updates = pd.DataFrame()
+    external_lookup = build_external_lookup(external_df)
+    community_lookup = build_community_lookup(garden_profile_df)
 
     if os.path.exists(OUTPUT_FILE):
         shutil.copyfile(OUTPUT_FILE, BACKUP_FILE)
-
-    gardens = []
 
     profile_fields = [
         "garden_type",
@@ -226,41 +275,43 @@ def main():
         "verified_by"
     ]
 
-    for _, garden in garden_profile.iterrows():
-        garden_id = str(garden.get("garden_id"))
+    gardens = []
 
-        garden_reviews = (
-            parent_reviews[parent_reviews["garden_id"].astype(str) == garden_id]
-            if not parent_reviews.empty and "garden_id" in parent_reviews.columns
-            else pd.DataFrame()
-        )
+    for _, official_row in official_df.iterrows():
+        garden_id = clean_value(official_row.get("id"))
 
-        garden_suggestions = (
-            suggested_updates[suggested_updates["garden_id"].astype(str) == garden_id]
-            if not suggested_updates.empty and "garden_id" in suggested_updates.columns
-            else pd.DataFrame()
-        )
+        if not garden_id:
+            continue
+
+        garden_id = str(garden_id)
+
+        community_row = community_lookup.get(garden_id)
+        external_data = external_lookup.get(garden_id, {})
+
+        garden_reviews = get_matching_rows_by_garden_id(parent_reviews_df, garden_id)
+        garden_suggestions = get_matching_rows_by_garden_id(suggested_updates_df, garden_id)
 
         review_summary = summarize_reviews(garden_reviews)
         suggestion_summary = summarize_suggestions(garden_suggestions)
         approved_updates = suggestion_summary.get("approved_updates", {})
 
-        official_name = clean_value(garden.get("name"))
-        official_phone = clean_value(garden.get("official_phone"))
+        official_name = clean_value(official_row.get("name"))
+        official_phone = clean_value(official_row.get("phone"))
 
         display_name = approved_updates.get("display_name") or official_name
         display_phone = approved_updates.get("display_phone") or official_phone
 
         profile = {}
 
-        for field in profile_fields:
-            value = clean_value(garden.get(field))
+        if community_row is not None:
+            for field in profile_fields:
+                value = clean_value(community_row.get(field))
 
-            # אם יש הצעה מאושרת לאותו שדה, היא גוברת על הערך מהפרופיל
-            if field in approved_updates:
-                value = approved_updates[field]
+                if field in approved_updates:
+                    value = approved_updates[field]
 
-            profile[field] = value
+                if value is not None:
+                    profile[field] = value
 
         has_profile_community_info = any(
             profile.get(field) is not None
@@ -286,14 +337,19 @@ def main():
             or suggestion_summary["pending_suggestions_count"] > 0
         )
 
+        neighborhood = external_data.get("neighborhood")
+        x = external_data.get("x")
+        y = external_data.get("y")
+
         search_text = build_search_text([
             display_name,
             official_name,
-            garden.get("city"),
-            garden.get("address"),
-            garden.get("manager"),
-            garden.get("ownership"),
-            garden.get("sector"),
+            official_row.get("city"),
+            official_row.get("address"),
+            official_row.get("manager"),
+            official_row.get("ownership"),
+            official_row.get("sector"),
+            neighborhood,
             profile.get("garden_type"),
             profile.get("ages"),
             profile.get("education_type"),
@@ -308,17 +364,42 @@ def main():
             "display_name": display_name,
             "official_name": official_name,
 
-            "city": clean_value(garden.get("city")),
-            "address": clean_value(garden.get("address")),
+            "city": clean_value(official_row.get("city")),
+            "address": clean_value(official_row.get("address")),
+            "neighborhood": neighborhood,
+            "x": x,
+            "y": y,
 
             "phone": display_phone,
             "display_phone": display_phone,
             "official_phone": official_phone,
 
-            "ownership": clean_value(garden.get("ownership")),
-            "sector": clean_value(garden.get("sector")),
-            "manager": clean_value(garden.get("manager")),
-            "license_status": clean_value(garden.get("license_status")),
+            "ownership": clean_value(official_row.get("ownership")),
+            "sector": clean_value(official_row.get("sector")),
+            "manager": clean_value(official_row.get("manager")),
+            "license_status": clean_value(official_row.get("license_status")),
+
+            "official": {
+                "source": "משרד החינוך",
+                "id": garden_id,
+                "name": official_name,
+                "city": clean_value(official_row.get("city")),
+                "address": clean_value(official_row.get("address")),
+                "phone": official_phone,
+                "ownership": clean_value(official_row.get("ownership")),
+                "sector": clean_value(official_row.get("sector")),
+                "manager": clean_value(official_row.get("manager")),
+                "license_status": clean_value(official_row.get("license_status"))
+            },
+
+            "external": {
+                "source": "API עיריית רמת גן",
+                "neighborhood": neighborhood,
+                "x": x,
+                "y": y,
+                "api_name": external_data.get("api_name"),
+                "api_address": external_data.get("api_address")
+            },
 
             "profile": profile,
 
@@ -335,13 +416,17 @@ def main():
 
     output = {
         "generated_at": datetime.now().isoformat(timespec="seconds"),
-        "source_file": INPUT_FILE,
+        "sources": {
+            "official_file": OFFICIAL_FILE,
+            "external_file": EXTERNAL_FILE,
+            "community_file": COMMUNITY_FILE
+        },
         "total_gardens": len(gardens),
         "gardens": gardens
     }
 
-    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-        json.dump(output, f, ensure_ascii=False, indent=2)
+    with open(OUTPUT_FILE, "w", encoding="utf-8") as file:
+        json.dump(output, file, ensure_ascii=False, indent=2)
 
     print(f"✅ Done | Created {OUTPUT_FILE} with {len(gardens)} gardens")
 
@@ -351,4 +436,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
