@@ -1,6 +1,11 @@
 import pandas as pd
 import re
 
+# ייבוא כל פונקציות העזר וההשוואה המקוריות שלך מתוך קובץ data_utils
+from data_utils import (
+    normalize_text, is_empty, completeness_score, merge_values, 
+    merge_license_status, name_match, rows_are_duplicates, extract_phone)
+
 try:
     # טעינת נתונים ובדיקת תקינות
     # Loading data and checking validity
@@ -57,128 +62,19 @@ try:
         df[col] = df[col].astype(str).str.strip()
         df[col] = df[col].replace(['nan', 'None', ''], 'Unknown')
 
-    # ניקוי מספרי טלפון, השארת ספרות בלבד והוספת אפס מוביל במידת הצורך
-    # Cleaning phone numbers, leaving digits only and adding a leading zero if necessary
-    df['phone'] = df['טלפון'].astype(str).str.replace(r'[^0-9]', '', regex=True)
-    df['phone'] = df['phone'].replace(['nan', 'None', ''], None)
-    df['phone'] = df['phone'].apply(
-        lambda x: f"0{x[3:]}" if pd.notna(x) and str(x).startswith('972') else x)
-    df['phone'] = df['phone'].apply(
-        lambda x: f"0{x}" if pd.notna(x) and x != '' and not str(x).startswith('0') else x)
-    df['phone'] = df['phone'].fillna('Unknown')
+    # ניקוי מספרי טלפון באמצעות פונקציית העזר המשותפת
+    # Cleaning phone numbers using the shared helper function
+    df['phone'] = df['טלפון'].apply(extract_phone)
+    df['phone'] = df['phone'].replace('', 'Unknown')
     
     if 'טלפון' in df.columns:
         df = df.drop(columns=['טלפון'])
 
-    # פונקציות עזר
-    # Helper functions
+    # פונקציות לוגיות ספציפיות לתהליך האיחוד (הן נשארות כאן כי אינן גנריות)
+    # Logical functions specific to the merging process (they remain here as they are not generic)
 
-    # נרמול טקסט להשוואה, הסרת סימני פיסוק, רווחים כפולים ולפי בחירה גם מספרים
-    # Normalizing text for comparison, removing punctuation, double spaces and optionally numbers
-    def normalize_text(value, remove_numbers=True):
-        if pd.isna(value): return ''
-        value = str(value).strip()
-        if remove_numbers:
-            value = re.sub(r'\d+', '', value)
-        value = re.sub(r'[-–—״"\'.,()]', ' ', value)
-        value = re.sub(r'\s+', ' ', value)
-        return value.strip()
-
-    # בדיקה אם ערך נחשב ריק
-    # Checking if a value is considered empty
-    def is_empty(value):
-        return pd.isna(value) or value == '' or value == 'Unknown'
-
-    # חישוב ציון לשלמות השורה כדי לבחור את השורה המלאה ביותר בעת איחוד
-    # Calculating a score for row completeness to choose the most complete row when merging
-    def completeness_score(row):
-        return sum(1 for value in row if not is_empty(value))
-
-    # שרשור ערכים שונים מאותה עמודה בעת איחוד רשומות
-    # Concatenating different values from the same column when merging records
-    def merge_values(values):
-        clean_values = []
-        for value in values:
-            if not is_empty(value):
-                value = str(value).strip()
-                if value not in clean_values:
-                    clean_values.append(value)
-        if not clean_values: return 'Unknown'
-        return ' | '.join(clean_values)
-
-    # בחירת הסטטוס העדכני או החזק ביותר מבין רשומות שאוחדו
-    # Choosing the most updated or strongest status among merged records
-    def merge_license_status(values):
-        status_priority = {
-            'רישיון בתוקף': 1,
-            'בתהליך רישוי': 2,
-            'לא הוגשה בקשה לרישוי': 3,
-            'Unknown': 9
-        }
-        clean_values = [value for value in values if not is_empty(value)]
-        if not clean_values: return 'Unknown'
-        return min(clean_values, key=lambda value: status_priority.get(value, 9))
-
-    # פונקציות השוואה ואיחוד
-    # Comparison and merging functions
-
-    # בדיקת התאמת שמות מבוססת מילות ליבה למניעת התאמה שגויה
-    # Core words based name matching check to prevent false matching
-    def name_match(name1, name2):
-        if is_empty(name1) or is_empty(name2): return False
-        
-        name1 = normalize_text(name1)
-        name2 = normalize_text(name2)
-        
-        if name1 == '' or name2 == '': return False
-        if name1 == name2: return True
-
-        words1, words2 = set(name1.split()), set(name2.split())
-        stop_words = {'גן', 'מעון', 'פעוטון', 'משפחתון', 'ילדים', 'הילדים', 'של', 'ה'}
-        
-        core_words1 = words1 - stop_words
-        core_words2 = words2 - stop_words
-
-        if not core_words1 or not core_words2: return False
-        return core_words1.issubset(core_words2) or core_words2.issubset(core_words1)
-
-    # בדיקת התאמה מדויקת עבור טלפון ומנהל
-    # Exact match check for phone and manager
-    def exact_strong_match(value1, value2):
-        if is_empty(value1) or is_empty(value2): return False
-        value1, value2 = normalize_text(value1), normalize_text(value2)
-        if value1 == '' or value2 == '': return False
-        return value1 == value2
-
-    # בדיקת התאמת בעלות תוך התעלמות מערכים כלליים
-    # Ownership match check while ignoring generic values
-    def ownership_match(value1, value2):
-        if is_empty(value1) or is_empty(value2): return False
-        value1, value2 = normalize_text(value1), normalize_text(value2)
-        weak_values = {'פרטי', 'ציבורי', 'עירוני', 'עמותה', 'חברה', 'Unknown'}
-        if value1 in weak_values or value2 in weak_values: return False
-        return value1 == value2
-
-    # הפונקציה הראשית שקובעת האם שתי רשומות הן כפילות של אותו גן
-    # The main function that determines whether two records are duplicates of the same kindergarten
-    def rows_are_duplicates(row1, row2):
-        
-        # תנאי סף חובה, עיר וכתובת זהות
-        # Mandatory threshold condition, identical city and address
-        if row1['city_norm'] != row2['city_norm']: return False
-        if row1['address_norm'] != row2['address_norm']: return False
-
-        # מספיקה התאמה חזקה אחת נוספת כדי לאשר איחוד
-        # One additional strong match is enough to approve a merge
-        if exact_strong_match(row1['phone'], row2['phone']): return True
-        if name_match(row1['name_norm'], row2['name_norm']): return True
-        if exact_strong_match(row1['manager_norm'], row2['manager_norm']): return True
-        if ownership_match(row1['ownership_norm'], row2['ownership_norm']): return True
-        
-        return False
-
-    # הכנת עמודות עזר לאיחוד
-    # Preparing helper columns for merging
+    # הכנת עמודות עזר לאיחוד תוך שימוש בפונקציות המיובאות
+    # Preparing helper columns for merging using imported functions
     df['name_norm'] = df['name'].apply(lambda x: normalize_text(x, remove_numbers=True))
     df['city_norm'] = df['city'].apply(lambda x: normalize_text(x, remove_numbers=False))
     df['address_norm'] = df['address'].apply(lambda x: normalize_text(x, remove_numbers=False))
