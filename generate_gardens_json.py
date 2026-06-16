@@ -258,6 +258,8 @@ def main():
         "activity_hours",
         "friday",
         "external_link",
+        "activity_language",
+        "activity_language_other",
 
         "education_type",
         "education_type_other",
@@ -321,6 +323,7 @@ def main():
                 "activity_hours",
                 "friday",
                 "external_link",
+                "activity_language",
                 "education_type",
                 "religious_orientation",
                 "nutrition_type",
@@ -352,6 +355,7 @@ def main():
             neighborhood,
             profile.get("garden_type"),
             profile.get("ages"),
+            profile.get("activity_language"),
             profile.get("education_type"),
             profile.get("religious_orientation"),
             profile.get("nutrition_type")

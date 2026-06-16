@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-07T11:46:47",
+  "generated_at": "2026-06-16T06:53:20",
   "sources": {
     "official_file": "Cleaned_Database.xlsx",
     "external_file": "Ramat_Gan_API_Match_Report.xlsx",
@@ -2086,6 +2086,7 @@
         "activity_hours": "7:00-17:30",
         "friday": "פעמיים בחודש",
         "external_link": "https://www.lamagan.com/",
+        "activity_language": "רוסית, מעט עברית",
         "has_protected_space": "כן",
         "profile_data_status": "official_and_community_reported",
         "last_verified_at": "1.06.2026",
@@ -2112,7 +2113,7 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "לאמה גן לאמה גן רמת גן דרך בן גוריון דוד 117 רוזנגאוז דינה דינה רוזנגאוז יהודי שכונת הלל גן תינוקות מ10 חודשים וילדים עד 3 שנים"
+      "search_text": "לאמה גן לאמה גן רמת גן דרך בן גוריון דוד 117 רוזנגאוז דינה דינה רוזנגאוז יהודי שכונת הלל גן תינוקות מ10 חודשים וילדים עד 3 שנים רוסית, מעט עברית"
     },
     {
       "id": "75044",

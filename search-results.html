@@ -330,6 +330,20 @@
                 </div>
 
                 <div class="filter-group">
+                    <label for="sectorFilter">מגזר</label>
+                    <select id="sectorFilter">
+                        <option value="">הכול</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="activityLanguageFilter">שפת פעילות</label>
+                    <select id="activityLanguageFilter">
+                        <option value="">הכול</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
                     <label for="religiousFilter">זיקה דתית</label>
                     <select id="religiousFilter">
                         <option value="">הכול</option>
@@ -476,12 +490,36 @@
                 "חרדי",
                 "מעורב",
                 "אחר",
-                "לא ידוע"
+                
+            ];
+
+            const sectorOptions = [
+                "יהודי",
+                "ערבי",
+                "דרוזי",
+                "בדואי",
+                "צ׳רקסי",
+                "מעורב",
+                "אחר",
+    
+            ];
+
+            const activityLanguageOptions = [
+                "עברית",
+                "ערבית",
+                "רוסית",
+                "אנגלית",
+                "צרפתית",
+                "דו-לשוני",
+                "אחר",
+                
             ];
 
             populateSelect("educationFilter", educationOptions);
             populateSelect("nutritionFilter", nutritionOptions);
             populateSelect("religiousFilter", religiousOptions);
+            populateSelect("sectorFilter", sectorOptions);
+            populateSelect("activityLanguageFilter", activityLanguageOptions);
         }
 
         function performSearch(event) {
@@ -507,6 +545,8 @@
             const educationFilter = document.getElementById("educationFilter").value;
             const nutritionFilter = document.getElementById("nutritionFilter").value;
             const religiousFilter = document.getElementById("religiousFilter").value;
+            const sectorFilter = document.getElementById("sectorFilter").value;
+            const activityLanguageFilter = document.getElementById("activityLanguageFilter").value;
 
             const filtered = allGardens.filter(garden => {
                 const profile = garden.profile || {};
@@ -542,6 +582,11 @@
 
                 const matchesReligious =
                     !religiousFilter || profile.religious_orientation === religiousFilter;
+                const matchesSector =
+                    !sectorFilter || garden.sector === sectorFilter;
+
+                const matchesActivityLanguage =
+                    !activityLanguageFilter || profile.activity_language === activityLanguageFilter;    
 
                 return (
                     matchesSearch &&
@@ -552,7 +597,9 @@
                     matchesFriday &&
                     matchesEducation &&
                     matchesNutrition &&
-                    matchesReligious
+                    matchesReligious &&
+                    matchesSector &&
+                    matchesActivityLanguage
                 );
             });
 
@@ -571,6 +618,8 @@
             document.getElementById("educationFilter").value = "";
             document.getElementById("nutritionFilter").value = "";
             document.getElementById("religiousFilter").value = "";
+            document.getElementById("sectorFilter").value = "";
+            document.getElementById("activityLanguageFilter").value = "";
 
             window.history.replaceState(null, "", "search-results.html");
 
@@ -650,7 +699,9 @@
             "fridayOnly",
             "educationFilter",
             "nutritionFilter",
-            "religiousFilter"
+            "religiousFilter",
+            "sectorFilter",
+            "activityLanguageFilter"
         ].forEach(id => {
             document.getElementById(id).addEventListener("change", filterGardens);
         });

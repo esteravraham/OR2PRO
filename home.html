@@ -104,21 +104,30 @@
             border-color: #72C7A3;
         }
 
-        .search-button {
+        .home-action-button {
+            width: 190px;
+            height: 64px;
             border: none;
             border-radius: 999px;
-            padding: 0 30px;
+            padding: 0 18px;
             font-size: 17px;
             cursor: pointer;
             background: #FF9F80;
             color: white;
             font-weight: bold;
             box-shadow: 0 5px 14px rgba(255, 159, 128, 0.35);
-        }
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            text-decoration: none;
+            box-sizing: border-box;
+            white-space: nowrap;
+    }
 
-        .search-button:hover {
+    .home-action-button:hover {
             background: #F47F61;
-        }
+    }
 
         .quick-hints {
             margin-top: 26px;
@@ -186,22 +195,22 @@
             </p>
 
             <form class="search-wrapper" onsubmit="goToSearch(event)">
-                <input
-                    id="homeSearchInput"
-                    class="main-search-input"
-                    type="text"
-                    placeholder="חפשי גן, כתובת, שכונה או מילת מפתח..."
-                    autocomplete="off"
-                >
+            <input
+            id="homeSearchInput"
+            class="main-search-input"
+            type="text"
+            placeholder="חפשי גן, כתובת, שכונה או מילת מפתח..."
+            autocomplete="off"
+    >
 
-            <div style="margin-top: 18px;">
-                <a href="map.html" class="search-button" style="display: inline-block; text-decoration: none; padding: 14px 28px;">
-                    צפייה במפת הגנים
-                </a>
-            </div>
+        <a href="map.html" class="home-action-button map-button">
+          צפייה במפת הגנים
+        </a>
 
-                <button class="search-button" type="submit">חיפוש</button>
-            </form>
+        <button class="home-action-button search-button" type="submit">
+         חיפוש
+        </button>
+        </form>
 
             <div class="quick-hints">
                 <span class="hint">לדוגמה: מיכאלה</span>

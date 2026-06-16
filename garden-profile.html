@@ -243,12 +243,17 @@
     </main>
 
     <script>
-        function cleanValue(value) {
-            if (value === null || value === undefined || value === "") {
-                return "לא ידוע";
-            }
-            return value;
-        }
+      function cleanValue(value) {
+    if (
+        value === null ||
+        value === undefined ||
+        value === "" ||
+        value === "Unknown"
+    ) {
+        return "לא ידוע";
+    }
+    return value;
+}
 
         function getGardenIdFromUrl() {
             const params = new URLSearchParams(window.location.search);
@@ -442,6 +447,7 @@
                         <p><strong>סוג מסגרת:</strong> ${cleanValue(profile.garden_type)}</p>
                         <p><strong>גילאים:</strong> ${cleanValue(profile.ages)}</p>
                         <p><strong>שעות פעילות:</strong> ${cleanValue(profile.activity_hours)}</p>
+                        <p><strong>שפת פעילות:</strong> ${cleanValue(profile.activity_language)}</p>
                         <p><strong>שישי:</strong> ${cleanValue(profile.friday)}</p>
                         <p><strong>סוג חינוך:</strong> ${cleanValue(profile.education_type)}</p>
                         <p><strong>זיקה דתית:</strong> ${cleanValue(profile.religious_orientation)}</p>

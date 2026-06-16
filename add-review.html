@@ -282,172 +282,137 @@
             </div>
 
             <div id="successMessage" class="success-message">
-                חוות הדעת נשמרה בהצלחה לצורך הדמו.
-                <br>
-                בשלב הבא של המערכת, הנתונים האלה יישמרו בבסיס נתונים או יועברו לבדיקה לפני פרסום.
+           חוות הדעת נשמרה בהצלחה.
+           <br>
+           היא נשמרה כמידע שממתין לבדיקה לפני פרסום במערכת.
             </div>
 
-            <p class="note">
-                הערה: כרגע האתר הוא סטטי, ולכן הטופס שומר את המידע זמנית בדפדפן בלבד. בהמשך נחבר את הטופס למנגנון שמירה אמיתי.
-            </p>
+        <p class="note">
+         חוות הדעת נשמרת במערכת כטיוטה לבדיקה, ולא מתפרסמת אוטומטית בפרופיל הגן.
+        </p>
         </form>
 
     </main>
-
     <script>
-        let currentGarden = null;
+    let currentGarden = null;
 
-        function getGardenIdFromUrl() {
-            const params = new URLSearchParams(window.location.search);
-            return params.get("id");
-        }
-
-        function cleanValue(value) {
-            if (value === null || value === undefined || value === "") {
-                return "לא ידוע";
-            }
-            return value;
-        }
-
-        async function loadGarden() {
-            const gardenId = getGardenIdFromUrl();
-            const gardenInfo = document.getElementById("gardenInfo");
-            const backToProfile = document.getElementById("backToProfile");
-
-            if (!gardenId) {
-                gardenInfo.textContent = "לא נבחר גן.";
-                return;
-            }
-
-            backToProfile.href = `garden-profile.html?id=${gardenId}`;
-
-            try {
-                const response = await fetch("gardens.json");
-                const data = await response.json();
-
-                currentGarden = data.gardens.find(g => String(g.id) === String(gardenId));
-
-                if (!currentGarden) {
-                    gardenInfo.textContent = "לא נמצא הגן המבוקש.";
-                    return;
-                }
-
-                gardenInfo.textContent = `${cleanValue(currentGarden.display_name || currentGarden.name)} · ${cleanValue(currentGarden.address)}`;
-
-            } catch (error) {
-                console.error("Error loading garden:", error);
-                gardenInfo.textContent = "לא הצלחנו לטעון את פרטי הגן.";
-            }
-        }
-
-        function getNumberValue(id) {
-            const value = document.getElementById(id).value.trim();
-            return value ? Number(value) : null;
-        }
-
-        function getTextValue(id) {
-            const value = document.getElementById(id).value.trim();
-            return value || null;
-        }
-
-async function submitReview(event) {
-    event.preventDefault();
-
-    const gardenId = getGardenIdFromUrl();
-
-    const staffCount = getNumberValue("staffCount");
-    const childrenCount = getNumberValue("childrenCount");
-
-    let staffChildRatio = null;
-    if (staffCount && childrenCount) {
-        staffChildRatio = `${staffCount}:${childrenCount}`;
+    function getGardenIdFromUrl() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get("id");
     }
 
-    const review = {
-        garden_id: gardenId,
-        garden_name: currentGarden ? (currentGarden.display_name || currentGarden.name) : null,
+    function cleanValue(value) {
+        if (value === null || value === undefined || value === "") {
+            return "לא ידוע";
+        }
+        return value;
+    }
 
-        rating_1_to_5: getNumberValue("rating"),
-        parent_feeling: getTextValue("parentFeeling"),
+    async function loadGarden() {
+        const gardenId = getGardenIdFromUrl();
+        const gardenInfo = document.getElementById("gardenInfo");
+        const backToProfile = document.getElementById("backToProfile");
 
-        price_without_friday: getNumberValue("priceWithoutFriday"),
-        price_with_friday: getNumberValue("priceWithFriday"),
-        price_details: getTextValue("priceDetails"),
-
-        cameras_open_to_parents: getTextValue("hasCameras"),
-        has_protected_space: getTextValue("protectedSpace"),
-        friday: getTextValue("friday"),
-
-        staff_count: staffCount,
-        children_count: childrenCount,
-        staff_child_ratio: staffChildRatio,
-
-        review_text: getTextValue("reviewText"),
-        created_at: new Date().toISOString()
-    };
-
-    try {
-        const response = await fetch("/submit_review", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(review)
-        });
-
-        const result = await response.json();
-
-        if (!response.ok || !result.success) {
-            alert("אירעה שגיאה בשליחת חוות הדעת");
-            console.error(result);
+        if (!gardenId) {
+            gardenInfo.textContent = "לא נבחר גן.";
             return;
         }
 
-        document.getElementById("successMessage").style.display = "block";
-        event.target.reset();
+        backToProfile.href = `garden-profile.html?id=${gardenId}`;
 
-    } catch (error) {
-        alert("לא הצלחנו לשלוח את חוות הדעת. ודאי שהאתר רץ דרך Flask ולא דרך Live Server.");
-        console.error("Submit review error:", error);
+        try {
+            const response = await fetch("gardens.json");
+            const data = await response.json();
+
+            currentGarden = data.gardens.find(g => String(g.id) === String(gardenId));
+
+            if (!currentGarden) {
+                gardenInfo.textContent = "לא נמצא הגן המבוקש.";
+                return;
+            }
+
+            gardenInfo.textContent =
+                `${cleanValue(currentGarden.display_name || currentGarden.name)} · ${cleanValue(currentGarden.address)}`;
+
+        } catch (error) {
+            console.error("Error loading garden:", error);
+            gardenInfo.textContent = "לא הצלחנו לטעון את פרטי הגן.";
+        }
     }
-}
-            const review = {
-                review_id: Date.now(),
-                garden_id: gardenId,
-                garden_name: currentGarden ? (currentGarden.display_name || currentGarden.name) : null,
 
-                rating_1_to_5: getNumberValue("rating"),
-                parent_feeling: getTextValue("parentFeeling"),
+    function getNumberValue(id) {
+        const value = document.getElementById(id).value.trim();
+        return value ? Number(value) : null;
+    }
 
-                price_without_friday: getNumberValue("priceWithoutFriday"),
-                price_with_friday: getNumberValue("priceWithFriday"),
-                price_details: getTextValue("priceDetails"),
+    function getTextValue(id) {
+        const value = document.getElementById(id).value.trim();
+        return value || null;
+    }
 
-                cameras_open_to_parents: getTextValue("hasCameras"),
-                has_protected_space: getTextValue("protectedSpace"),
-                friday: getTextValue("friday"),
+    async function submitReview(event) {
+        event.preventDefault();
 
-                staff_count: staffCount,
-                children_count: childrenCount,
-                staff_child_ratio: staffChildRatio,
+        const gardenId = getGardenIdFromUrl();
 
-                review_text: getTextValue("reviewText"),
-                created_at: new Date().toISOString(),
-                status: "pending_review",
-                source: "website_demo"
-            };
+        const staffCount = getNumberValue("staffCount");
+        const childrenCount = getNumberValue("childrenCount");
 
-            const existingReviews = JSON.parse(localStorage.getItem("parent_reviews_demo") || "[]");
-            existingReviews.push(review);
-
-            localStorage.setItem("parent_reviews_demo", JSON.stringify(existingReviews));
-
-            document.getElementById("successMessage").style.display = "block";
-
-            event.target.reset();
+        let staffChildRatio = null;
+        if (staffCount && childrenCount) {
+            staffChildRatio = `${staffCount}:${childrenCount}`;
         }
 
-        loadGarden();
-    </script>
+        const review = {
+            garden_id: gardenId,
+            garden_name: currentGarden ? (currentGarden.display_name || currentGarden.name) : null,
+
+            rating_1_to_5: getNumberValue("rating"),
+            parent_feeling: getTextValue("parentFeeling"),
+
+            price_without_friday: getNumberValue("priceWithoutFriday"),
+            price_with_friday: getNumberValue("priceWithFriday"),
+            price_details: getTextValue("priceDetails"),
+
+            cameras_open_to_parents: getTextValue("hasCameras"),
+            has_protected_space: getTextValue("protectedSpace"),
+            friday: getTextValue("friday"),
+
+            staff_count: staffCount,
+            children_count: childrenCount,
+            staff_child_ratio: staffChildRatio,
+
+            review_text: getTextValue("reviewText"),
+            created_at: new Date().toISOString()
+        };
+
+        try {
+            const response = await fetch("/submit_review", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(review)
+            });
+
+            const result = await response.json();
+
+            if (!response.ok || !result.success) {
+                alert("אירעה שגיאה בשליחת חוות הדעת");
+                console.error(result);
+                return;
+            }
+
+            document.getElementById("successMessage").style.display = "block";
+            event.target.reset();
+
+        } catch (error) {
+            alert("לא הצלחנו לשלוח את חוות הדעת. ודאי שהאתר רץ דרך Flask ולא דרך Live Server.");
+            console.error("Submit review error:", error);
+        }
+    }
+
+    loadGarden();
+</script>
 </body>
 </html>
