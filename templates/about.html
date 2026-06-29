@@ -1,0 +1,377 @@
+{% extends "base.html" %}
+{% set active_page = 'about' %}
+{% block title %}About the System{% endblock %}
+
+{% block extra_css %}
+<style>
+    .about-page { max-width: 900px; margin: 0 auto; }
+    h1 { color: #005fa3; margin-bottom: 6px; }
+    h2 { color: #005fa3; font-size: 20px; margin: 36px 0 12px; border-bottom: 2px solid #b3d9ff; padding-bottom: 8px; }
+    p { color: #333; line-height: 1.75; font-size: 15px; }
+
+    .intro-box { background: linear-gradient(135deg,#e6f2ff,#f0fff4); border-radius:14px; padding:24px 28px; margin-bottom:32px; border:1px solid #b3d9ff; }
+    .intro-box p { margin:0; font-size:16px; }
+
+    /* ── controls ── */
+    .viz-container { background:#f8fbff; border:1.5px solid #b3d9ff; border-radius:14px; padding:24px; margin-bottom:28px; }
+    .viz-controls { display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap; align-items:center; }
+    .btn-viz { padding:10px 22px; border-radius:8px; border:none; font-size:14px; font-weight:bold; cursor:pointer; transition:all 0.2s; }
+    .btn-viz.primary { background:#005fa3; color:white; }
+    .btn-viz.primary:hover { background:#004080; }
+    .btn-viz.secondary { background:white; color:#005fa3; border:2px solid #005fa3; }
+    .btn-viz.secondary:hover { background:#e6f2ff; }
+    .btn-viz:disabled { opacity:0.4; cursor:not-allowed; }
+    .step-label { font-size:13px; color:#555; margin-right:auto; font-style:italic; }
+
+    /* ── layout ── */
+    .viz-arena { display:grid; grid-template-columns:1fr 60px 1fr; gap:0; min-height:300px; }
+    .col-head { text-align:center; color:#005fa3; font-size:13px; margin:0 0 10px; font-weight:bold; text-transform:uppercase; letter-spacing:.5px; }
+
+    /* ── parent nodes ── */
+    .parent-node { background:white; border:2px solid #b3d9ff; border-radius:10px; padding:10px 14px; margin-bottom:8px; font-size:13px; transition:all 0.35s; }
+    .parent-node .pname { font-weight:bold; color:#005fa3; }
+    .parent-node .pwant { font-size:11px; color:#888; margin-top:2px; }
+    .parent-node.proposing { border-color:#f5a623; background:#fffbf0; transform:translateX(-4px); }
+    .parent-node.matched  { border-color:#1f7a35; background:#f0fff4; }
+    .parent-node.rejected { border-color:#cc0000; background:#fff5f5; }
+
+    /* ── garden node (single, centered) ── */
+    .garden-col { display:flex; flex-direction:column; align-items:stretch; }
+    .garden-node { background:white; border:2px solid #b3d9ff; border-radius:10px; padding:14px 16px; transition:all 0.35s; }
+    .garden-node .gname { font-weight:bold; color:#1f7a35; font-size:14px; margin-bottom:6px; }
+    .garden-node .gcap  { font-size:11px; color:#888; margin-bottom:8px; }
+    .garden-node.receiving { border-color:#f5a623; background:#fffbf0; }
+    .garden-node.swapped  { border-color:#9b59b6; background:#f9f0ff; }
+    .garden-node.full { border-color:#1f7a35; background:#f0fff4; }
+
+    .slots { display:flex; flex-direction:column; gap:6px; }
+    .slot { border:1px dashed #b3d9ff; border-radius:6px; padding:6px 10px; font-size:12px; color:#888; min-height:28px; transition:all 0.35s; }
+    .slot.taken { border-color:#1f7a35; background:#e8f8ed; color:#1f7a35; font-weight:bold; border-style:solid; }
+    .slot.swapping { border-color:#9b59b6; background:#f0e8ff; color:#9b59b6; font-weight:bold; border-style:solid; }
+
+    /* ── arrow col ── */
+    .arrow-col { display:flex; align-items:center; justify-content:center; }
+
+    /* ── log ── */
+    .viz-log { background:white; border:1px solid #d6eaff; border-radius:8px; padding:12px 16px; margin-top:16px; max-height:140px; overflow-y:auto; font-size:13px; line-height:1.7; }
+    .log-entry { padding:2px 0; border-bottom:1px solid #f5f5f5; }
+    .log-entry.propose { color:#005fa3; }
+    .log-entry.accept  { color:#1f7a35; font-weight:bold; }
+    .log-entry.swap    { color:#9b59b6; font-weight:bold; }
+    .log-entry.reject  { color:#cc0000; }
+    .log-entry.done    { color:#1f7a35; font-weight:bold; font-size:14px; }
+
+    .final-result { display:none; margin-top:14px; background:#f0fff4; border:1.5px solid #1f7a35; border-radius:10px; padding:14px 18px; }
+    .final-result h4 { color:#1f7a35; margin:0 0 8px; }
+    .final-pairs { display:flex; flex-wrap:wrap; gap:8px; }
+    .pair-badge { background:white; border:1px solid #a8d5b5; border-radius:8px; padding:6px 12px; font-size:13px; }
+    .pair-badge strong { color:#005fa3; }
+    .pair-badge span { color:#1f7a35; }
+
+    /* ── explainer ── */
+    .concept-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:20px; }
+    .concept-card { background:white; border:1px solid #d6eaff; border-radius:10px; padding:16px 18px; }
+    .concept-card h4 { color:#005fa3; margin:0 0 8px; font-size:14px; }
+    .concept-card p { font-size:13px; margin:0; color:#555; line-height:1.6; }
+
+    .stats-row { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin:20px 0; }
+    .stat-item { background:#f8fbff; border:1px solid #b3d9ff; border-radius:10px; padding:14px; text-align:center; }
+    .stat-item .n { font-size:30px; font-weight:900; color:#005fa3; }
+    .stat-item .l { font-size:12px; color:#666; margin-top:4px; }
+
+    .complexity-box { background:#f0fff4; border:1px solid #a8d5b5; border-radius:10px; padding:16px 20px; margin-top:16px; font-size:14px; color:#333; }
+    .complexity-box code { background:#005fa3; color:white; padding:2px 8px; border-radius:4px; font-size:13px; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="about-page">
+<h1>🌿 About the Ganim Matching System</h1>
+<div class="intro-box">
+    <p>This system matches children to kindergartens in Ramat Gan using the <strong>Gale-Shapley stable matching algorithm</strong>. Parents submit preferences; the algorithm guarantees every child receives a placement and no family can "trade up" by switching — a property called <em>stability</em>.</p>
+</div>
+
+<h2>⚡ Algorithm in Action — Real Data</h2>
+<p>The scenario below is taken directly from our actual run. We focus on <strong>גן כוכב</strong> (capacity&nbsp;3 in this demo) and six parents who all wanted it. Watch how the algorithm handles competition through proposals, acceptances, and swaps.</p>
+
+<div class="viz-container">
+    <div class="viz-controls">
+        <button class="btn-viz secondary" onclick="resetViz()">↺ Reset</button>
+        <button class="btn-viz primary" id="btn-next" onclick="nextStep()">Next Step →</button>
+        <button class="btn-viz secondary" id="btn-auto" onclick="autoPlay()">▶ Auto</button>
+        <span class="step-label" id="step-label">Press Next Step to begin</span>
+    </div>
+
+    <div class="viz-arena">
+
+        <!-- הורים -->
+        <div>
+            <p class="col-head">👨‍👩‍👦 Parents</p>
+            <div class="parent-node" id="p0">
+                <div class="pname">רוני (P0011)</div>
+                <div class="pwant">1st choice: גן כוכב ← top priority</div>
+            </div>
+            <div class="parent-node" id="p1">
+                <div class="pname">גיא (P0003)</div>
+                <div class="pwant">Tried גן אמנויות first → now here (2nd)</div>
+            </div>
+            <div class="parent-node" id="p2">
+                <div class="pname">אמיר (P0004)</div>
+                <div class="pwant">Tried הרימון first → now here (2nd)</div>
+            </div>
+            <div class="parent-node" id="p3">
+                <div class="pname">מור (P0007)</div>
+                <div class="pwant">Tried מיכאלה first → now here (2nd)</div>
+            </div>
+            <div class="parent-node" id="p4">
+                <div class="pname">אמיר ב׳ (P0026)</div>
+                <div class="pwant">Tried מיכאלה, הגן של אביה → here (3rd)</div>
+            </div>
+            <div class="parent-node" id="p5">
+                <div class="pname">אורי (P0051)</div>
+                <div class="pwant">Tried משפחתון first → now here (2nd)</div>
+            </div>
+        </div>
+
+        <!-- חץ -->
+        <div class="arrow-col">
+            <svg width="50" height="200" viewBox="0 0 50 200" id="arrow-svg">
+                <defs>
+                    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                        <polygon points="0 0,8 3,0 6" fill="#f5a623"/>
+                    </marker>
+                </defs>
+                <g id="arrows"></g>
+            </svg>
+        </div>
+
+        <!-- גן -->
+        <div class="garden-col">
+            <p class="col-head">🌿 Kindergarten</p>
+            <div class="garden-node" id="g0">
+                <div class="gname">גן כוכב</div>
+                <div class="gcap">Capacity: 3 slots · Ramat Gan</div>
+                <div class="slots">
+                    <div class="slot" id="slot0">slot 1 — vacant</div>
+                    <div class="slot" id="slot1">slot 2 — vacant</div>
+                    <div class="slot" id="slot2">slot 3 — vacant</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="viz-log" id="viz-log">
+        <div class="log-entry" style="color:#888">Press "Next Step" to start...</div>
+    </div>
+
+    <div class="final-result" id="final-result">
+        <h4>✅ Stable matching achieved for גן כוכב — 0 blocking pairs</h4>
+        <div class="final-pairs">
+            <div class="pair-badge"><strong>רוני</strong> → <span>גן כוכב ✓</span></div>
+            <div class="pair-badge"><strong>גיא</strong> → <span>גן כוכב ✓</span></div>
+            <div class="pair-badge"><strong>אמיר</strong> → <span>גן כוכב ✓</span></div>
+            <div class="pair-badge"><strong>מור</strong> → <span>moved to next choice</span></div>
+            <div class="pair-badge"><strong>אמיר ב׳</strong> → <span>moved to next choice</span></div>
+            <div class="pair-badge"><strong>אורי</strong> → <span>moved to next choice</span></div>
+        </div>
+    </div>
+</div>
+
+<h2>📖 How Gale-Shapley Works</h2>
+<p>In each round, every unmatched parent proposes to their top remaining kindergarten. Each kindergarten tentatively holds its best applicants (up to capacity) and rejects the rest. Rejected parents move to their next choice. This repeats until everyone is placed.</p>
+
+<div class="concept-grid">
+    <div class="concept-card">
+        <h4>Why "deferred" acceptance?</h4>
+        <p>Kindergartens never commit permanently — they hold proposals tentatively and may swap if a better applicant arrives. This deferred approach is what guarantees stability.</p>
+    </div>
+    <div class="concept-card">
+        <h4>What is a blocking pair?</h4>
+        <p>A parent + kindergarten that both prefer each other over their current assignment. Gale-Shapley provably eliminates all blocking pairs — the result is always stable.</p>
+    </div>
+    <div class="concept-card">
+        <h4>How our system ranks parents</h4>
+        <p>Each parent receives a <em>fit score</em> based on distance, education type, religious orientation, price, tzaharon, and other preferences — weighted by their stated importance.</p>
+    </div>
+    <div class="concept-card">
+        <h4>Distance blocking (our addition)</h4>
+        <p>Before Gale-Shapley runs, each parent sees only kindergartens within their max distance. This cuts 65,000 theoretical pairs down to ~15,000 real candidates.</p>
+    </div>
+</div>
+
+<h2>📊 Our Run — Ramat Gan 2026</h2>
+<div class="stats-row">
+    <div class="stat-item"><div class="n">500</div><div class="l">Parents registered</div></div>
+    <div class="stat-item"><div class="n">130</div><div class="l">Kindergartens</div></div>
+    <div class="stat-item"><div class="n">500</div><div class="l">Children matched</div></div>
+    <div class="stat-item"><div class="n">0</div><div class="l">Blocking pairs</div></div>
+</div>
+<div class="complexity-box">
+    <strong>Complexity gain from distance blocking:</strong><br>
+    Naive: <code>O(n × m)</code> = 500 × 130 = 65,000 pairs<br>
+    After hard distance filter: <code>O(n × k)</code> = ~14,982 pairs (avg 30 per parent)<br>
+    Gale-Shapley then runs on those 14,982 pairs — 2,167 proposals, 279 swaps, stable result.
+</div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// ─── 8 צעדים מבוססי נתונים אמיתיים ───────────────────────────
+// גן כוכב קיבולת 3, 6 הורים אמיתיים מהריצה
+// סדר הגעה לפי ה-Proposal_Log האמיתי: P0011, P0003, P0004, P0007, P0026, P0051
+// P0011 ← עדיפות 1 (הכי גבוה), P0003, P0004 ← עדיפות גבוהה
+// P0007, P0026, P0051 ← נדחים בסוף כי P0003, P0004 מדורגים גבוה יותר
+
+const STEPS = [
+    {
+        label: "Round 1 — רוני proposes (1st choice)",
+        action() {
+            setPClass(0,'proposing');
+            setGarden('receiving');
+            setSlot(0,'רוני ✓','taken');
+            log('📤 רוני (P0011) proposes to גן כוכב — 1st choice, top score. Accepted into slot 1.','accept');
+        }
+    },
+    {
+        label: "גיא, אמיר, מור arrive (2nd choice after rejection elsewhere)",
+        action() {
+            setPClass(0,'matched');
+            setPClass(1,'proposing'); setPClass(2,'proposing'); setPClass(3,'proposing');
+            setGarden('receiving');
+            setSlot(1,'גיא ✓','taken');
+            setSlot(2,'אמיר ✓','taken');
+            log('📤 גיא, אמיר, מור all propose — 2nd choice after being rejected elsewhere.','propose');
+            log('✓ גן כוכב has 2 free slots → accepts גיא (slot 2) and אמיר (slot 3). Garden is now full.','accept');
+            log('⚠ מור also proposed but garden is full — must be compared.','reject');
+        }
+    },
+    {
+        label: "מור rejected — garden prefers רוני, גיא, אמיר",
+        action() {
+            setPClass(1,'matched'); setPClass(2,'matched');
+            setPClass(3,'rejected');
+            setGarden('full');
+            log('✗ גן כוכב ranks מור lower than all 3 current holders → מור is rejected. Moves to next choice.','reject');
+        }
+    },
+    {
+        label: "אמיר ב׳ proposes (3rd choice — tried 2 others first)",
+        action() {
+            setPClass(3,'');
+            setPClass(4,'proposing');
+            setGarden('receiving');
+            log('📤 אמיר ב׳ (P0026) proposes — this is his 3rd choice after מיכאלה and הגן של אביה rejected him.','propose');
+        }
+    },
+    {
+        label: "SWAP — אמיר ב׳ beats אמיר for slot 3",
+        action() {
+            setPClass(4,'matched');
+            setPClass(2,'rejected');
+            setSlot(2,'אמיר ב׳ ✓','swapping');
+            setGarden('swapped');
+            log('🔄 SWAP! גן כוכב ranks אמיר ב׳ higher than אמיר (closer distance, higher fit score).','swap');
+            log('   אמיר ב׳ takes slot 3. אמיר is freed and must find another kindergarten.','swap');
+        }
+    },
+    {
+        label: "אורי proposes (2nd choice)",
+        action() {
+            setPClass(2,'');
+            setPClass(5,'proposing');
+            setGarden('receiving');
+            log('📤 אורי (P0051) proposes — 2nd choice after being rejected from משפחתון.','propose');
+        }
+    },
+    {
+        label: "אורי rejected — garden ranks אורי lower than all 3 holders",
+        action() {
+            setPClass(5,'rejected');
+            setGarden('full');
+            log('✗ גן כוכב compares אורי against רוני, גיא, אמיר ב׳ — אורי ranks lowest. Rejected.','reject');
+            log('   אורי moves to next choice. אמיר also continues searching.','reject');
+        }
+    },
+    {
+        label: "✅ Final stable matching for גן כוכב",
+        action() {
+            setPClass(5,'');
+            setPClass(0,'matched'); setPClass(1,'matched'); setPClass(4,'matched');
+            setSlot(0,'רוני ✓','taken');
+            setSlot(1,'גיא ✓','taken');
+            setSlot(2,'אמיר ב׳ ✓','taken');
+            setGarden('full');
+            log('✅ All 3 slots filled. No blocking pairs — stable!','done');
+            log('   מור, אמיר, אורי continue to propose to other kindergartens.','done');
+            document.getElementById('final-result').style.display='block';
+            document.getElementById('btn-next').disabled=true;
+            clearAuto();
+            document.getElementById('final-result').scrollIntoView({behavior:'smooth',block:'nearest'});
+        }
+    }
+];
+
+let currentStep = -1;
+let autoTimer = null;
+
+function setPClass(i, cls) {
+    const el = document.getElementById('p'+i);
+    el.className = 'parent-node' + (cls?' '+cls:'');
+}
+function setGarden(cls) {
+    document.getElementById('g0').className = 'garden-node' + (cls?' '+cls:'');
+}
+function setSlot(i, text, cls) {
+    const el = document.getElementById('slot'+i);
+    el.textContent = 'slot '+(i+1)+' — '+text;
+    el.className = 'slot '+(cls||'');
+}
+function log(text, type) {
+    const div = document.createElement('div');
+    div.className = 'log-entry '+(type||'');
+    div.textContent = text;
+    const logEl = document.getElementById('viz-log');
+    logEl.appendChild(div);
+    logEl.scrollTop = logEl.scrollHeight;
+}
+
+function resetViz() {
+    clearAuto();
+    currentStep = -1;
+    for(let i=0;i<6;i++) setPClass(i,'');
+    setGarden('');
+    setSlot(0,'vacant',''); setSlot(1,'vacant',''); setSlot(2,'vacant','');
+    document.getElementById('viz-log').innerHTML='<div class="log-entry" style="color:#888">Press "Next Step" to start...</div>';
+    document.getElementById('final-result').style.display='none';
+    document.getElementById('btn-next').disabled=false;
+    document.getElementById('btn-auto').textContent='▶ Auto';
+    document.getElementById('step-label').textContent='Press Next Step to begin';
+}
+
+function nextStep() {
+    currentStep++;
+    if(currentStep>=STEPS.length){currentStep=STEPS.length-1;return;}
+    const s = STEPS[currentStep];
+    document.getElementById('step-label').textContent = 'Step '+(currentStep+1)+'/'+STEPS.length+': '+s.label;
+    s.action();
+}
+
+function clearAuto(){
+    clearTimeout(autoTimer); autoTimer=null;
+    document.getElementById('btn-auto').textContent='▶ Auto';
+}
+function autoPlay(){
+    if(autoTimer){clearAuto();return;}
+    document.getElementById('btn-auto').textContent='⏸ Pause';
+    function tick(){
+        if(currentStep>=STEPS.length-1){clearAuto();return;}
+        nextStep();
+        autoTimer=setTimeout(tick,1800);
+    }
+    tick();
+}
+
+resetViz();
+</script>
+{% endblock %}

@@ -1,0 +1,326 @@
+{% extends "base.html" %}
+{% set active_page = 'admin' %}
+{% block title %}ממשק מנהל{% endblock %}
+
+{% block extra_css %}
+<style>
+    h1 { color:#005fa3; margin-bottom:6px; }
+
+    /* כרטיס הרצה */
+    .action-card { background:#f8fbff; border:1.5px solid #b3d9ff; border-radius:12px; padding:24px 28px; margin-bottom:22px; }
+    .action-card h2 { color:#005fa3; font-size:17px; margin-top:0; margin-bottom:14px; border-bottom:2px solid #b3d9ff; padding-bottom:8px; }
+    .btn-run { padding:14px 40px; background:#005fa3; color:white; border:none; border-radius:8px; font-size:17px; font-weight:bold; cursor:pointer; display:inline-flex; align-items:center; gap:10px; }
+    .btn-run:hover { background:#004080; }
+    .btn-run:disabled { background:#aaa; cursor:not-allowed; }
+    .btn-download { padding:11px 26px; background:#1f7a35; color:white; border:none; border-radius:8px; font-size:15px; font-weight:bold; cursor:pointer; text-decoration:none; display:none; }
+    .btn-download:hover { background:#155228; }
+    .btn-row { display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-top:10px; }
+    .spinner { border:3px solid #e6f2ff; border-top:3px solid white; border-radius:50%; width:20px; height:20px; animation:spin .7s linear infinite; display:inline-block; }
+    @keyframes spin { to{transform:rotate(360deg)} }
+
+    /* סיכום תחתון */
+    .run-summary { display:none; margin-top:18px; background:white; border:1.5px solid #b3d9ff; border-radius:10px; padding:16px 20px; }
+    .run-summary-grid { display:flex; gap:20px; flex-wrap:wrap; }
+    .run-summary-item { display:flex; flex-direction:column; align-items:center; min-width:90px; }
+    .run-summary-item .rs-num { font-size:28px; font-weight:900; color:#005fa3; line-height:1; }
+    .run-summary-item .rs-label { font-size:12px; color:#666; margin-top:4px; text-align:center; }
+
+    /* גרפים */
+    .results-section { display:none; }
+    .results-section.visible { display:block; }
+    .results-section h2 { color:#005fa3; font-size:17px; margin:0 0 18px; border-bottom:2px solid #b3d9ff; padding-bottom:8px; }
+
+    .human-summary { background:#f0fff4; border:1.5px solid #1f7a35; border-radius:12px; padding:18px 22px; margin-bottom:22px; font-size:15px; line-height:1.8; color:#1a3d24; }
+    .human-summary strong { color:#1f7a35; }
+
+    .charts-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:22px; }
+    .charts-grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px; margin-bottom:22px; }
+    .chart-card { background:white; border:1px solid #d6eaff; border-radius:12px; padding:18px; }
+    .chart-card h3 { color:#005fa3; font-size:14px; margin:0 0 14px; font-weight:bold; }
+
+    /* ספירה גדולה */
+    .big-stat { text-align:center; padding:10px 0; }
+    .big-stat .bs-num { font-size:52px; font-weight:900; color:#005fa3; line-height:1; }
+    .big-stat .bs-label { font-size:13px; color:#666; margin-top:6px; }
+
+    /* עוגה */
+    .donut-wrap { position:relative; width:140px; height:140px; margin:0 auto 12px; }
+    .donut-svg { transform:rotate(-90deg); }
+    .donut-center { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center; }
+    .donut-center .dc-num { font-size:22px; font-weight:900; color:#005fa3; line-height:1; }
+    .donut-center .dc-label { font-size:10px; color:#888; }
+    .legend { display:flex; flex-direction:column; gap:6px; }
+    .legend-item { display:flex; align-items:center; gap:8px; font-size:13px; }
+    .legend-dot { width:12px; height:12px; border-radius:50%; flex-shrink:0; }
+
+    /* עמודות */
+    .bar-chart { display:flex; flex-direction:column; gap:8px; }
+    .bar-row { display:flex; align-items:center; gap:10px; font-size:12px; }
+    .bar-label { width:120px; text-align:right; color:#333; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .bar-track { flex:1; background:#f0f7ff; border-radius:4px; height:20px; overflow:hidden; }
+    .bar-fill { height:100%; background:#005fa3; border-radius:4px; transition:width .5s; display:flex; align-items:center; padding-right:6px; justify-content:flex-end; }
+    .bar-fill span { color:white; font-size:11px; font-weight:bold; }
+    .bar-fill.demand { background:#7b4fcf; }
+    .bar-val { width:30px; color:#005fa3; font-weight:bold; font-size:12px; }
+
+    /* גנים ללא שיבוץ */
+    .no-assign-list { display:flex; flex-direction:column; gap:6px; max-height:200px; overflow-y:auto; }
+    .no-assign-item { background:#fff8e1; border:1px solid #ffe082; border-radius:6px; padding:6px 10px; font-size:13px; color:#5d4037; }
+    .no-assign-empty { color:#1f7a35; font-weight:bold; font-size:14px; text-align:center; padding:16px 0; }
+
+    /* טבלה */
+    .table-wrap { overflow-x:auto; border-radius:10px; border:1px solid #b3d9ff; }
+    .data-table { width:100%; border-collapse:collapse; font-size:13px; text-align:right; }
+    .data-table th { background:#005fa3; color:white; padding:10px 14px; font-weight:bold; white-space:nowrap; }
+    .data-table td { padding:9px 14px; border-bottom:1px solid #e6eef8; white-space:nowrap; }
+    .data-table tr:hover td { background:#f0f7ff; }
+    .badge-ok { background:#dff5e1; color:#1f7a35; padding:3px 10px; border-radius:12px; font-weight:bold; font-size:12px; }
+    .badge-no { background:#fff3cd; color:#856404; padding:3px 10px; border-radius:12px; font-size:12px; }
+
+    .result-tabs { display:flex; gap:8px; margin-bottom:16px; }
+    .result-tab { padding:8px 18px; border-radius:20px; border:1.5px solid #b3d9ff; background:white; color:#005fa3; font-weight:bold; font-size:13px; cursor:pointer; }
+    .result-tab.active { background:#005fa3; color:white; border-color:#005fa3; }
+    .result-pane { display:none; }
+    .result-pane.active { display:block; }
+
+    /* stability */
+    .stability-def { background:#f0f7ff; border-radius:8px; padding:14px 18px; font-size:14px; color:#333; line-height:1.7; }
+    .stability-def h3 { color:#005fa3; margin-top:0; font-size:15px; }
+    .stab-result { font-size:20px; font-weight:900; padding:12px; border-radius:8px; text-align:center; margin-bottom:14px; }
+    .stab-ok { background:#dff5e1; color:#1f7a35; }
+    .stab-fail { background:#fff0f0; color:#cc0000; }
+
+    /* פאנלים */
+    .stat-panel { display:none; background:#f8fbff; border:1.5px solid #b3d9ff; border-radius:12px; padding:22px 26px; margin-bottom:22px; animation:fadeIn .2s ease; }
+    .stat-panel.open { display:block; }
+    @keyframes fadeIn { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
+    .panel-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; border-bottom:2px solid #b3d9ff; padding-bottom:10px; }
+    .panel-header h2 { color:#005fa3; font-size:17px; margin:0; }
+    .panel-close { background:none; border:none; font-size:20px; cursor:pointer; color:#888; }
+    .panel-close:hover { color:#005fa3; }
+</style>
+{% endblock %}
+
+{% block content %}
+<h1>⚙️ ממשק מנהל — שיבוץ גני ילדים</h1>
+
+<!-- הרצה -->
+<div class="action-card">
+    <h2>🚀 הרצת אלגוריתם שיבוץ (Gale-Shapley)</h2>
+    <div class="btn-row">
+        <button class="btn-run" id="btn-run" onclick="runAlgorithm()">▶ החל שיבוץ</button>
+    </div>
+    <div id="run-status" style="display:none; margin-top:20px; text-align:center;">
+        <div class="spinner" style="border-color:#b3d9ff; border-top-color:#005fa3; width:40px; height:40px; margin:0 auto 12px;"></div>
+        <p style="color:#005fa3; font-size:15px; font-weight:bold;">מריץ אלגוריתם Gale-Shapley...</p>
+    </div>
+    <!-- סיכום מהיר אחרי ריצה -->
+    <div class="run-summary" id="run-summary">
+        <div class="run-summary-grid" id="run-summary-grid"></div>
+    </div>
+</div>
+
+<!-- תוצאות -->
+<div class="results-section" id="results-section">
+    <h2>📊 תוצאות השיבוץ</h2>
+
+    <!-- שורה עליונה: עוגה + ביקוש -->
+    <div class="charts-grid">
+        <!-- עוגת עדיפויות -->
+        <div class="chart-card">
+            <h3>שביעות רצון — איזו עדיפות קיבל כל הורה?</h3>
+            <div class="donut-wrap">
+                <svg class="donut-svg" width="140" height="140" viewBox="0 0 140 140">
+                    <circle cx="70" cy="70" r="54" fill="none" stroke="#f0f0f0" stroke-width="22"/>
+                    <circle cx="70" cy="70" r="54" fill="none" stroke="#1f7a35" stroke-width="22" id="arc-p1" stroke-dasharray="0 340"/>
+                    <circle cx="70" cy="70" r="54" fill="none" stroke="#005fa3" stroke-width="22" id="arc-p2" stroke-dasharray="0 340" stroke-dashoffset="0"/>
+                    <circle cx="70" cy="70" r="54" fill="none" stroke="#f5a623" stroke-width="22" id="arc-p3" stroke-dasharray="0 340" stroke-dashoffset="0"/>
+                    <circle cx="70" cy="70" r="54" fill="none" stroke="#cc3333" stroke-width="22" id="arc-p0" stroke-dasharray="0 340" stroke-dashoffset="0"/>
+                </svg>
+                <div class="donut-center"><div class="dc-num" id="donut-center-num">—</div><div class="dc-label">הורים</div></div>
+            </div>
+            <div class="legend" id="pref-legend"></div>
+        </div>
+
+        <!-- גנים עם ביקוש גבוה -->
+        <div class="chart-card">
+            <h3>גנים עם הביקוש הגבוה ביותר (לפי דירוג הורים)</h3>
+            <div class="bar-chart" id="demand-bars"></div>
+        </div>
+    </div>
+
+    <!-- שורה תחתונה: איטרציות + גנים ללא שיבוץ -->
+    <div class="charts-grid">
+        <div class="chart-card">
+            <h3>כמות סבבי הצעות (איטרציות)</h3>
+            <div class="big-stat">
+                <div class="bs-num" id="proposal-count">—</div>
+                <div class="bs-label">סבבי הצעה בוצעו עד לשיווי משקל</div>
+            </div>
+            <p style="font-size:12px;color:#888;margin:12px 0 0;line-height:1.6">
+                מספר זה מייצג את מספר ההצעות שהציעו ההורים לגנים במהלך ריצת האלגוריתם. מורכבות: O(n²).
+            </p>
+        </div>
+        <div class="chart-card">
+            <h3>גנים ללא שיבוץ</h3>
+            <div class="no-assign-list" id="no-assign-list"></div>
+        </div>
+    </div>
+
+    <!-- כפתור הורדה -->
+    <a class="btn-download" id="btn-download" href="/download_matching_result" download style="display:none; margin-bottom:16px;">⬇ הורד Excel</a>
+
+    <!-- טאבים -->
+    <div class="result-tabs">
+        <div class="result-tab active" onclick="switchTab('matching')">טבלת שיבוצים</div>
+        <div class="result-tab" onclick="switchTab('capacity')">סטטוס גנים</div>
+    </div>
+    <div id="pane-matching"  class="result-pane active"></div>
+    <div id="pane-capacity"  class="result-pane"></div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+let matchingData = null;
+let hasRunOnce = false;
+
+// ── הרצת אלגוריתם ───────────────────────────────────────────────
+async function runAlgorithm() {
+    const btn = document.getElementById('btn-run');
+    const status = document.getElementById('run-status');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span> מריץ...';
+    status.style.display = 'block';
+    document.getElementById('run-summary').style.display = 'none';
+    try {
+        const resp = await fetch('/run_matching', {method:'POST'});
+        const data = await resp.json();
+        status.style.display = 'none';
+        if (!data.success) {
+            alert('שגיאה: ' + (data.message || 'נסו שוב'));
+            btn.disabled = false;
+            btn.innerHTML = hasRunOnce ? '▶ שבץ מחדש' : '▶ החל שיבוץ';
+            return;
+        }
+        matchingData = data;
+        hasRunOnce = true;
+        document.getElementById('btn-download').style.display = 'inline-flex';
+        renderSummary(data);
+        renderResults(data);
+    } catch(e) {
+        status.style.display = 'none';
+        alert('שגיאת תקשורת: ' + e.message);
+    }
+    btn.disabled = false;
+    btn.innerHTML = '▶ שבץ מחדש';
+}
+
+// ── סיכום מהיר מתחת לכפתור ──────────────────────────────────────
+function renderSummary(data) {
+    const s = data.summary;
+    const stable = s.blocking_pairs_found === 0;
+    const fullGardens = (data.capacity_utilization||[]).filter(r=>r.remaining===0).length;
+    const totalGardens = data.capacity_utilization ? data.capacity_utilization.length : s.gardens_total;
+    const openSpots = (s.total_capacity||0) - s.parents_matched_total;
+    document.getElementById('run-summary-grid').innerHTML = [
+        {num: `${s.parents_matched_total}/${s.parents_total}`, label: 'ילדים שובצו', color: s.parents_matched_total===s.parents_total ? '#1f7a35' : '#cc0000'},
+        {num: openSpots, label: 'מכסות פנויות לאחר שיבוץ'},
+        {num: `${fullGardens} מתוך ${totalGardens}`, label: 'גנים בתפוסה מלאה'},
+        {num: s.proposal_count || '—', label: 'איטרציות'},
+        {num: stable ? '✓ יציב' : 'לא יציב', label: 'יציבות שיבוץ', color: stable ? '#1f7a35' : '#cc0000'},
+    ].map(i=>`<div class="run-summary-item">
+        <div class="rs-num" style="${i.color?'color:'+i.color:''}">${i.num}</div>
+        <div class="rs-label">${i.label}</div>
+    </div>`).join('<div style="width:1px;background:#e0eeff;margin:4px 0"></div>');
+    document.getElementById('run-summary').style.display = 'block';
+}
+
+// ── גרפים ────────────────────────────────────────────────────────
+function renderResults(data) {
+    const section = document.getElementById('results-section');
+    section.classList.add('visible');
+    const s = data.summary;
+    const prefs = data.preference_satisfaction || [];
+    const caps  = data.capacity_utilization || [];
+
+    // ספור עדיפויות
+    const p1 = prefs.filter(r=>r.preference_rank===1).length;
+    const p2 = prefs.filter(r=>r.preference_rank===2).length;
+    const p3 = prefs.filter(r=>r.preference_rank===3).length;
+    const p0 = prefs.filter(r=>!r.preference_rank).length;
+    const total = prefs.length || 1;
+
+
+    // עוגה
+    const circ = 2*Math.PI*54;
+    const seg1=circ*(p1/total), seg2=circ*(p2/total), seg3=circ*(p3/total), seg0=circ*(p0/total);
+    let off=0;
+    function setArc(id,dash,offset){document.getElementById(id).setAttribute('stroke-dasharray',dash+' '+circ);document.getElementById(id).setAttribute('stroke-dashoffset',-offset);}
+    setArc('arc-p1',seg1,off); off+=seg1;
+    setArc('arc-p2',seg2,off); off+=seg2;
+    setArc('arc-p3',seg3,off); off+=seg3;
+    setArc('arc-p0',seg0,off);
+    document.getElementById('donut-center-num').textContent = total;
+    document.getElementById('pref-legend').innerHTML = [
+        {color:'#1f7a35', label:`עדיפות 1 — ${p1} (${Math.round(p1/total*100)}%)`},
+        {color:'#005fa3', label:`עדיפות 2 — ${p2} (${Math.round(p2/total*100)}%)`},
+        {color:'#f5a623', label:`עדיפות 3 — ${p3} (${Math.round(p3/total*100)}%)`},
+        {color:'#cc3333', label:`מחוץ לרשימה — ${p0} (${Math.round(p0/total*100)}%)`},
+    ].map(i=>`<div class="legend-item"><div class="legend-dot" style="background:${i.color}"></div><span>${i.label}</span></div>`).join('');
+
+    // גנים עם ביקוש גבוה
+    const demand = (data.garden_demand || []).slice(0, 10);
+    const maxDemand = Math.max(...demand.map(r=>r.demand), 1);
+    document.getElementById('demand-bars').innerHTML = demand.map(r=>`
+        <div class="bar-row">
+            <div class="bar-label" title="${r.garden_name}">${r.garden_name||'—'}</div>
+            <div class="bar-track"><div class="bar-fill demand" style="width:${Math.round(r.demand/maxDemand*100)}%"><span>${r.demand}</span></div></div>
+            <div class="bar-val" style="color:#7b4fcf">${r.demand}</div>
+        </div>`).join('');
+
+    // כמות איטרציות
+    document.getElementById('proposal-count').textContent = s.proposal_count ?? '—';
+
+    // גנים ללא שיבוץ
+    const noAssign = data.gardens_no_assignment || [];
+    document.getElementById('no-assign-list').innerHTML = noAssign.length === 0
+        ? '<div class="no-assign-empty">✓ כל הגנים קיבלו שיבוץ</div>'
+        : noAssign.map(g=>`<div class="no-assign-item">🌿 ${g.garden_name} <span style="color:#888;font-size:11px">(קיבולת: ${g.capacity})</span></div>`).join('');
+
+    // טבלאות
+    const matchingRows = data.final_matching||[];
+    document.getElementById('pane-matching').innerHTML =
+        `<p style="font-size:13px;color:#666;margin:0 0 10px">מוצגים ${matchingRows.length} ילדים</p>
+        <div class="table-wrap"><table class="data-table">
+        <thead><tr><th>#</th><th>שם הורה</th><th>שם ילד</th><th>גן משובץ</th><th>סטטוס</th></tr></thead>
+        <tbody>${matchingRows.map((r,i)=>`<tr>
+            <td>${i+1}</td><td>${r.parent_name||''}</td><td>${r.child_name||''}</td>
+            <td><strong>${r.garden_name||'—'}</strong></td>
+            <td><span class="${r.status==='matched'?'badge-ok':'badge-no'}">${r.status==='matched'?'שובץ ✓':'לבדיקה'}</span></td>
+        </tr>`).join('')}</tbody></table></div>`;
+
+    const demandMap = {};
+    (data.garden_demand||[]).forEach(r=>{ demandMap[r.garden_name] = r.demand; });
+    document.getElementById('pane-capacity').innerHTML =
+        `<p style="font-size:13px;color:#666;margin:0 0 10px">מוצגים ${caps.length} גנים</p>
+        <div class="table-wrap"><table class="data-table">
+        <thead><tr><th>שם גן</th><th>סטטוס תפוסה</th><th>ביקוש (הורים שביקשו)</th></tr></thead>
+        <tbody>${caps.map(r=>{
+            const status = r.remaining===0 ? '<span class="badge-ok">מלא ✓</span>' : `נותרו ${r.remaining} מקומות`;
+            const demand = demandMap[r.garden_name] ?? '—';
+            return `<tr><td><strong>${r.garden_name||''}</strong></td><td>${status}</td><td>${demand}</td></tr>`;
+        }).join('')}</tbody></table></div>`;
+
+    section.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function switchTab(name){
+    document.querySelectorAll('.result-tab').forEach((t,i)=>{
+        t.classList.toggle('active',['matching','capacity'][i]===name);
+    });
+    document.querySelectorAll('.result-pane').forEach(p=>p.classList.remove('active'));
+    document.getElementById('pane-'+name).classList.add('active');
+}
+</script>
+{% endblock %}

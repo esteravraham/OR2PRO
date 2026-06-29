@@ -1,19 +1,15 @@
-<!DOCTYPE html>
-<html lang="he" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <title>מפת גנים - Ganim</title>
+{% extends "base.html" %}
+{% set active_page = 'map' %}
 
-    <link rel="stylesheet" href="optionA.css">
+{% block title %}מפת הגנים{% endblock %}
 
-    <!-- Leaflet Map CSS -->
-    <link
+{% block extra_css %}
+<link
         rel="stylesheet"
         href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     >
-
-    <style>
-        body {
+<style>
+body {
             margin: 0;
             font-family: Arial, sans-serif;
             direction: rtl;
@@ -104,19 +100,19 @@
         .popup-link:hover {
             background: #F47F61;
         }
-    </style>
-</head>
+</style>
+{% endblock %}
 
-<body>
-    <main class="map-page">
+{% block content %}
+<main class="map-page">
 
         <section class="map-header">
             <h1>מפת גנים ברמת גן</h1>
             <p>הצגת הגנים לפי מיקום גיאוגרפי על בסיס נתוני עיריית רמת גן.</p>
 
             <div class="map-actions">
-                <a class="map-button" href="home.html">חזרה לדף הבית</a>
-                <a class="map-button" href="search-results.html">מעבר לחיפוש</a>
+                <a class="map-button" href="/">חזרה לדף הבית</a>
+                <a class="map-button" href="/search-results">מעבר לחיפוש</a>
             </div>
         </section>
 
@@ -128,9 +124,12 @@
 
     <!-- Leaflet Map JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+{% endblock %}
 
-    <script>
-        const ramatGanCenter = [32.0840, 34.8142];
+{% block extra_js %}
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const ramatGanCenter = [32.0840, 34.8142];
 
         const map = L.map("map").setView(ramatGanCenter, 13);
 
@@ -185,7 +184,7 @@
                             <div><strong>רישוי:</strong> ${cleanValue(garden.license_status)}</div>
                         </div>
 
-                        <a class="popup-link" href="garden-profile.html?id=${garden.id}">
+                        <a class="popup-link" href="/garden-profile?id=${garden.id}">
                             לפרופיל הגן
                         </a>
                     `;
@@ -204,6 +203,5 @@
         }
 
         loadMapGardens();
-    </script>
-</body>
-</html>
+</script>
+{% endblock %}

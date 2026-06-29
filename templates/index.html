@@ -1,0 +1,213 @@
+{% extends "base.html" %}
+{% set active_page = 'index' %}
+
+{% block title %}חיפוש גנים{% endblock %}
+
+{% block extra_css %}
+{{ super() if super is defined }}
+<style>
+    body { background: #F8FBF9; }
+    .results-page { max-width: 1150px; margin: 0 auto; padding: 28px; }
+    .results-hero { background: linear-gradient(135deg, #DDF7E3, #DCEEFF, #FFF1D6); border-radius: 26px; padding: 28px; margin-bottom: 22px; box-shadow: 0 8px 22px rgba(0,0,0,0.06); }
+    .results-hero h1 { margin: 0 0 8px; color: #2D5C4A; font-size: 32px; }
+    .results-hero p { margin: 0 0 20px; color: #52635B; }
+    .search-row { display: flex; gap: 10px; }
+    .search-input { flex: 1; padding: 14px 18px; font-size: 16px; border-radius: 999px; border: 2px solid #BFE8D2; outline: none; }
+    .search-input:focus { border-color: #72C7A3; }
+    .search-button { border: none; border-radius: 999px; padding: 0 24px; font-size: 16px; cursor: pointer; background: #FF9F80; color: white; font-weight: bold; }
+    .search-button:hover { background: #F47F61; }
+    .map-button { text-decoration: none; background: #64B6AC; color: white; padding: 0 20px; border-radius: 999px; font-weight: bold; display: flex; align-items: center; white-space: nowrap; }
+    .map-button:hover { background: #4EA197; }
+    .filters-panel { background: white; border: 1px solid #E2EFE7; border-radius: 22px; padding: 20px; margin-bottom: 18px; box-shadow: 0 5px 14px rgba(0,0,0,0.04); }
+    .filters-title { margin: 0 0 14px; color: #2D5C4A; font-size: 20px; }
+    .filters-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+    .filter-group { display: flex; flex-direction: column; gap: 6px; }
+    .filter-group label { font-size: 14px; color: #52635B; font-weight: bold; }
+    .filter-group select { padding: 10px; border-radius: 12px; border: 1px solid #CFE6D8; background: #FBFEFC; }
+    .checkbox-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+    .filter-chip { background: #F3FBF6; border: 1px solid #CDEEDB; padding: 9px 13px; border-radius: 999px; font-size: 14px; color: #3B7058; cursor: pointer; }
+    .filter-chip input { margin-left: 5px; }
+    .reset-button { margin-top: 16px; border: none; border-radius: 999px; padding: 10px 16px; background: #64B6AC; color: white; cursor: pointer; font-weight: bold; }
+    .reset-button:hover { background: #4EA197; }
+    .results-count { margin: 10px 0 18px; color: #52635B; font-weight: bold; }
+    .garden-card { background: white; border: 1px solid #E2EFE7; border-radius: 18px; padding: 18px; margin-bottom: 14px; box-shadow: 0 5px 14px rgba(0,0,0,0.05); display: grid; grid-template-columns: 1fr auto; gap: 15px; align-items: center; }
+    .garden-card h3 { margin: 0 0 8px; color: #2D5C4A; font-size: 22px; }
+    .garden-details { line-height: 1.7; color: #364B40; }
+    .tags { margin-top: 10px; }
+    .tag { display: inline-block; padding: 5px 10px; border-radius: 999px; font-size: 13px; margin-left: 6px; margin-top: 6px; }
+    .tag.community { background-color: #E2F7EA; color: #2D7A4E; }
+    .tag.no-community { background-color: #F1F1F1; color: #666; }
+    .tag.license { background-color: #FFF1C7; color: #7A5A00; }
+    .tag.extra { background-color: #E9F2FF; color: #2C5F9E; }
+    .profile-link { text-decoration: none; color: white; background: #64B6AC; padding: 10px 14px; border-radius: 10px; font-weight: bold; white-space: nowrap; }
+    .profile-link:hover { background: #4EA197; }
+    .empty-message { background: white; padding: 24px; border-radius: 18px; border: 1px solid #E2EFE7; text-align: center; color: #52635B; }
+    #resultsContainer { display: none; }
+    #resultsContainer.visible { display: block; }
+</style>
+{% endblock %}
+
+{% block content %}
+<main class="results-page">
+    <section class="results-hero">
+        <h1>חיפוש גני ילדים</h1>
+        <p>חפשו לפי שם גן, כתובת, מנהלת, בעלות או מילת מפתח.</p>
+        <form class="search-row" onsubmit="performSearch(event)">
+            <input id="searchInput" class="search-input" type="text" placeholder="חפשי גן, כתובת או מילת מפתח..." autocomplete="off">
+            <button class="search-button" type="submit">חיפוש</button>
+            <a href="/map" class="map-button">צפייה במפה</a>
+        </form>
+    </section>
+
+    <section class="filters-panel">
+        <h2 class="filters-title">סינון תוצאות</h2>
+        <div class="filters-grid">
+            <div class="filter-group"><label for="educationFilter">סוג חינוך</label><select id="educationFilter"><option value="">הכול</option></select></div>
+            <div class="filter-group"><label for="nutritionFilter">תזונה</label><select id="nutritionFilter"><option value="">הכול</option></select></div>
+            <div class="filter-group"><label for="sectorFilter">מגזר</label><select id="sectorFilter"><option value="">הכול</option></select></div>
+            <div class="filter-group"><label for="activityLanguageFilter">שפת פעילות</label><select id="activityLanguageFilter"><option value="">הכול</option></select></div>
+            <div class="filter-group"><label for="religiousFilter">זיקה דתית</label><select id="religiousFilter"><option value="">הכול</option></select></div>
+        </div>
+        <div class="checkbox-row">
+            <label class="filter-chip"><input type="checkbox" id="communityOnly"> רק גנים עם מידע קהילתי</label>
+            <label class="filter-chip"><input type="checkbox" id="licensedOnly"> רק רישיון בתוקף</label>
+            <label class="filter-chip"><input type="checkbox" id="openCamerasOnly"> מצלמות פתוחות להורים</label>
+            <label class="filter-chip"><input type="checkbox" id="protectedSpaceOnly"> מרחב מוגן / ממ"ד</label>
+            <label class="filter-chip"><input type="checkbox" id="fridayOnly"> פעילות ביום שישי</label>
+        </div>
+        <button class="reset-button" onclick="resetFilters()">איפוס סינון</button>
+    </section>
+
+    <div id="resultsCount" class="results-count"></div>
+    <div id="resultsContainer"></div>
+</main>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    let allGardens = [];
+
+    function getQueryFromUrl() {
+        return new URLSearchParams(window.location.search).get('q') || '';
+    }
+
+    async function loadGardens() {
+        try {
+            const data = await (await fetch('/gardens.json')).json();
+            allGardens = data.gardens || [];
+            populateDynamicFilters();
+            const query = getQueryFromUrl();
+            document.getElementById('searchInput').value = query;
+            if (query) performSearchDirect();
+        } catch(e) {
+            document.getElementById('resultsContainer').innerHTML = '<div class="empty-message">לא הצלחנו לטעון את קובץ הנתונים.</div>';
+            document.getElementById('resultsContainer').classList.add('visible');
+        }
+    }
+
+    function cleanValue(v) { return (v === null || v === undefined || v === '') ? 'לא ידוע' : v; }
+    function hasCommunityInfo(g) { return g.community && g.community.has_community_info === true; }
+
+    function populateSelect(id, values) {
+        const sel = document.getElementById(id);
+        values.forEach(v => { const o = document.createElement('option'); o.value = o.textContent = v; sel.appendChild(o); });
+    }
+
+    function populateDynamicFilters() {
+        populateSelect('educationFilter', ['רגיל / כללי','מונטסורי','אנתרופוסופי / וולדורף','דמוקרטי','טבע / יער','רג׳יו אמיליה','דו-לשוני','חינוך מיוחד','שילוב','אומנויות','מוזיקה','מדעים / STEM','ספורט / תנועה','אחר']);
+        populateSelect('nutritionFilter', ['רגילה','כשרה','כשרה למהדרין','צמחונית','טבעונית','ללא גלוטן','ללא אלרגנים','ביתית','קייטרינג','הורה מביא אוכל','אחר']);
+        populateSelect('religiousFilter', ['חילוני','מסורתי','דתי','ממלכתי דתי','חרדי','מעורב','אחר']);
+        populateSelect('sectorFilter', ['יהודי','ערבי','דרוזי','בדואי','צ׳רקסי','מעורב','אחר']);
+        populateSelect('activityLanguageFilter', ['עברית','ערבית','רוסית','אנגלית','צרפתית','דו-לשוני','אחר']);
+    }
+
+    function performSearch(event) {
+        event.preventDefault();
+        const q = document.getElementById('searchInput').value.trim();
+        window.history.replaceState(null, '', `/search-results?q=${encodeURIComponent(q)}`);
+        performSearchDirect();
+    }
+
+    function performSearchDirect() {
+        filterGardens();
+        document.getElementById('resultsContainer').classList.add('visible');
+    }
+
+    function filterGardens() {
+        const s = document.getElementById('searchInput').value.trim().toLowerCase();
+        const filters = {
+            communityOnly: document.getElementById('communityOnly').checked,
+            licensedOnly: document.getElementById('licensedOnly').checked,
+            openCamerasOnly: document.getElementById('openCamerasOnly').checked,
+            protectedSpaceOnly: document.getElementById('protectedSpaceOnly').checked,
+            fridayOnly: document.getElementById('fridayOnly').checked,
+            education: document.getElementById('educationFilter').value,
+            nutrition: document.getElementById('nutritionFilter').value,
+            religious: document.getElementById('religiousFilter').value,
+            sector: document.getElementById('sectorFilter').value,
+            language: document.getElementById('activityLanguageFilter').value,
+        };
+        const filtered = allGardens.filter(g => {
+            const p = g.profile || {};
+            const text = (g.search_text||'').toLowerCase();
+            return (!s || text.includes(s) || (g.name||'').toLowerCase().includes(s) || (g.address||'').toLowerCase().includes(s))
+                && (!filters.communityOnly || hasCommunityInfo(g))
+                && (!filters.licensedOnly || String(g.license_status||'').includes('רישיון בתוקף'))
+                && (!filters.openCamerasOnly || p.cameras_open_to_parents === 'כן')
+                && (!filters.protectedSpaceOnly || p.has_protected_space === 'כן')
+                && (!filters.fridayOnly || p.friday === 'כן')
+                && (!filters.education || p.education_type === filters.education)
+                && (!filters.nutrition || p.nutrition_type === filters.nutrition)
+                && (!filters.religious || p.religious_orientation === filters.religious)
+                && (!filters.sector || g.sector === filters.sector)
+                && (!filters.language || p.activity_language === filters.language);
+        });
+        renderResults(filtered);
+    }
+
+    function resetFilters() {
+        document.getElementById('searchInput').value = '';
+        ['communityOnly','licensedOnly','openCamerasOnly','protectedSpaceOnly','fridayOnly'].forEach(id => document.getElementById(id).checked = false);
+        ['educationFilter','nutritionFilter','religiousFilter','sectorFilter','activityLanguageFilter'].forEach(id => document.getElementById(id).value = '');
+        window.history.replaceState(null, '', '/');
+        document.getElementById('resultsContainer').classList.remove('visible');
+        document.getElementById('resultsCount').textContent = '';
+    }
+
+    function renderResults(gardens) {
+        document.getElementById('resultsCount').textContent = `נמצאו ${gardens.length} גנים`;
+        const c = document.getElementById('resultsContainer');
+        if (!gardens.length) { c.innerHTML = '<div class="empty-message">לא נמצאו גנים מתאימים. נסי לשנות את החיפוש או הסינון.</div>'; return; }
+        c.innerHTML = gardens.map(g => {
+            const p = g.profile || {};
+            return `<article class="garden-card">
+                <div>
+                    <h3>${cleanValue(g.display_name||g.name)}</h3>
+                    <div class="garden-details">
+                        <div><strong>כתובת:</strong> ${cleanValue(g.address)}</div>
+                        <div><strong>טלפון:</strong> ${cleanValue(g.display_phone||g.official_phone)}</div>
+                        <div><strong>מנהלת:</strong> ${cleanValue(g.manager)}</div>
+                        <div><strong>בעלות:</strong> ${cleanValue(g.ownership)}</div>
+                    </div>
+                    <div class="tags">
+                        ${hasCommunityInfo(g) ? '<span class="tag community">יש מידע קהילתי</span>' : '<span class="tag no-community">אין עדיין מידע קהילתי</span>'}
+                        <span class="tag license">${cleanValue(g.license_status)}</span>
+                        ${p.has_protected_space==='כן' ? '<span class="tag extra">מרחב מוגן</span>' : ''}
+                        ${p.cameras_open_to_parents==='כן' ? '<span class="tag extra">מצלמות פתוחות</span>' : ''}
+                        ${p.friday==='כן' ? '<span class="tag extra">פעיל בשישי</span>' : ''}
+                    </div>
+                </div>
+                <a class="profile-link" href="/garden-profile?id=${g.id}">לפרופיל הגן</a>
+            </article>`;
+        }).join('');
+    }
+
+    ['communityOnly','licensedOnly','openCamerasOnly','protectedSpaceOnly','fridayOnly',
+     'educationFilter','nutritionFilter','religiousFilter','sectorFilter','activityLanguageFilter']
+        .forEach(id => document.getElementById(id).addEventListener('change', () => {
+            if (document.getElementById('resultsContainer').classList.contains('visible')) filterGardens();
+        }));
+
+    loadGardens();
+</script>
+{% endblock %}

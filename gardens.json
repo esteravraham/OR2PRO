@@ -66,7 +66,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "אחדות הברכה בע\"מ אחדות הברכה בע\"מ רמת גן אביבים 8 גרינימן נחמה אחדות הברכה בע\"מ יהודי שכונת שיכון ותיקים"
+      "search_text": "אחדות הברכה בע\"מ אחדות הברכה בע\"מ רמת גן אביבים 8 גרינימן נחמה אחדות הברכה בע\"מ יהודי שכונת שיכון ותיקים",
+      "education_type": "ממלכתי",
+      "price_avg": 5030,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "98624",
@@ -127,7 +134,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן קטנטנים גן קטנטנים רמת גן אבן ספיר 6 פלכה ורה גן קטנטנים יהודי שכונת אזור הבילויים"
+      "search_text": "גן קטנטנים גן קטנטנים רמת גן אבן ספיר 6 פלכה ורה גן קטנטנים יהודי שכונת אזור הבילויים",
+      "education_type": "ממלכתי",
+      "price_avg": 4656,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "99762",
@@ -188,7 +202,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "מיכאלה מיכאלה רמת גן אהוד 4 ברקוביץ אברהם נעם דו רה מי יהודי שכונת תל יהודה"
+      "search_text": "מיכאלה מיכאלה רמת גן אהוד 4 ברקוביץ אברהם נעם דו רה מי יהודי שכונת תל יהודה",
+      "education_type": "ממלכתי",
+      "price_avg": 4525,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "94193",
@@ -249,7 +270,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "מיכאלה מיכאלה רמת גן אהוד 5 כהן ליגל דו רה מי יהודי שכונת תל יהודה"
+      "search_text": "מיכאלה מיכאלה רמת גן אהוד 5 כהן ליגל דו רה מי יהודי שכונת תל יהודה",
+      "education_type": "ממלכתי דתי",
+      "price_avg": 5348,
+      "has_tzaharon": "לא",
+      "friday": "כן",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "56143",
@@ -310,7 +338,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "רמת שקמה ב רמת שקמה ב רמת גן אחד העם 18 סויסה פארלי ויצו - הסתדרות עולמית לנשים ציוניות יהודי שכונת רמת שקמה"
+      "search_text": "רמת שקמה ב רמת שקמה ב רמת גן אחד העם 18 סויסה פארלי ויצו - הסתדרות עולמית לנשים ציוניות יהודי שכונת רמת שקמה",
+      "education_type": "ממלכתי",
+      "price_avg": 4776,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "56168",
@@ -371,7 +406,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "שד ויצו שקמה ג שד ויצו שקמה ג רמת גן אחד העם 59 פז הילית ויצו - הסתדרות עולמית לנשים ציוניות יהודי שכונת רמת שקמה"
+      "search_text": "שד ויצו שקמה ג שד ויצו שקמה ג רמת גן אחד העם 59 פז הילית ויצו - הסתדרות עולמית לנשים ציוניות יהודי שכונת רמת שקמה",
+      "education_type": "ממלכתי",
+      "price_avg": 5267,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "81182",
@@ -432,7 +474,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "הקטקטים של עדית הקטקטים של עדית רמת גן אלונים 9 קצב עדית הקטקטים של עדית יהודי שכונת תל בנימין"
+      "search_text": "הקטקטים של עדית הקטקטים של עדית רמת גן אלונים 9 קצב עדית הקטקטים של עדית יהודי שכונת תל בנימין",
+      "education_type": "ממלכתי דתי",
+      "price_avg": 4777,
+      "has_tzaharon": "כן",
+      "friday": "כן",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "94839",
@@ -493,7 +542,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "הגן של מיכל ואורנה הגן של מיכל ואורנה רמת גן אלוף דוד 59 מזור אורנה הגן של מיכל ואורנה יהודי שכונת רמת חן"
+      "search_text": "הגן של מיכל ואורנה הגן של מיכל ואורנה רמת גן אלוף דוד 59 מזור אורנה הגן של מיכל ואורנה יהודי שכונת רמת חן",
+      "education_type": "ממלכתי דתי",
+      "price_avg": 4008,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "73650",
@@ -554,7 +610,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "פנדה גן פנדה גן רמת גן אלרואי 12 קרסניאנסקי קרן כריסטינה פנדה גן יהודי שכונת תל יהודה"
+      "search_text": "פנדה גן פנדה גן רמת גן אלרואי 12 קרסניאנסקי קרן כריסטינה פנדה גן יהודי שכונת תל יהודה",
+      "education_type": "ממלכתי",
+      "price_avg": 4395,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "82313",
@@ -615,7 +678,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "הפעוטות של מירה הפעוטות של מירה רמת גן ארלוזורוב 83 בן יקר מירה הפעוטון של מירה יהודי שכונת ראשונים"
+      "search_text": "הפעוטות של מירה הפעוטות של מירה רמת גן ארלוזורוב 83 בן יקר מירה הפעוטון של מירה יהודי שכונת ראשונים",
+      "education_type": "ממלכתי",
+      "price_avg": 5310,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "55855",
@@ -676,7 +746,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "בית קנדה קשת בית קנדה קשת רמת גן ארנון 5 דלל מיטל הנהלת נעמ\"ת יהודי שכונת נווה יהושע"
+      "search_text": "בית קנדה קשת בית קנדה קשת רמת גן ארנון 5 דלל מיטל הנהלת נעמ\"ת יהודי שכונת נווה יהושע",
+      "education_type": "ממלכתי דתי",
+      "price_avg": 5446,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "11554",
@@ -685,7 +762,7 @@
       "official_name": "הבית של עינבי",
       "city": "רמת גן",
       "address": "בועז 14",
-      "neighborhood": null,
+      "neighborhood": "שכונת שיכון ותיקים",
       "x": null,
       "y": null,
       "phone": "0528569299",
@@ -737,7 +814,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "הבית של עינבי הבית של עינבי רמת גן בועז 14 הבית של ענבי יהודי"
+      "search_text": "הבית של עינבי הבית של עינבי רמת גן בועז 14 הבית של ענבי יהודי",
+      "education_type": "ממלכתי",
+      "price_avg": 4707,
+      "has_tzaharon": "לא",
+      "friday": "כן",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "11555",
@@ -746,7 +830,7 @@
       "official_name": "המשפחתון של אולה",
       "city": "רמת גן",
       "address": "בועז 6",
-      "neighborhood": null,
+      "neighborhood": "שכונת שיכון ותיקים",
       "x": null,
       "y": null,
       "phone": "0547226888",
@@ -798,7 +882,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "המשפחתון של אולה המשפחתון של אולה רמת גן בועז 6 וכלר הילה אולגה וכלר הילה אולגה יהודי"
+      "search_text": "המשפחתון של אולה המשפחתון של אולה רמת גן בועז 6 וכלר הילה אולגה וכלר הילה אולגה יהודי",
+      "education_type": "ממלכתי",
+      "price_avg": 5027,
+      "has_tzaharon": "לא",
+      "friday": "כן",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "11753",
@@ -807,7 +898,7 @@
       "official_name": "הבית של עינבי",
       "city": "רמת גן",
       "address": "ביאליק 123",
-      "neighborhood": null,
+      "neighborhood": "שכונת הלל",
       "x": null,
       "y": null,
       "phone": "0528569299",
@@ -859,7 +950,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "הבית של עינבי הבית של עינבי רמת גן ביאליק 123 כהן אגם יהודית הבית של ענבי יהודי"
+      "search_text": "הבית של עינבי הבית של עינבי רמת גן ביאליק 123 כהן אגם יהודית הבית של ענבי יהודי",
+      "education_type": "ממלכתי",
+      "price_avg": 4635,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "15800",
@@ -920,7 +1018,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "ריינבו ריינבו רמת גן ביאליק 37 דוידקוביץ טטיאנה גן קשת יהודי שכונת מרכז העיר"
+      "search_text": "ריינבו ריינבו רמת גן ביאליק 37 דוידקוביץ טטיאנה גן קשת יהודי שכונת מרכז העיר",
+      "education_type": "ממלכתי דתי",
+      "price_avg": 4342,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "11579",
@@ -929,7 +1034,7 @@
       "official_name": "משפחתון אירנה",
       "city": "רמת גן",
       "address": "בן אליעזר אריה 10",
-      "neighborhood": null,
+      "neighborhood": "שכונת רמת עמידר",
       "x": null,
       "y": null,
       "phone": "0505628287",
@@ -981,7 +1086,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "משפחתון אירנה משפחתון אירנה רמת גן בן אליעזר אריה 10 אירנה דובריצקי יהודי"
+      "search_text": "משפחתון אירנה משפחתון אירנה רמת גן בן אליעזר אריה 10 אירנה דובריצקי יהודי",
+      "education_type": "ממלכתי",
+      "price_avg": 4420,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "99549",
@@ -1042,7 +1154,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "הגן של יפה הגן של יפה רמת גן בן אליעזר אריה 29 דנינו מזרחי דורין הגן של יפה יהודי שכונת רמת עמידר"
+      "search_text": "הגן של יפה הגן של יפה רמת גן בן אליעזר אריה 29 דנינו מזרחי דורין הגן של יפה יהודי שכונת רמת עמידר",
+      "education_type": "ממלכתי",
+      "price_avg": 4853,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "10995",
@@ -1103,7 +1222,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן סאנשיין גן סאנשיין רמת גן בן אליעזר אריה 38 כהנה קארין אור לעד בע\"מ יהודי שכונת נווה יהושע"
+      "search_text": "גן סאנשיין גן סאנשיין רמת גן בן אליעזר אריה 38 כהנה קארין אור לעד בע\"מ יהודי שכונת נווה יהושע",
+      "education_type": "ממלכתי דתי",
+      "price_avg": 5269,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "99135",
@@ -1164,7 +1290,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "הבית של אורה הבית של אורה רמת גן בניהו 18 קונדרטייב סבטלנה הבית של אורה יהודי שכונת רמת שקמה"
+      "search_text": "הבית של אורה הבית של אורה רמת גן בניהו 18 קונדרטייב סבטלנה הבית של אורה יהודי שכונת רמת שקמה",
+      "education_type": "ממלכתי",
+      "price_avg": 5240,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "11441",
@@ -1173,7 +1306,7 @@
       "official_name": "עולם קטן",
       "city": "רמת גן",
       "address": "בעל שם טוב 13",
-      "neighborhood": null,
+      "neighborhood": "שכונת חשמונאים",
       "x": null,
       "y": null,
       "phone": "0527726050",
@@ -1237,7 +1370,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "עולם קטן עולם קטן רמת גן בעל שם טוב 13 כהן מלכה עכסא שבילי הזהב לקהילה יהודי גן 3 חודשים עד 3 שנים"
+      "search_text": "עולם קטן עולם קטן רמת גן בעל שם טוב 13 כהן מלכה עכסא שבילי הזהב לקהילה יהודי גן 3 חודשים עד 3 שנים",
+      "education_type": "ממלכתי",
+      "price_avg": 4042,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "11233",
@@ -1298,7 +1438,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן קטנטנים גן קטנטנים רמת גן בר יוחאי 15 פלכה ורה גן קטנטנים יהודי שכונת מתחם נגבה"
+      "search_text": "גן קטנטנים גן קטנטנים רמת גן בר יוחאי 15 פלכה ורה גן קטנטנים יהודי שכונת מתחם נגבה",
+      "education_type": "ממלכתי",
+      "price_avg": 4154,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "11632",
@@ -1359,7 +1506,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן ילדים בייבי קונסרבטוריון גן ילדים בייבי קונסרבטוריון רמת גן בר כוכבא 28 יבסייקה נטליה נטליה יבסייקה יהודי שכונת מרום נווה"
+      "search_text": "גן ילדים בייבי קונסרבטוריון גן ילדים בייבי קונסרבטוריון רמת גן בר כוכבא 28 יבסייקה נטליה נטליה יבסייקה יהודי שכונת מרום נווה",
+      "education_type": "ממלכתי דתי",
+      "price_avg": 4853,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "11559",
@@ -1368,7 +1522,7 @@
       "official_name": "גן שורשים",
       "city": "רמת גן",
       "address": "ברנשטיין פרץ 42",
-      "neighborhood": null,
+      "neighborhood": "שכונת גפן",
       "x": null,
       "y": null,
       "phone": "0508448986",
@@ -1420,7 +1574,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן שורשים גן שורשים רמת גן ברנשטיין פרץ 42 טל רובינוב ברנס יהודי"
+      "search_text": "גן שורשים גן שורשים רמת גן ברנשטיין פרץ 42 טל רובינוב ברנס יהודי",
+      "education_type": "ממלכתי",
+      "price_avg": 5282,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "20297",
@@ -1485,7 +1646,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "הגן של אביה הגן של אביה רמת גן גדעון 30 חבורה מרים שושנה אביה - מרכז חינוך וקידום הילד (ע\"ר) יהודי שכונת תל גנים"
+      "search_text": "הגן של אביה הגן של אביה רמת גן גדעון 30 חבורה מרים שושנה אביה - מרכז חינוך וקידום הילד (ע\"ר) יהודי שכונת תל גנים",
+      "education_type": "ממלכתי",
+      "price_avg": 4604,
+      "has_tzaharon": "כן",
+      "friday": "כן",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "11408",
@@ -1546,7 +1714,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן ישראל חינוך מאיר גן ישראל חינוך מאיר רמת גן גרנדוס 35 גורדון רחל גן ישראל חינוך מאיר (ע\"ר) יהודי שכונת קריית בורוכוב"
+      "search_text": "גן ישראל חינוך מאיר גן ישראל חינוך מאיר רמת גן גרנדוס 35 גורדון רחל גן ישראל חינוך מאיר (ע\"ר) יהודי שכונת קריית בורוכוב",
+      "education_type": "ממלכתי",
+      "price_avg": 4808,
+      "has_tzaharon": "כן",
+      "friday": "כן",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "79178",
@@ -1607,7 +1782,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן גפן גן גפן רמת גן דבורה הנביאה 12 אשואל חגית גן גפן יהודי שכונת מתחם נגבה"
+      "search_text": "גן גפן גן גפן רמת גן דבורה הנביאה 12 אשואל חגית גן גפן יהודי שכונת מתחם נגבה",
+      "education_type": "ממלכתי",
+      "price_avg": 4943,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "94763",
@@ -1668,7 +1850,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן הבית של אמא גן הבית של אמא רמת גן דיין משה 13 יעקבי קרן גן הבית של אמא יהודי שכונת אזור הבילויים"
+      "search_text": "גן הבית של אמא גן הבית של אמא רמת גן דיין משה 13 יעקבי קרן גן הבית של אמא יהודי שכונת אזור הבילויים",
+      "education_type": "ממלכתי",
+      "price_avg": 4914,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "96735",
@@ -1729,7 +1918,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "קן קטנטנים קן קטנטנים רמת גן דיין משה 13 אלעד ורד \"קן קטנטנים\" יהודי שכונת אזור הבילויים"
+      "search_text": "קן קטנטנים קן קטנטנים רמת גן דיין משה 13 אלעד ורד \"קן קטנטנים\" יהודי שכונת אזור הבילויים",
+      "education_type": "ממלכתי",
+      "price_avg": 4796,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "93864",
@@ -1790,7 +1986,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "רוני רון רוני רון רמת גן דיין משה 19 עזר אירינה גן רוני-רון יהודי שכונת אזור הבילויים"
+      "search_text": "רוני רון רוני רון רמת גן דיין משה 19 עזר אירינה גן רוני-רון יהודי שכונת אזור הבילויים",
+      "education_type": "ממלכתי",
+      "price_avg": 4366,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "86322",
@@ -1851,7 +2054,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "קריניצי קריניצי רמת גן דן שומרון 1 עטר שרונה מפעלי בית עמנואל יהודי שכונת קריית קריניצי"
+      "search_text": "קריניצי קריניצי רמת גן דן שומרון 1 עטר שרונה מפעלי בית עמנואל יהודי שכונת קריית קריניצי",
+      "education_type": "ממלכתי",
+      "price_avg": 4948,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "10399",
@@ -1912,7 +2122,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "הפינוקייה הפינוקייה רמת גן דרך אבא הלל 110 קידר ענת הפינוקייה יהודי שכונת גפן"
+      "search_text": "הפינוקייה הפינוקייה רמת גן דרך אבא הלל 110 קידר ענת הפינוקייה יהודי שכונת גפן",
+      "education_type": "ממלכתי",
+      "price_avg": 4783,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "96701",
@@ -1980,7 +2197,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "מיני ווי מיני ווי רמת גן דרך אבא הלל 58 טישצ'נקו נטליה מיני ווי בע\"מ יהודי שכונת גפן גן 3 חודשים עד 3 שנים"
+      "search_text": "מיני ווי מיני ווי רמת גן דרך אבא הלל 58 טישצ'נקו נטליה מיני ווי בע\"מ יהודי שכונת גפן גן 3 חודשים עד 3 שנים",
+      "education_type": "ממלכתי דתי",
+      "price_avg": 4981,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "10883",
@@ -1989,7 +2213,7 @@
       "official_name": "פרח של גן",
       "city": "רמת גן",
       "address": "דרך אבא הלל 94",
-      "neighborhood": null,
+      "neighborhood": "שכונת קריית קריניצי",
       "x": null,
       "y": null,
       "phone": "0534578999",
@@ -2041,7 +2265,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "פרח של גן פרח של גן רמת גן דרך אבא הלל 94 יחזקאל פרח יחזקאל פרח יהודי"
+      "search_text": "פרח של גן פרח של גן רמת גן דרך אבא הלל 94 יחזקאל פרח יחזקאל פרח יהודי",
+      "education_type": "ממלכתי",
+      "price_avg": 4975,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "95794",
@@ -2113,7 +2344,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "לאמה גן לאמה גן רמת גן דרך בן גוריון דוד 117 רוזנגאוז דינה דינה רוזנגאוז יהודי שכונת הלל גן תינוקות מ10 חודשים וילדים עד 3 שנים רוסית, מעט עברית"
+      "search_text": "לאמה גן לאמה גן רמת גן דרך בן גוריון דוד 117 רוזנגאוז דינה דינה רוזנגאוז יהודי שכונת הלל גן תינוקות מ10 חודשים וילדים עד 3 שנים רוסית, מעט עברית",
+      "education_type": "ממלכתי דתי",
+      "price_avg": 5088,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "75044",
@@ -2174,7 +2412,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "משפחתון חיפושית משפחתון חיפושית רמת גן דרך התפוצות 40 גולדמן נינה משפחתון חיפושית יהודי שכונת רמת עמידר"
+      "search_text": "משפחתון חיפושית משפחתון חיפושית רמת גן דרך התפוצות 40 גולדמן נינה משפחתון חיפושית יהודי שכונת רמת עמידר",
+      "education_type": "ממלכתי דתי",
+      "price_avg": 4031,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "57174",
@@ -2235,7 +2480,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "רמת עמידר רמת עמידר רמת גן דרך התפוצות 7 עובדיה נורית אמונה ת' האשה הדתית יהודי שכונת רמת עמידר"
+      "search_text": "רמת עמידר רמת עמידר רמת גן דרך התפוצות 7 עובדיה נורית אמונה ת' האשה הדתית יהודי שכונת רמת עמידר",
+      "education_type": "ממלכתי",
+      "price_avg": 4147,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "11553",
@@ -2296,7 +2548,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן שרה גן שרה רמת גן דרך התפוצות 84 גן שרה יהודי שכונת רמת עמידר"
+      "search_text": "גן שרה גן שרה רמת גן דרך התפוצות 84 גן שרה יהודי שכונת רמת עמידר",
+      "education_type": "ממלכתי",
+      "price_avg": 5166,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "79905",
@@ -2357,7 +2616,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן צמרת | גן צמרת  התינוקיה גן צמרת | גן צמרת  התינוקיה רמת גן האגדה 16 צימרמן עסיס סופי | פש יעל שרה גן צמרת 2012 | גן צמרת - התינוקיה יהודי שכונת עליות"
+      "search_text": "גן צמרת | גן צמרת  התינוקיה גן צמרת | גן צמרת  התינוקיה רמת גן האגדה 16 צימרמן עסיס סופי | פש יעל שרה גן צמרת 2012 | גן צמרת - התינוקיה יהודי שכונת עליות",
+      "education_type": "ממלכתי",
+      "price_avg": 4024,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "11724",
@@ -2366,7 +2632,7 @@
       "official_name": "הגן של רבקה",
       "city": "רמת גן",
       "address": "האם 20",
-      "neighborhood": null,
+      "neighborhood": "שכונת נחלת גנים",
       "x": null,
       "y": null,
       "phone": "0549004024",
@@ -2418,7 +2684,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "הגן של רבקה הגן של רבקה רמת גן האם 20 אטיאס רבקה הגן של רבקה יהודי"
+      "search_text": "הגן של רבקה הגן של רבקה רמת גן האם 20 אטיאס רבקה הגן של רבקה יהודי",
+      "education_type": "ממלכתי",
+      "price_avg": 4339,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "34462",
@@ -2479,7 +2752,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "מעון מרום נווה מעון מרום נווה רמת גן הגאון אליהו 20 לוי חמדה מפעלי בית עמנואל יהודי שכונת מרום נווה"
+      "search_text": "מעון מרום נווה מעון מרום נווה רמת גן הגאון אליהו 20 לוי חמדה מפעלי בית עמנואל יהודי שכונת מרום נווה",
+      "education_type": "ממלכתי",
+      "price_avg": 4813,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "10673",
@@ -2545,7 +2825,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן רון לי גן רון לי רמת גן הגלגל 20 אריאל אביגיל יעל הכי קרוב לבית-חינוך לגיל הרך יהודי שכונת הלל גן"
+      "search_text": "גן רון לי גן רון לי רמת גן הגלגל 20 אריאל אביגיל יעל הכי קרוב לבית-חינוך לגיל הרך יהודי שכונת הלל גן",
+      "education_type": "ממלכתי",
+      "price_avg": 4470,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "24992",
@@ -2606,7 +2893,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "משפחתון וגן של חן משפחתון וגן של חן רמת גן הגלגל 5 באר אבן חנה חן משפחתון וגן של חן יהודי שכונת הלל"
+      "search_text": "משפחתון וגן של חן משפחתון וגן של חן רמת גן הגלגל 5 באר אבן חנה חן משפחתון וגן של חן יהודי שכונת הלל",
+      "education_type": "ממלכתי",
+      "price_avg": 4899,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "11497",
@@ -2667,7 +2961,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "אכא עמותה לקידום חינוך הוליסטי אכא עמותה לקידום חינוך הוליסטי רמת גן הגלגל 55 ליטבין איגור אכא- עמותה לקידום חינוך הוליסטי רב תרבותי (ע\"ר) יהודי שכונת הלל"
+      "search_text": "אכא עמותה לקידום חינוך הוליסטי אכא עמותה לקידום חינוך הוליסטי רמת גן הגלגל 55 ליטבין איגור אכא- עמותה לקידום חינוך הוליסטי רב תרבותי (ע\"ר) יהודי שכונת הלל",
+      "education_type": "ממלכתי",
+      "price_avg": 4470,
+      "has_tzaharon": "לא",
+      "friday": "כן",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "98848",
@@ -2676,7 +2977,7 @@
       "official_name": "גדלים מאהבה",
       "city": "רמת גן",
       "address": "הגלגל 55",
-      "neighborhood": null,
+      "neighborhood": "שכונת איצטדיון",
       "x": null,
       "y": null,
       "phone": "0506770477",
@@ -2728,7 +3029,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גדלים מאהבה גדלים מאהבה רמת גן הגלגל 55 שובל ג'ודית גדלים מאהבה-חינוך לגיל הרך יהודי"
+      "search_text": "גדלים מאהבה גדלים מאהבה רמת גן הגלגל 55 שובל ג'ודית גדלים מאהבה-חינוך לגיל הרך יהודי",
+      "education_type": "ממלכתי",
+      "price_avg": 4351,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "26492",
@@ -2789,7 +3097,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "הגן של רבקה הגן של רבקה רמת גן החי\"ל 32 אטיאס רבקה הגן של רבקה יהודי שכונת מתחם נגבה"
+      "search_text": "הגן של רבקה הגן של רבקה רמת גן החי\"ל 32 אטיאס רבקה הגן של רבקה יהודי שכונת מתחם נגבה",
+      "education_type": "ממלכתי",
+      "price_avg": 4144,
+      "has_tzaharon": "לא",
+      "friday": "כן",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "83519",
@@ -2850,7 +3165,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "הגן של רמי יעלים הגן של רמי יעלים רמת גן החי\"ל 38 סולומון רמי \"הגן של רמי\" יהודי שכונת מתחם נגבה"
+      "search_text": "הגן של רמי יעלים הגן של רמי יעלים רמת גן החי\"ל 38 סולומון רמי \"הגן של רמי\" יהודי שכונת מתחם נגבה",
+      "education_type": "ממלכתי",
+      "price_avg": 5144,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "11823",
@@ -2911,7 +3233,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן סאנשיין הגפן גן סאנשיין הגפן רמת גן המבדיל 7 מלנסטקי סברינה אור לרך ישראל | אור לעד בע\"מ יהודי שכונת גפן"
+      "search_text": "גן סאנשיין הגפן גן סאנשיין הגפן רמת גן המבדיל 7 מלנסטקי סברינה אור לרך ישראל | אור לעד בע\"מ יהודי שכונת גפן",
+      "education_type": "ממלכתי",
+      "price_avg": 5095,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "84764",
@@ -2972,7 +3301,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן מורן ברקוביץ גן מורן ברקוביץ רמת גן המלאכה 14 ברקוביץ מורן משפחתונצ'יק יהודי שכונת חרוזים"
+      "search_text": "גן מורן ברקוביץ גן מורן ברקוביץ רמת גן המלאכה 14 ברקוביץ מורן משפחתונצ'יק יהודי שכונת חרוזים",
+      "education_type": "ממלכתי",
+      "price_avg": 5484,
+      "has_tzaharon": "כן",
+      "friday": "כן",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "98764",
@@ -3033,7 +3369,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "פנדה קלאב פנדה קלאב רמת גן המלך יוסף 52 קרסניאנסקי קרן כריסטינה פנדה גן יהודי שכונת תל יהודה"
+      "search_text": "פנדה קלאב פנדה קלאב רמת גן המלך יוסף 52 קרסניאנסקי קרן כריסטינה פנדה גן יהודי שכונת תל יהודה",
+      "education_type": "ממלכתי",
+      "price_avg": 5116,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "20453",
@@ -3094,7 +3437,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "מסיבת גן אצל תמי מסיבת גן אצל תמי רמת גן המעגל 12 כהן תמר פנינה גן תמי יהודי שכונת חשמונאים"
+      "search_text": "מסיבת גן אצל תמי מסיבת גן אצל תמי רמת גן המעגל 12 כהן תמר פנינה גן תמי יהודי שכונת חשמונאים",
+      "education_type": "ממלכתי",
+      "price_avg": 5324,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "11557",
@@ -3103,7 +3453,7 @@
       "official_name": "המשפחתון של סילביה",
       "city": "רמת גן",
       "address": "המעפיל 14",
-      "neighborhood": null,
+      "neighborhood": "שכונת רמת עמידר",
       "x": null,
       "y": null,
       "phone": "0509516630",
@@ -3155,7 +3505,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "המשפחתון של סילביה המשפחתון של סילביה רמת גן המעפיל 14 סילביה כהן יהודי"
+      "search_text": "המשפחתון של סילביה המשפחתון של סילביה רמת גן המעפיל 14 סילביה כהן יהודי",
+      "education_type": "ממלכתי",
+      "price_avg": 5468,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "98533",
@@ -3164,7 +3521,7 @@
       "official_name": "המשפחתון של עדינה",
       "city": "רמת גן",
       "address": "המתמיד 20",
-      "neighborhood": null,
+      "neighborhood": "שכונת גפן",
       "x": null,
       "y": null,
       "phone": "0543010788",
@@ -3216,7 +3573,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "המשפחתון של עדינה המשפחתון של עדינה רמת גן המתמיד 20 פרטל עדינה המשפחתון של עדינה יהודי"
+      "search_text": "המשפחתון של עדינה המשפחתון של עדינה רמת גן המתמיד 20 פרטל עדינה המשפחתון של עדינה יהודי",
+      "education_type": "ממלכתי",
+      "price_avg": 5251,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "98491",
@@ -3283,7 +3647,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן בצוללת צהובה גן בצוללת צהובה רמת גן העמל 15 דיין שרון גן בצוללת צהובה יהודי שכונת נחלת גנים"
+      "search_text": "גן בצוללת צהובה גן בצוללת צהובה רמת גן העמל 15 דיין שרון גן בצוללת צהובה יהודי שכונת נחלת גנים",
+      "education_type": "ממלכתי דתי",
+      "price_avg": 4701,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "11421",
@@ -3344,7 +3715,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "בית יעקב בית יעקב רמת גן הצלע 12 שרגר יעל ועד החינוך היהודי יהודי שכונת נחלת גנים"
+      "search_text": "בית יעקב בית יעקב רמת גן הצלע 12 שרגר יעל ועד החינוך היהודי יהודי שכונת נחלת גנים",
+      "education_type": "ממלכתי",
+      "price_avg": 4629,
+      "has_tzaharon": "כן",
+      "friday": "כן",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "97451",
@@ -3405,7 +3783,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן בגן גן בגן רמת גן הרא\"ה 11 מאמוטוב לריסה מאמוטוב לריסה יהודי שכונת בן גוריון"
+      "search_text": "גן בגן גן בגן רמת גן הרא\"ה 11 מאמוטוב לריסה מאמוטוב לריסה יהודי שכונת בן גוריון",
+      "education_type": "ממלכתי",
+      "price_avg": 5016,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "12591",
@@ -3466,7 +3851,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "האפי לנד האפי לנד רמת גן הרא\"ה 169 אברמוב סנילביץ' סטלה האפי לנד יהודי שכונת מרום נווה"
+      "search_text": "האפי לנד האפי לנד רמת גן הרא\"ה 169 אברמוב סנילביץ' סטלה האפי לנד יהודי שכונת מרום נווה",
+      "education_type": "ממלכתי",
+      "price_avg": 4025,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "75978",
@@ -3527,7 +3919,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן מאלף עד טף גן מאלף עד טף רמת גן הרא\"ה 287 מזרחי גילה גן מאלף עד טף יהודי שכונת אזור הבילויים"
+      "search_text": "גן מאלף עד טף גן מאלף עד טף רמת גן הרא\"ה 287 מזרחי גילה גן מאלף עד טף יהודי שכונת אזור הבילויים",
+      "education_type": "ממלכתי",
+      "price_avg": 4198,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "11691",
@@ -3588,7 +3987,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן כוכב גן כוכב רמת גן הרב חבה אליה 3 גן כוכב יהודי שכונת חשמונאים"
+      "search_text": "גן כוכב גן כוכב רמת גן הרב חבה אליה 3 גן כוכב יהודי שכונת חשמונאים",
+      "education_type": "ממלכתי דתי",
+      "price_avg": 5160,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "57620",
@@ -3649,7 +4055,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "מעון עמידר מעון עמידר רמת גן הרב לנדרס 13 בן יחזקאל טלי מפעלי בית עמנואל יהודי שכונת רמת עמידר"
+      "search_text": "מעון עמידר מעון עמידר רמת גן הרב לנדרס 13 בן יחזקאל טלי מפעלי בית עמנואל יהודי שכונת רמת עמידר",
+      "education_type": "ממלכתי",
+      "price_avg": 4164,
+      "has_tzaharon": "לא",
+      "friday": "כן",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "56150",
@@ -3716,7 +4129,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "הרימון הרימון רמת גן הרימון 8 טלקר מיטל ויצו - הסתדרות עולמית לנשים ציוניות יהודי שכונת גפן גן"
+      "search_text": "הרימון הרימון רמת גן הרימון 8 טלקר מיטל ויצו - הסתדרות עולמית לנשים ציוניות יהודי שכונת גפן גן",
+      "education_type": "ממלכתי",
+      "price_avg": 4340,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "80036",
@@ -3725,7 +4145,7 @@
       "official_name": "גן קשת",
       "city": "רמת גן",
       "address": "הרצל 49",
-      "neighborhood": null,
+      "neighborhood": "שכונת מרכז העיר",
       "x": null,
       "y": null,
       "phone": "0527579777",
@@ -3777,7 +4197,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן קשת גן קשת רמת גן הרצל 49 גונן אסנת גובן אוסנת יהודי"
+      "search_text": "גן קשת גן קשת רמת גן הרצל 49 גונן אסנת גובן אוסנת יהודי",
+      "education_type": "ממלכתי",
+      "price_avg": 4641,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "11562",
@@ -3786,7 +4213,7 @@
       "official_name": "גן תפוזים",
       "city": "רמת גן",
       "address": "הרצל 61",
-      "neighborhood": null,
+      "neighborhood": "שכונת מרכז העיר",
       "x": null,
       "y": null,
       "phone": "0507179486",
@@ -3838,7 +4265,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן תפוזים גן תפוזים רמת גן הרצל 61 זלינסקי ויקטור יהודי"
+      "search_text": "גן תפוזים גן תפוזים רמת גן הרצל 61 זלינסקי ויקטור יהודי",
+      "education_type": "ממלכתי",
+      "price_avg": 4041,
+      "has_tzaharon": "כן",
+      "friday": "כן",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "30338",
@@ -3899,7 +4333,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "הגן של נתן הגן של נתן רמת גן הררי 28 שלו נתן הגן של נתן יהודי שכונת נווה יהושע"
+      "search_text": "הגן של נתן הגן של נתן רמת גן הררי 28 שלו נתן הגן של נתן יהודי שכונת נווה יהושע",
+      "education_type": "ממלכתי",
+      "price_avg": 4023,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "25619",
@@ -3960,7 +4401,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "ביהייב פליי סקול ביהייב פליי סקול רמת גן השוטרת 14 הולו סופי ביהייב פליי סקול יהודי שכונת חשמונאים"
+      "search_text": "ביהייב פליי סקול ביהייב פליי סקול רמת גן השוטרת 14 הולו סופי ביהייב פליי סקול יהודי שכונת חשמונאים",
+      "education_type": "ממלכתי",
+      "price_avg": 4605,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "14902",
@@ -4021,7 +4469,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן פיצפונים גן פיצפונים רמת גן השומר כפר אז\"ר 21 בן דרור ענת גן פיצפונים יהודי שכונת כפר אז''ר"
+      "search_text": "גן פיצפונים גן פיצפונים רמת גן השומר כפר אז\"ר 21 בן דרור ענת גן פיצפונים יהודי שכונת כפר אז''ר",
+      "education_type": "ממלכתי",
+      "price_avg": 4148,
+      "has_tzaharon": "כן",
+      "friday": "כן",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "11777",
@@ -4030,7 +4485,7 @@
       "official_name": "חושחושים",
       "city": "רמת גן",
       "address": "השר משה 45",
-      "neighborhood": null,
+      "neighborhood": "שכונת בן גוריון",
       "x": null,
       "y": null,
       "phone": "03525672",
@@ -4082,7 +4537,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "חושחושים חושחושים רמת גן השר משה 45 ריבק סלסנר מריה דניאלה חושחושים יהודי"
+      "search_text": "חושחושים חושחושים רמת גן השר משה 45 ריבק סלסנר מריה דניאלה חושחושים יהודי",
+      "education_type": "ממלכתי",
+      "price_avg": 5399,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "75028",
@@ -4143,7 +4605,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "אכא עמותה לקידום חינוך הוליסטי אכא עמותה לקידום חינוך הוליסטי רמת גן ויינשל אליעזר 4 אוחיון מאיה אכא- עמותה לקידום חינוך הוליסטי רב תרבותי (ע\"ר) יהודי שכונת תל בנימין"
+      "search_text": "אכא עמותה לקידום חינוך הוליסטי אכא עמותה לקידום חינוך הוליסטי רמת גן ויינשל אליעזר 4 אוחיון מאיה אכא- עמותה לקידום חינוך הוליסטי רב תרבותי (ע\"ר) יהודי שכונת תל בנימין",
+      "education_type": "ממלכתי",
+      "price_avg": 4669,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "36038",
@@ -4204,7 +4673,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "פעוטון אתי פעוטון אתי רמת גן ז'בוטינסקי 95 ספיאשוילי אסתר פעוטון אתי יהודי שכונת גפן"
+      "search_text": "פעוטון אתי פעוטון אתי רמת גן ז'בוטינסקי 95 ספיאשוילי אסתר פעוטון אתי יהודי שכונת גפן",
+      "education_type": "ממלכתי",
+      "price_avg": 4771,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "97014",
@@ -4213,7 +4689,7 @@
       "official_name": "גן מונני",
       "city": "רמת גן",
       "address": "חבצלת 8",
-      "neighborhood": null,
+      "neighborhood": "שכונת נווה יהושע",
       "x": null,
       "y": null,
       "phone": "0506656227",
@@ -4265,7 +4741,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן מונני גן מונני רמת גן חבצלת 8 סבג גלזר מורן מונני אופר אורבנית יהודי"
+      "search_text": "גן מונני גן מונני רמת גן חבצלת 8 סבג גלזר מורן מונני אופר אורבנית יהודי",
+      "education_type": "ממלכתי",
+      "price_avg": 5122,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "13730",
@@ -4326,7 +4809,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן תותי גן תותי רמת גן חד נס 33 עכל רזאן גן תותי יהודי שכונת מתחם נגבה"
+      "search_text": "גן תותי גן תותי רמת גן חד נס 33 עכל רזאן גן תותי יהודי שכונת מתחם נגבה",
+      "education_type": "ממלכתי דתי",
+      "price_avg": 4591,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "10200",
@@ -4387,7 +4877,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן נטלי גן נטלי רמת גן חד נס 38 שאול נטלי גן נטלי יהודי שכונת מתחם נגבה"
+      "search_text": "גן נטלי גן נטלי רמת גן חד נס 38 שאול נטלי גן נטלי יהודי שכונת מתחם נגבה",
+      "education_type": "ממלכתי",
+      "price_avg": 5465,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "10373",
@@ -4453,7 +4950,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "האפרוחים של איילת האפרוחים של איילת רמת גן חיבת ציון 10 אהרן איילת האפרוחים של איילת יהודי שכונת יד לבנים גן 3 חודשים עד 3 שנים"
+      "search_text": "האפרוחים של איילת האפרוחים של איילת רמת גן חיבת ציון 10 אהרן איילת האפרוחים של איילת יהודי שכונת יד לבנים גן 3 חודשים עד 3 שנים",
+      "education_type": "ממלכתי",
+      "price_avg": 5073,
+      "has_tzaharon": "לא",
+      "friday": "כן",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "11362",
@@ -4514,7 +5018,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "מעון רא\"ם מעון רא\"ם רמת גן חמיר 6 עבודי מדלן חזון למועד יהודי שכונת רמת עמידר"
+      "search_text": "מעון רא\"ם מעון רא\"ם רמת גן חמיר 6 עבודי מדלן חזון למועד יהודי שכונת רמת עמידר",
+      "education_type": "ממלכתי",
+      "price_avg": 4495,
+      "has_tzaharon": "לא",
+      "friday": "כן",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "89581",
@@ -4575,7 +5086,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "הילדים של אורטלי הילדים של אורטלי רמת גן טרומן 29 ואקנין אורטל הילדים של אורטל יהודי שכונת מתחם נגבה"
+      "search_text": "הילדים של אורטלי הילדים של אורטלי רמת גן טרומן 29 ואקנין אורטל הילדים של אורטל יהודי שכונת מתחם נגבה",
+      "education_type": "ממלכתי דתי",
+      "price_avg": 5161,
+      "has_tzaharon": "כן",
+      "friday": "כן",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "17517",
@@ -4636,7 +5154,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "משפחתון השקדיה משפחתון השקדיה רמת גן טרומן 33 ימין אילנה אילנה ימין יהודי שכונת מתחם נגבה"
+      "search_text": "משפחתון השקדיה משפחתון השקדיה רמת גן טרומן 33 ימין אילנה אילנה ימין יהודי שכונת מתחם נגבה",
+      "education_type": "ממלכתי",
+      "price_avg": 4058,
+      "has_tzaharon": "לא",
+      "friday": "כן",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "20701",
@@ -4700,7 +5225,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן מיכאלה שיכון ותיקים גן מיכאלה שיכון ותיקים רמת גן יעלים 2 יצחק חיה אורלי דו רה מי יהודי שכונת שיכון ותיקים גן"
+      "search_text": "גן מיכאלה שיכון ותיקים גן מיכאלה שיכון ותיקים רמת גן יעלים 2 יצחק חיה אורלי דו רה מי יהודי שכונת שיכון ותיקים גן",
+      "education_type": "ממלכתי",
+      "price_avg": 4368,
+      "has_tzaharon": "לא",
+      "friday": "כן",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "43372",
@@ -4761,7 +5293,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "מהותי לא רק מעון יום מהותי לא רק מעון יום רמת גן יעקב רוזן 11 בן פורת לבקוביץ ליאת מהותי לא רק מעון יום בע\"מ יהודי שכונת הבורסה"
+      "search_text": "מהותי לא רק מעון יום מהותי לא רק מעון יום רמת גן יעקב רוזן 11 בן פורת לבקוביץ ליאת מהותי לא רק מעון יום בע\"מ יהודי שכונת הבורסה",
+      "education_type": "ממלכתי",
+      "price_avg": 4521,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "94474",
@@ -4822,7 +5361,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן מרים גן מרים רמת גן ישורון 13 דוידי מרים דוידי מרים יהודי שכונת נווה רם"
+      "search_text": "גן מרים גן מרים רמת גן ישורון 13 דוידי מרים דוידי מרים יהודי שכונת נווה רם",
+      "education_type": "ממלכתי",
+      "price_avg": 4304,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "11749",
@@ -4831,7 +5377,7 @@
       "official_name": "גן קשת מונטסורי",
       "city": "רמת גן",
       "address": "כנפי נשרים 12",
-      "neighborhood": null,
+      "neighborhood": "שכונת מרום נווה",
       "x": null,
       "y": null,
       "phone": "0536969622",
@@ -4883,7 +5429,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן קשת מונטסורי גן קשת מונטסורי רמת גן כנפי נשרים 12 אורן דוידוב יהודי"
+      "search_text": "גן קשת מונטסורי גן קשת מונטסורי רמת גן כנפי נשרים 12 אורן דוידוב יהודי",
+      "education_type": "ממלכתי",
+      "price_avg": 5030,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "84749",
@@ -4949,7 +5502,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן קטקטים גן קטקטים רמת גן מאיר בעל הנס 13 גנצפריד שרה קטקטים יהודי שכונת מרום נווה גן 3חודשים עד 3 שנים"
+      "search_text": "גן קטקטים גן קטקטים רמת גן מאיר בעל הנס 13 גנצפריד שרה קטקטים יהודי שכונת מרום נווה גן 3חודשים עד 3 שנים",
+      "education_type": "ממלכתי",
+      "price_avg": 4913,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "57919",
@@ -5010,7 +5570,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "קרני ראם קרני ראם רמת גן מבצע עין 9 עבודי מדלן חזון למועד יהודי שכונת רמת עמידר"
+      "search_text": "קרני ראם קרני ראם רמת גן מבצע עין 9 עבודי מדלן חזון למועד יהודי שכונת רמת עמידר",
+      "education_type": "ממלכתי",
+      "price_avg": 4699,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "10848",
@@ -5071,7 +5638,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן ישראל  חינוך מאיר גן ישראל  חינוך מאיר רמת גן מוצא 7 נמירובסקי חנה גן ישראל חינוך מאיר (ע\"ר) יהודי שכונת מרום נווה"
+      "search_text": "גן ישראל  חינוך מאיר גן ישראל  חינוך מאיר רמת גן מוצא 7 נמירובסקי חנה גן ישראל חינוך מאיר (ע\"ר) יהודי שכונת מרום נווה",
+      "education_type": "ממלכתי",
+      "price_avg": 5253,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "82321",
@@ -5132,7 +5706,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן בייביקט גן בייביקט רמת גן מוצא 8 יחיאל רויטל בייבי קט יהודי שכונת מרום נווה"
+      "search_text": "גן בייביקט גן בייביקט רמת גן מוצא 8 יחיאל רויטל בייבי קט יהודי שכונת מרום נווה",
+      "education_type": "ממלכתי דתי",
+      "price_avg": 4476,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "90035",
@@ -5141,7 +5722,7 @@
       "official_name": "הבית של יעל",
       "city": "רמת גן",
       "address": "מוריה 38",
-      "neighborhood": null,
+      "neighborhood": "שכונת נווה רם",
       "x": null,
       "y": null,
       "phone": "0542451010",
@@ -5193,7 +5774,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "הבית של יעל הבית של יעל רמת גן מוריה 38 ירדני יעל דקל הבית של יעל בע\"מ יהודי"
+      "search_text": "הבית של יעל הבית של יעל רמת גן מוריה 38 ירדני יעל דקל הבית של יעל בע\"מ יהודי",
+      "education_type": "ממלכתי",
+      "price_avg": 5465,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "10872",
@@ -5254,7 +5842,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "פעוטון קצת אחרת פעוטון קצת אחרת רמת גן מנדס 5 גזית רונית פעוטון קצת אחרת 2023 בע\"מ יהודי שכונת קריית קריניצי"
+      "search_text": "פעוטון קצת אחרת פעוטון קצת אחרת רמת גן מנדס 5 גזית רונית פעוטון קצת אחרת 2023 בע\"מ יהודי שכונת קריית קריניצי",
+      "education_type": "ממלכתי",
+      "price_avg": 4413,
+      "has_tzaharon": "לא",
+      "friday": "כן",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "80960",
@@ -5315,7 +5910,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "אכא עמותה לקידום חינוך הוליסטי אכא עמותה לקידום חינוך הוליסטי רמת גן מקדונלד 11 ליטבין מריה אכא- עמותה לקידום חינוך הוליסטי רב תרבותי (ע\"ר) יהודי שכונת תל בנימין"
+      "search_text": "אכא עמותה לקידום חינוך הוליסטי אכא עמותה לקידום חינוך הוליסטי רמת גן מקדונלד 11 ליטבין מריה אכא- עמותה לקידום חינוך הוליסטי רב תרבותי (ע\"ר) יהודי שכונת תל בנימין",
+      "education_type": "ממלכתי",
+      "price_avg": 4973,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "11735",
@@ -5324,7 +5926,7 @@
       "official_name": "גן צוף",
       "city": "רמת גן",
       "address": "מרים 11",
-      "neighborhood": null,
+      "neighborhood": "שכונת חשמונאים",
       "x": null,
       "y": null,
       "phone": "0523288805",
@@ -5376,7 +5978,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן צוף גן צוף רמת גן מרים 11 רצון אלין אלין רצון יהודי"
+      "search_text": "גן צוף גן צוף רמת גן מרים 11 רצון אלין אלין רצון יהודי",
+      "education_type": "ממלכתי",
+      "price_avg": 5405,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "98731",
@@ -5437,7 +6046,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן טיף טף  הגן של עדנה גן טיף טף  הגן של עדנה רמת גן נוה יהושע 19 קוריטן עדנה י.ב. קוריטן בעמ יהודי שכונת נווה יהושע"
+      "search_text": "גן טיף טף  הגן של עדנה גן טיף טף  הגן של עדנה רמת גן נוה יהושע 19 קוריטן עדנה י.ב. קוריטן בעמ יהודי שכונת נווה יהושע",
+      "education_type": "ממלכתי",
+      "price_avg": 5376,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "95273",
@@ -5498,7 +6114,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן מדינת הילדים גן מדינת הילדים רמת גן נטר 12 יתאח רפאלוביץ מרים אילה מדינת הילדים יהודי שכונת אזור הבילויים"
+      "search_text": "גן מדינת הילדים גן מדינת הילדים רמת גן נטר 12 יתאח רפאלוביץ מרים אילה מדינת הילדים יהודי שכונת אזור הבילויים",
+      "education_type": "ממלכתי",
+      "price_avg": 5112,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "88526",
@@ -5559,7 +6182,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן כוכב גן כוכב רמת גן סמ המעלות 4 חודוס סופיה גן כוכב יהודי שכונת חשמונאים"
+      "search_text": "גן כוכב גן כוכב רמת גן סמ המעלות 4 חודוס סופיה גן כוכב יהודי שכונת חשמונאים",
+      "education_type": "ממלכתי דתי",
+      "price_avg": 4464,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "10011",
@@ -5620,7 +6250,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן הבית בעודד גן הבית בעודד רמת גן עודד 15 ממן לירון הבית בעודד יהודי שכונת רמת חן"
+      "search_text": "גן הבית בעודד גן הבית בעודד רמת גן עודד 15 ממן לירון הבית בעודד יהודי שכונת רמת חן",
+      "education_type": "ממלכתי דתי",
+      "price_avg": 5073,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "11688",
@@ -5629,7 +6266,7 @@
       "official_name": "לה קסיטה דה צ'וקולטה",
       "city": "רמת גן",
       "address": "עוזיאל 116",
-      "neighborhood": null,
+      "neighborhood": "שכונת קריית בורוכוב",
       "x": null,
       "y": null,
       "phone": "0507983762",
@@ -5681,7 +6318,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "לה קסיטה דה צ'וקולטה לה קסיטה דה צ'וקולטה רמת גן עוזיאל 116 צ'פארו לונדוניו אלבה מרינה אלבה צ'פארו יהודי"
+      "search_text": "לה קסיטה דה צ'וקולטה לה קסיטה דה צ'וקולטה רמת גן עוזיאל 116 צ'פארו לונדוניו אלבה מרינה אלבה צ'פארו יהודי",
+      "education_type": "ממלכתי",
+      "price_avg": 4663,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "99259",
@@ -5742,7 +6386,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "פשוש תל השומר פשוש תל השומר רמת גן עמק דותן 24 צרפתי-גוריון סיגל פ.ש.ר - העמותה לפיתוח שירותי רווחה וחינוך יהודי שכונת תל השומר"
+      "search_text": "פשוש תל השומר פשוש תל השומר רמת גן עמק דותן 24 צרפתי-גוריון סיגל פ.ש.ר - העמותה לפיתוח שירותי רווחה וחינוך יהודי שכונת תל השומר",
+      "education_type": "ממלכתי",
+      "price_avg": 4387,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "25403",
@@ -5803,7 +6454,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "פעימות  רמת גן פעימות  רמת גן רמת גן פבריגט 29 וירצר אפרת הנהלת נעמ\"ת יהודי שכונת קריית בורוכוב"
+      "search_text": "פעימות  רמת גן פעימות  רמת גן רמת גן פבריגט 29 וירצר אפרת הנהלת נעמ\"ת יהודי שכונת קריית בורוכוב",
+      "education_type": "ממלכתי דתי",
+      "price_avg": 4078,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "83527",
@@ -5864,7 +6522,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן פימפונים | פימפונים גן פימפונים | פימפונים רמת גן פנקס 17 פרידמן פאולה אנדראה פאולה פרידמן | פימפונים יהודי שכונת נווה רם"
+      "search_text": "גן פימפונים | פימפונים גן פימפונים | פימפונים רמת גן פנקס 17 פרידמן פאולה אנדראה פאולה פרידמן | פימפונים יהודי שכונת נווה רם",
+      "education_type": "ממלכתי דתי",
+      "price_avg": 4102,
+      "has_tzaharon": "לא",
+      "friday": "כן",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "94607",
@@ -5925,7 +6590,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "אפעל אפעל רמת גן צאלים רמת אפעל 2 עזרא לילך מפעלי בית עמנואל יהודי שכונת רמת אפעל"
+      "search_text": "אפעל אפעל רמת גן צאלים רמת אפעל 2 עזרא לילך מפעלי בית עמנואל יהודי שכונת רמת אפעל",
+      "education_type": "ממלכתי",
+      "price_avg": 5375,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "94680",
@@ -5986,7 +6658,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "המשפחתון של שרון המשפחתון של שרון רמת גן צוריאל 6 פרץ שרון המשפחתון של שרון יהודי שכונת גפן"
+      "search_text": "המשפחתון של שרון המשפחתון של שרון רמת גן צוריאל 6 פרץ שרון המשפחתון של שרון יהודי שכונת גפן",
+      "education_type": "ממלכתי",
+      "price_avg": 4604,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "11517",
@@ -6047,7 +6726,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "המשפחתון של שרון ב המשפחתון של שרון ב רמת גן צוריאל 7 פרץ שרון המשפחתון של שרון יהודי שכונת גפן"
+      "search_text": "המשפחתון של שרון ב המשפחתון של שרון ב רמת גן צוריאל 7 פרץ שרון המשפחתון של שרון יהודי שכונת גפן",
+      "education_type": "ממלכתי",
+      "price_avg": 4326,
+      "has_tzaharon": "כן",
+      "friday": "כן",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "11481",
@@ -6108,7 +6794,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן לאה גן לאה רמת גן קוממיות 3 סבאג לאה גן לאה יהודי שכונת רמת עמידר"
+      "search_text": "גן לאה גן לאה רמת גן קוממיות 3 סבאג לאה גן לאה יהודי שכונת רמת עמידר",
+      "education_type": "ממלכתי",
+      "price_avg": 4624,
+      "has_tzaharon": "לא",
+      "friday": "כן",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "11599",
@@ -6169,7 +6862,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן טניהלנד גן טניהלנד רמת גן קרייתי 6 איווניצקי טטיאנה טטאינה איווניצקי יהודי שכונת רמת חן"
+      "search_text": "גן טניהלנד גן טניהלנד רמת גן קרייתי 6 איווניצקי טטיאנה טטאינה איווניצקי יהודי שכונת רמת חן",
+      "education_type": "ממלכתי",
+      "price_avg": 4114,
+      "has_tzaharon": "לא",
+      "friday": "כן",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "26922",
@@ -6230,7 +6930,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן גוונים גן גוונים רמת גן קריניצי 67 לוקמיש צור דנית לוקמיש סמדר גן גוונים יהודי שכונת בן גוריון"
+      "search_text": "גן גוונים גן גוונים רמת גן קריניצי 67 לוקמיש צור דנית לוקמיש סמדר גן גוונים יהודי שכונת בן גוריון",
+      "education_type": "ממלכתי",
+      "price_avg": 4474,
+      "has_tzaharon": "כן",
+      "friday": "כן",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "10836",
@@ -6291,7 +6998,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "יהדות בחוויה יהדות בחוויה רמת גן קריניצי 70 שפרינגר חיה מושקא יהדות בחוויה - רמת גן (ע\"ר) יהודי שכונת בן גוריון"
+      "search_text": "יהדות בחוויה יהדות בחוויה רמת גן קריניצי 70 שפרינגר חיה מושקא יהדות בחוויה - רמת גן (ע\"ר) יהודי שכונת בן גוריון",
+      "education_type": "ממלכתי",
+      "price_avg": 4777,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "10137",
@@ -6352,7 +7066,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "משפחתון מאירה משפחתון מאירה רמת גן רוחמה 35 עזוז שרייבר מאירה יוכבד עזוז שרייבר מאירה יוכבד יהודי שכונת תל יהודה"
+      "search_text": "משפחתון מאירה משפחתון מאירה רמת גן רוחמה 35 עזוז שרייבר מאירה יוכבד עזוז שרייבר מאירה יוכבד יהודי שכונת תל יהודה",
+      "education_type": "ממלכתי",
+      "price_avg": 4768,
+      "has_tzaharon": "כן",
+      "friday": "כן",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "10877",
@@ -6413,7 +7134,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "מעון אופק מעון אופק רמת גן רועי קליין 3 שנפ כרמית מפעלי בית עמנואל יהודי שכונת קריית קריניצי"
+      "search_text": "מעון אופק מעון אופק רמת גן רועי קליין 3 שנפ כרמית מפעלי בית עמנואל יהודי שכונת קריית קריניצי",
+      "education_type": "ממלכתי דתי",
+      "price_avg": 4151,
+      "has_tzaharon": "כן",
+      "friday": "כן",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "88898",
@@ -6474,7 +7202,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן בתנועה גן בתנועה רמת גן רוקח 102 גלילה אושרית גלילה אושרית יהודי שכונת שיכון ותיקים"
+      "search_text": "גן בתנועה גן בתנועה רמת גן רוקח 102 גלילה אושרית גלילה אושרית יהודי שכונת שיכון ותיקים",
+      "education_type": "ממלכתי",
+      "price_avg": 4454,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "10516",
@@ -6535,7 +7270,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן בתנועה גן בתנועה רמת גן רוקח 121 גלילה אושרית גלילה אושרית יהודי שכונת איצטדיון"
+      "search_text": "גן בתנועה גן בתנועה רמת גן רוקח 121 גלילה אושרית גלילה אושרית יהודי שכונת איצטדיון",
+      "education_type": "ממלכתי דתי",
+      "price_avg": 4144,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "10869",
@@ -6596,7 +7338,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "יהדות בחוויה יהדות בחוויה רמת גן רוקח 121 שפרינגר חיה מושקא יהדות בחוויה - רמת גן (ע\"ר) יהודי שכונת איצטדיון"
+      "search_text": "יהדות בחוויה יהדות בחוויה רמת גן רוקח 121 שפרינגר חיה מושקא יהדות בחוויה - רמת גן (ע\"ר) יהודי שכונת איצטדיון",
+      "education_type": "ממלכתי דתי",
+      "price_avg": 5346,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "26757",
@@ -6657,7 +7406,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן פורח גן פורח רמת גן רוקח 37 אריאל שרה גן פורח יהודי שכונת גפן"
+      "search_text": "גן פורח גן פורח רמת גן רוקח 37 אריאל שרה גן פורח יהודי שכונת גפן",
+      "education_type": "ממלכתי",
+      "price_avg": 5488,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "10882",
@@ -6718,7 +7474,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן הילדים גן הילדים רמת גן רזיאל 27 גן הילדים יהודי שכונת רמת חן"
+      "search_text": "גן הילדים גן הילדים רמת גן רזיאל 27 גן הילדים יהודי שכונת רמת חן",
+      "education_type": "ממלכתי",
+      "price_avg": 4769,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "94938",
@@ -6779,7 +7542,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "המשפחתון של גלית המשפחתון של גלית רמת גן רננים 14 זיו עמיר המשפחתון של גלית יהודי שכונת שיכון ותיקים"
+      "search_text": "המשפחתון של גלית המשפחתון של גלית רמת גן רננים 14 זיו עמיר המשפחתון של גלית יהודי שכונת שיכון ותיקים",
+      "education_type": "ממלכתי דתי",
+      "price_avg": 4538,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "11577",
@@ -6844,7 +7614,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן כוכב גן כוכב רמת גן שאנן 13 חודוס סופיה גן כוכב יהודי שכונת מרכז העיר 3 חודשים עד 3 שנים"
+      "search_text": "גן כוכב גן כוכב רמת גן שאנן 13 חודוס סופיה גן כוכב יהודי שכונת מרכז העיר 3 חודשים עד 3 שנים",
+      "education_type": "ממלכתי",
+      "price_avg": 4238,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "22988",
@@ -6905,7 +7682,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "משפחתון טינקי משפחתון טינקי רמת גן שד בן צבי 3 לוגינוב אולגה משפחתון טינקי יהודי שכונת רמת חן"
+      "search_text": "משפחתון טינקי משפחתון טינקי רמת גן שד בן צבי 3 לוגינוב אולגה משפחתון טינקי יהודי שכונת רמת חן",
+      "education_type": "ממלכתי",
+      "price_avg": 4068,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "94425",
@@ -6914,7 +7698,7 @@
       "official_name": "גן חלילית",
       "city": "רמת גן",
       "address": "שד הילד 21",
-      "neighborhood": null,
+      "neighborhood": "שכונת איצטדיון",
       "x": null,
       "y": null,
       "phone": "0545919956",
@@ -6966,7 +7750,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן חלילית גן חלילית רמת גן שד הילד 21 גורודצקי גלי גורודצקי גלי יהודי"
+      "search_text": "גן חלילית גן חלילית רמת גן שד הילד 21 גורודצקי גלי גורודצקי גלי יהודי",
+      "education_type": "ממלכתי",
+      "price_avg": 4209,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "11175",
@@ -7027,7 +7818,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "פני פרלמן פני פרלמן רמת גן שד הנרקיסים 31 פרלמן פני גן פני פרלמן יהודי שכונת שיכון ותיקים"
+      "search_text": "פני פרלמן פני פרלמן רמת גן שד הנרקיסים 31 פרלמן פני גן פני פרלמן יהודי שכונת שיכון ותיקים",
+      "education_type": "ממלכתי",
+      "price_avg": 5279,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "48074",
@@ -7088,7 +7886,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן מעון הנרקיסים גן מעון הנרקיסים רמת גן שד הנרקיסים 50 שיפמן צפורה גן נרקיסים יהודי שכונת שיכון ותיקים"
+      "search_text": "גן מעון הנרקיסים גן מעון הנרקיסים רמת גן שד הנרקיסים 50 שיפמן צפורה גן נרקיסים יהודי שכונת שיכון ותיקים",
+      "education_type": "ממלכתי",
+      "price_avg": 4910,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "82701",
@@ -7149,7 +7954,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן כוכב גן כוכב רמת גן שד הצנחנים 18 חודוס סופיה גן כוכב יהודי שכונת מתחם נגבה"
+      "search_text": "גן כוכב גן כוכב רמת גן שד הצנחנים 18 חודוס סופיה גן כוכב יהודי שכונת מתחם נגבה",
+      "education_type": "ממלכתי",
+      "price_avg": 4536,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "11595",
@@ -7210,7 +8022,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "משפחתון בובליק משפחתון בובליק רמת גן שד הקונגרס 17 צ'לפנובה מרינה משפחתון בובליק יהודי שכונת אזור הבילויים"
+      "search_text": "משפחתון בובליק משפחתון בובליק רמת גן שד הקונגרס 17 צ'לפנובה מרינה משפחתון בובליק יהודי שכונת אזור הבילויים",
+      "education_type": "ממלכתי דתי",
+      "price_avg": 4036,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "11051",
@@ -7271,7 +8090,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "דומיק דומיק רמת גן שד הקונגרס 6 לרמן אנסטסיה קרינה בצלאל יהודי שכונת אזור הבילויים"
+      "search_text": "דומיק דומיק רמת גן שד הקונגרס 6 לרמן אנסטסיה קרינה בצלאל יהודי שכונת אזור הבילויים",
+      "education_type": "ממלכתי",
+      "price_avg": 5441,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "31393",
@@ -7332,7 +8158,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "הפצפונים של זיוה הפצפונים של זיוה רמת גן שד התמרים 10 חנונוב נוי אמרגי מוהבן זיוה יהודי שכונת בן גוריון"
+      "search_text": "הפצפונים של זיוה הפצפונים של זיוה רמת גן שד התמרים 10 חנונוב נוי אמרגי מוהבן זיוה יהודי שכונת בן גוריון",
+      "education_type": "ממלכתי דתי",
+      "price_avg": 4657,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "55905",
@@ -7393,7 +8226,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "התמרים התמרים רמת גן שד התמרים 4 נתן אירית מפעלי בית עמנואל יהודי שכונת בן גוריון"
+      "search_text": "התמרים התמרים רמת גן שד התמרים 4 נתן אירית מפעלי בית עמנואל יהודי שכונת בן גוריון",
+      "education_type": "ממלכתי",
+      "price_avg": 5420,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "59501",
@@ -7454,7 +8294,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "בר אילן בר אילן רמת גן שכ בר אילן 73 חדי שולמית אמונה ת' האשה הדתית יהודי שכונת בר אילן"
+      "search_text": "בר אילן בר אילן רמת גן שכ בר אילן 73 חדי שולמית אמונה ת' האשה הדתית יהודי שכונת בר אילן",
+      "education_type": "ממלכתי",
+      "price_avg": 4216,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "84111",
@@ -7515,7 +8362,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "בייבי קונסרבטוריון בייבי קונסרבטוריון רמת גן שמעוני 10 ליין אנה אנה ליין יהודי שכונת רמת שקמה"
+      "search_text": "בייבי קונסרבטוריון בייבי קונסרבטוריון רמת גן שמעוני 10 ליין אנה אנה ליין יהודי שכונת רמת שקמה",
+      "education_type": "ממלכתי דתי",
+      "price_avg": 4426,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "11173",
@@ -7576,7 +8430,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "הקטנטנים של אורלי הקטנטנים של אורלי רמת גן שמעוני 5 שיפמן אורלי אורלי שיפמן יהודי שכונת רמת שקמה"
+      "search_text": "הקטנטנים של אורלי הקטנטנים של אורלי רמת גן שמעוני 5 שיפמן אורלי אורלי שיפמן יהודי שכונת רמת שקמה",
+      "education_type": "ממלכתי דתי",
+      "price_avg": 4929,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "94151",
@@ -7637,7 +8498,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "עם יעלי עם יעלי רמת גן שרת משה 19 פולימר יעל עם יעלי יהודי שכונת בן גוריון"
+      "search_text": "עם יעלי עם יעלי רמת גן שרת משה 19 פולימר יעל עם יעלי יהודי שכונת בן גוריון",
+      "education_type": "ממלכתי",
+      "price_avg": 5219,
+      "has_tzaharon": "כן",
+      "friday": "כן",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "11086",
@@ -7698,7 +8566,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן דרקונצ'יק גן דרקונצ'יק רמת גן תל חי 47 רובינוב יבגניה גן דרקונצ'יק יהודי שכונת מתחם נגבה"
+      "search_text": "גן דרקונצ'יק גן דרקונצ'יק רמת גן תל חי 47 רובינוב יבגניה גן דרקונצ'יק יהודי שכונת מתחם נגבה",
+      "education_type": "ממלכתי",
+      "price_avg": 5153,
+      "has_tzaharon": "כן",
+      "friday": "כן",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "74062",
@@ -7764,7 +8639,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן אמנויות נילי גן אמנויות נילי רמת גן תל חי 68 יקותיאל שמאי אור דניאל רבקה גן אמנויות נילי יהודי שכונת מתחם נגבה גן 3 חודשים עד 3 שנים"
+      "search_text": "גן אמנויות נילי גן אמנויות נילי רמת גן תל חי 68 יקותיאל שמאי אור דניאל רבקה גן אמנויות נילי יהודי שכונת מתחם נגבה גן 3 חודשים עד 3 שנים",
+      "education_type": "ממלכתי דתי",
+      "price_avg": 4839,
+      "has_tzaharon": "כן",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "78923",
@@ -7773,7 +8655,7 @@
       "official_name": "הבית של רינת",
       "city": "רמת גן",
       "address": "תל חי 68",
-      "neighborhood": null,
+      "neighborhood": "שכונת תל בנימין",
       "x": null,
       "y": null,
       "phone": "0506780225",
@@ -7825,7 +8707,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "הבית של רינת הבית של רינת רמת גן תל חי 68 נאור פלורנטה אופק בחינוך (ע\"ר) יהודי"
+      "search_text": "הבית של רינת הבית של רינת רמת גן תל חי 68 נאור פלורנטה אופק בחינוך (ע\"ר) יהודי",
+      "education_type": "ממלכתי",
+      "price_avg": 5346,
+      "has_tzaharon": "לא",
+      "friday": "כן",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     },
     {
       "id": "10133",
@@ -7884,7 +8773,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "הממלכה של סילבי הממלכה של סילבי רמת גן תל חי 68 הלוי סילביה פאר המלך (ע''ר) יהודי שכונת מתחם נגבה"
+      "search_text": "הממלכה של סילבי הממלכה של סילבי רמת גן תל חי 68 הלוי סילביה פאר המלך (ע''ר) יהודי שכונת מתחם נגבה",
+      "education_type": "ממלכתי",
+      "price_avg": 4248,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "75267",
@@ -7949,7 +8845,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן ניצנים קטנים צרפתית בצמיחה רמת גן תלפיות 15 חלפון רות צרפתית בצמיחה יהודי שכונת גפן"
+      "search_text": "גן ניצנים קטנים צרפתית בצמיחה רמת גן תלפיות 15 חלפון רות צרפתית בצמיחה יהודי שכונת גפן",
+      "education_type": "ממלכתי דתי",
+      "price_avg": 5367,
+      "has_tzaharon": "לא",
+      "friday": "כן",
+      "gender_composition": "מעורב",
+      "min_age_months": 18,
+      "max_age_months": 36
     },
     {
       "id": "75069",
@@ -8010,7 +8913,14 @@
           "pending_suggestions_count": 0
         }
       },
-      "search_text": "גן אמנויות נילי גן אמנויות נילי רמת גן תפארת ישראל 5 יקותיאל שמאי אור דניאל רבקה גן אמנויות נילי יהודי שכונת נווה רם"
+      "search_text": "גן אמנויות נילי גן אמנויות נילי רמת גן תפארת ישראל 5 יקותיאל שמאי אור דניאל רבקה גן אמנויות נילי יהודי שכונת נווה רם",
+      "education_type": "ממלכתי דתי",
+      "price_avg": 4880,
+      "has_tzaharon": "לא",
+      "friday": "לא",
+      "gender_composition": "מעורב",
+      "min_age_months": 0,
+      "max_age_months": 18
     }
   ]
 }

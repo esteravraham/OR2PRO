@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="he" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <title>הוספת חוות דעת</title>
-    <link rel="stylesheet" href="optionA.css">
+{% extends "base.html" %}
+{% set active_page = '' %}
 
-    <style>
-        body {
+{% block title %}הוספת חוות דעת{% endblock %}
+
+{% block extra_css %}
+
+<style>
+body {
             margin: 0;
             font-family: Arial, sans-serif;
             direction: rtl;
@@ -171,11 +171,11 @@
                 grid-template-columns: 1fr;
             }
         }
-    </style>
-</head>
+</style>
+{% endblock %}
 
-<body>
-    <main class="review-page">
+{% block content %}
+<main class="review-page">
 
         <div class="brand">
             <div class="brand-icon">🌈</div>
@@ -278,7 +278,7 @@
 
             <div class="form-actions">
                 <button type="submit" class="primary-button">שליחת חוות דעת</button>
-                <a id="backToProfile" class="secondary-link" href="search-results.html">חזרה לפרופיל הגן</a>
+                <a id="backToProfile" class="secondary-link" href="/search-results">חזרה לפרופיל הגן</a>
             </div>
 
             <div id="successMessage" class="success-message">
@@ -293,8 +293,12 @@
         </form>
 
     </main>
-    <script>
-    let currentGarden = null;
+{% endblock %}
+
+{% block extra_js %}
+
+<script>
+let currentGarden = null;
 
     function getGardenIdFromUrl() {
         const params = new URLSearchParams(window.location.search);
@@ -318,7 +322,7 @@
             return;
         }
 
-        backToProfile.href = `garden-profile.html?id=${gardenId}`;
+        backToProfile.href = `/garden-profile?id=${gardenId}`;
 
         try {
             const response = await fetch("gardens.json");
@@ -414,5 +418,4 @@
 
     loadGarden();
 </script>
-</body>
-</html>
+{% endblock %}

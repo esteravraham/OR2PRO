@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="he" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <title>פרופיל גן</title>
-    <link rel="stylesheet" href="optionA.css">
+{% extends "base.html" %}
+{% set active_page = '' %}
 
-    <style>
-        body {
+{% block title %}פרופיל גן{% endblock %}
+
+{% block extra_css %}
+
+<style>
+body {
             margin: 0;
             font-family: Arial, sans-serif;
             direction: rtl;
@@ -222,11 +222,11 @@
                 grid-template-columns: 1fr;
             }
         }
-    </style>
-</head>
+</style>
+{% endblock %}
 
-<body>
-    <main class="profile-page">
+{% block content %}
+<main class="profile-page">
 
         <div class="brand">
             <div class="brand-icon">🌈</div>
@@ -241,9 +241,12 @@
         </section>
 
     </main>
+{% endblock %}
 
-    <script>
-      function cleanValue(value) {
+{% block extra_js %}
+
+<script>
+function cleanValue(value) {
     if (
         value === null ||
         value === undefined ||
@@ -323,22 +326,37 @@
             const profile = garden.profile || {};
             const tags = [];
 
-            if (hasCommunityInfo(garden)) {
-                tags.push(`<span class="tag community">יש מידע קהילתי</span>`);
-            } else {
-                tags.push(`<span class="tag no-community">אין עדיין מידע קהילתי</span>`);
+            if (garden.education_type) {
+                const cls = garden.education_type === 'ממלכתי דתי' ? 'license' : 'extra';
+                tags.push(`<span class="tag ${cls}">${garden.education_type}</span>`);
             }
 
-            if (profile.has_protected_space === "כן") {
+            if (garden.min_age_months != null && garden.max_age_months != null) {
+                tags.push(`<span class="tag extra">גיל ${garden.min_age_months}–${garden.max_age_months} חודשים</span>`);
+            }
+
+            if (garden.has_tzaharon === "כן") {
+                tags.push(`<span class="tag community">✓ צהרון</span>`);
+            }
+
+            if ((garden.friday || profile.friday) === "כן") {
+                tags.push(`<span class="tag extra">✓ פעיל בשישי</span>`);
+            }
+
+            if (garden.price_avg) {
+                tags.push(`<span class="tag extra">${Number(garden.price_avg).toLocaleString('he-IL')} ₪/חודש</span>`);
+            }
+
+            if (hasCommunityInfo(garden)) {
+                tags.push(`<span class="tag community">יש מידע קהילתי</span>`);
+            }
+
+            if ((profile.has_protected_space || garden.has_protected_space) === "כן") {
                 tags.push(`<span class="tag extra">מרחב מוגן</span>`);
             }
 
             if (profile.cameras_open_to_parents === "כן") {
                 tags.push(`<span class="tag extra">מצלמות פתוחות</span>`);
-            }
-
-            if (profile.friday === "כן") {
-                tags.push(`<span class="tag extra">פעיל בשישי</span>`);
             }
 
             return tags.join("");
@@ -444,24 +462,23 @@
 
                     <section class="profile-card">
                         <h2>מידע משלים</h2>
-                        <p><strong>סוג מסגרת:</strong> ${cleanValue(profile.garden_type)}</p>
-                        <p><strong>גילאים:</strong> ${cleanValue(profile.ages)}</p>
+                        <p><strong>סוג חינוך:</strong> ${cleanValue(garden.education_type || profile.education_type)}</p>
+                        <p><strong>טווח גילאים:</strong> ${garden.min_age_months != null ? garden.min_age_months + '–' + garden.max_age_months + ' חודשים' : cleanValue(profile.ages)}</p>
+                        <p><strong>צהרון:</strong> ${garden.has_tzaharon === 'כן' ? '✓ כן' : garden.has_tzaharon === 'לא' ? 'לא' : cleanValue(profile.has_tzaharon)}</p>
+                        <p><strong>פעיל בשישי:</strong> ${garden.friday === 'כן' ? '✓ כן' : garden.friday === 'לא' ? 'לא' : cleanValue(profile.friday)}</p>
+                        <p><strong>מחיר חודשי:</strong> ${garden.price_avg ? Number(garden.price_avg).toLocaleString('he-IL') + ' ₪' : formatPrice(reviews)}</p>
+                        <p><strong>שפת פעילות:</strong> ${cleanValue(garden.activity_language || profile.activity_language)}</p>
+                        <p><strong>הרכב מגדרי:</strong> ${cleanValue(garden.gender_composition || profile.gender_composition)}</p>
                         <p><strong>שעות פעילות:</strong> ${cleanValue(profile.activity_hours)}</p>
-                        <p><strong>שפת פעילות:</strong> ${cleanValue(profile.activity_language)}</p>
-                        <p><strong>שישי:</strong> ${cleanValue(profile.friday)}</p>
-                        <p><strong>סוג חינוך:</strong> ${cleanValue(profile.education_type)}</p>
-                        <p><strong>זיקה דתית:</strong> ${cleanValue(profile.religious_orientation)}</p>
                         <p><strong>תזונה:</strong> ${cleanValue(profile.nutrition_type)}</p>
                         <p><strong>אתר / קישור:</strong> ${formatExternalLink(profile.external_link)}</p>
-                        <p class="source-note"><strong>סטטוס מידע:</strong> ${cleanValue(profile.profile_data_status)}</p>
                     </section>
 
                     <section class="profile-card">
                         <h2>מידע מהקהילה</h2>
                         <p><strong>מצלמות בגן:</strong> ${cleanValue(profile.has_cameras)}</p>
                         <p><strong>מצלמות פתוחות להורים:</strong> ${cleanValue(profile.cameras_open_to_parents)}</p>
-                        <p><strong>מרחב מוגן:</strong> ${cleanValue(profile.has_protected_space)}</p>
-                        <p><strong>מחיר חודשי:</strong> ${formatPrice(reviews)}</p>
+                        <p><strong>מרחב מוגן:</strong> ${cleanValue(garden.has_protected_space || profile.has_protected_space)}</p>
                         <p><strong>מספר ביקורות:</strong> ${reviews.num_reviews || 0}</p>
                     </section>
 
@@ -469,16 +486,15 @@
                         <h2>חוות דעת הורים</h2>
                         <p class="rating">${formatRating(reviews.avg_rating)}</p>
                         ${formatReviewTexts(reviews.review_texts)}
-                        <a class="secondary-button" href="add-review.html?id=${garden.id}">הוספת חוות דעת</a>
+                        <a class="secondary-button" href="/add-review?id=${garden.id}">הוספת חוות דעת</a>
                     </section>
 
                 </div>
 
-                <a class="back-link" href="search-results.html">חזרה לחיפוש</a>
+                <a class="back-link" href="/search-results">חזרה לחיפוש</a>
             `;
         }
 
         loadGardenProfile();
-    </script>
-</body>
-</html>
+</script>
+{% endblock %}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Ganim{% endblock %} - מערכת מידע לגני ילדים</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='optionA.css') }}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body class="main-body">
+
+<div class="site-container">
+
+    <!-- כותרת עליונה -->
+    <header class="site-header">
+        <div class="header-logo">
+            <a href="{{ url_for('index') }}">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="לוגו Ganim" width="80">
+            </a>
+        </div>
+        <div class="header-title">
+            <h1>Ganim</h1>
+            <p>מידע מרוכז, חוות דעת והיכרות טובה יותר עם גני ילדים</p>
+        </div>
+        <div class="header-gov">
+            <a href="https://parents.education.gov.il/prhnet/gov-education/kindergarten/search-daycare" target="_blank">
+                <img src="{{ url_for('static', filename='images/gov.png') }}" alt="משרד החינוך" width="80">
+            </a>
+            <span class="gov-caption">מקור מידע רשמי</span>
+        </div>
+    </header>
+
+    <!-- תוכן מרכזי: תפריט + דף -->
+    <div class="main-layout">
+
+        <!-- תפריט צד -->
+        <aside class="sidebar">
+            <nav>
+                <ul class="nav-list">
+                    <li><a href="{{ url_for('index') }}"
+                        {% if active_page == 'index' %}style="background-color:#005fa3; color:white;"{% endif %}>
+                        דף הבית</a></li>
+                    <li><a href="{{ url_for('about') }}"
+                        {% if active_page == 'about' %}style="background-color:#005fa3; color:white;"{% endif %}>
+                        אודות המערכת</a></li>
+                    <li style="margin-top:20px; border-top:1px solid #99ccff; padding-top:14px;">
+                        <a href="{{ url_for('parent_registration') }}"
+                        {% if active_page == 'parent-registration' %}style="background-color:#005fa3; color:white;"{% endif %}>
+                        🌿 הרשמת הורה</a></li>
+                    <li><a href="{{ url_for('admin') }}"
+                        style="background-color:#005fa3; color:white;"
+                        {% if active_page == 'admin' %}style="background-color:#003d6e; color:white;"{% endif %}>
+                        ⚙️ ממשק מנהל</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- תוכן הדף -->
+        <main class="content-area" style="overflow-y: auto; padding: 0;">
+            {% block content %}{% endblock %}
+        </main>
+
+    </div>
+
+    <!-- פוטר -->
+    <footer class="site-footer">
+        <div class="footer-info">
+            <span>Ganim © 2026</span>
+            <span>מערכת מידע אקדמית לבחירת גני ילדים</span>
+        </div>
+    </footer>
+
+</div>
+
+{% block extra_js %}{% endblock %}
+</body>
+</html>

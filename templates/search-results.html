@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html lang="he" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <title>תוצאות חיפוש גנים</title>
-    <link rel="stylesheet" href="optionA.css">
+{% extends "base.html" %}
+{% set active_page = 'search-results' %}
 
-    <style>
-        body {
+{% block title %}תוצאות חיפוש{% endblock %}
+
+{% block extra_css %}
+<style>
+body {
             margin: 0;
             font-family: Arial, sans-serif;
             direction: rtl;
@@ -280,11 +279,11 @@
                 text-align: center;
             }
         }
-    </style>
-</head>
+</style>
+{% endblock %}
 
-<body>
-    <main class="results-page">
+{% block content %}
+<main class="results-page">
 
         <div class="brand">
             <div class="brand-icon">🌈</div>
@@ -383,7 +382,7 @@
 
         <div id="resultsCount" class="results-count"></div>
         <div style="margin-bottom: 16px;">
-            <a href="map.html" class="profile-link">
+            <a href="/map" class="profile-link">
                 צפייה במפת הגנים
             </a>
         </div>
@@ -391,9 +390,11 @@
         <div id="resultsContainer"></div>
 
     </main>
+{% endblock %}
 
-    <script>
-        let allGardens = [];
+{% block extra_js %}
+<script>
+let allGardens = [];
 
         function getQueryFromUrl() {
             const params = new URLSearchParams(window.location.search);
@@ -683,7 +684,7 @@
                             </div>
                         </div>
 
-                        <a class="profile-link" href="garden-profile.html?id=${garden.id}">
+                        <a class="profile-link" href="/garden-profile?id=${garden.id}">
                             לפרופיל הגן
                         </a>
                     </article>
@@ -709,6 +710,5 @@
         document.getElementById("searchInput").addEventListener("input", filterGardens);
 
         loadGardens();
-    </script>
-</body>
-</html>
+</script>
+{% endblock %}
