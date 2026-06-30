@@ -34,6 +34,34 @@ def load_parents():
     except Exception:
         return []
 
+
+def clean_text(value):
+    if value is None:
+        return ''
+    return str(value).strip()
+
+def to_int(value, default=0):
+    try:
+        if value in (None, ''):
+            return default
+        return int(float(value))
+    except (TypeError, ValueError):
+        return default
+
+def is_any_value(value):
+    return clean_text(value).lower() in ['', 'לא משנה', 'אין העדפה', 'לא רלוונטי', 'any', 'all']
+
+def contains_match(preferred, actual):
+    preferred = clean_text(preferred).lower()
+    actual = clean_text(actual).lower()
+    if not preferred or not actual:
+        return False
+    return preferred in actual or actual in preferred
+
+def get_importance(data, field, default=0):
+    value = to_int(data.get(field, default), default)
+    return max(0, min(5, value))
+
 def append_parent(row):
     import pandas as pd
     new = pd.DataFrame([row])
@@ -113,102 +141,228 @@ def view_submissions():
 def suggest_gardens():
     p = request.get_json() or {}
     gardens = load_gardens()
-    home_n = (p.get('home_neighborhood') or '').strip()
+
+    home_n = clean_text(p.get('home_neighborhood'))
     has_sibling = p.get('declared_sibling_in_garden') == 'כן'
     sibling_gid = str(p.get('sibling_garden_id') or '').strip()
+
     needs_tz = p.get('needs_tzaharon') == 'כן'
-    imp_tz = int(p.get('importance_tzaharon') or 3)
-    pref_edu = (p.get('preferred_education_type') or '').strip()
-    pref_rel = (p.get('preferred_religious_orientation') or '').strip()
-    pref_gen = (p.get('preferred_gender_composition') or '').strip()
-    imp_gen = int(p.get('importance_gender_composition') or 1)
-    pref_lang = (p.get('preferred_activity_language') or '').strip()
+    imp_tz = get_importance(p, 'importance_tzaharon')
+
+    pref_sector = clean_text(p.get('preferred_sector'))
+
+    pref_edu = clean_text(p.get('preferred_education_type'))
+    imp_edu = get_importance(p, 'importance_education_type')
+
+    pref_rel = clean_text(p.get('preferred_religious_orientation'))
+    imp_rel = get_importance(p, 'importance_religious_orientation')
+
+    pref_gen = clean_text(p.get('preferred_gender_composition'))
+    imp_gen = get_importance(p, 'importance_gender_composition')
+
+    pref_lang = clean_text(p.get('preferred_activity_language'))
+    imp_lang = get_importance(p, 'importance_activity_language')
+
     needs_prot = p.get('needs_protected_space') == 'כן'
+    imp_prot = get_importance(p, 'importance_protected_space')
+
     needs_fri = p.get('needs_friday') == 'כן'
+    imp_fri = get_importance(p, 'importance_friday')
+
     max_price = p.get('max_price')
+
     child_age = p.get('child_age_months')
-    try: child_age = int(child_age)
-    except (TypeError, ValueError): child_age = None
+    try:
+        child_age = int(child_age)
+    except (TypeError, ValueError):
+        child_age = None
 
-    # אם ההורה ביקש סוג חינוך ספציפי — מחפשים בכל העיר, אחרת — שכונה קודם
-    city_wide_search = bool(pref_edu)
+    def age_ok(g):
+        g_min_age = g.get('min_age_months')
+        g_max_age = g.get('max_age_months')
 
-    scored = []
-    for g in gardens:
-        score = 0
-        g_n = (g.get('neighborhood') or '').strip()
-        g_sector = (g.get('sector') or '').strip()
-        g_edu = (g.get('education_type') or '').strip()
+        if child_age is None or g_min_age is None or g_max_age is None:
+            return True
+
+        try:
+            return int(g_min_age) <= child_age < int(g_max_age)
+        except (TypeError, ValueError):
+            return True
+
+    def hard_constraints_ok(g, use_age=True, use_neighborhood=True):
+        g_n = clean_text(g.get('neighborhood'))
+        g_sector = clean_text(g.get('sector'))
+        g_edu = clean_text(g.get('education_type'))
+        g_rel = clean_text(g.get('religious_orientation'))
+        g_gen = clean_text(g.get('gender_composition'))
         has_tz = g.get('has_tzaharon') == 'כן'
-        has_fri = g.get('friday') == 'כן'
+
+        if use_age and not age_ok(g):
+            return False
+
+        if use_neighborhood and home_n and g_n and g_n != home_n:
+            return False
+
+        if pref_sector and not contains_match(pref_sector, g_sector):
+            return False
+
+        if pref_edu and imp_edu >= 4 and not contains_match(pref_edu, g_edu):
+            return False
+
+        if pref_rel and imp_rel >= 4 and not contains_match(pref_rel, g_rel):
+            return False
+
+        if needs_tz and imp_tz >= 4 and not has_tz:
+            return False
+
+        if pref_gen and imp_gen >= 4 and g_gen and g_gen not in ('', pref_gen, 'מעורב'):
+            return False
+
+        return True
+
+    def score_garden(g, stage_label):
+        score = 0
+        match_tags = []
+
+        g_n = clean_text(g.get('neighborhood'))
+        g_sector = clean_text(g.get('sector'))
+        g_edu = clean_text(g.get('education_type'))
+        g_rel = clean_text(g.get('religious_orientation'))
+        g_gen = clean_text(g.get('gender_composition'))
+        g_lang = clean_text(g.get('activity_language'))
+
+        has_tz = g.get('has_tzaharon') == 'כן'
+        has_fri = clean_text(g.get('friday')) == 'כן'
         has_prot = bool(g.get('has_protected_space'))
-        g_gen = (g.get('gender_composition') or '').strip()
+
         price_avg = g.get('price_avg')
         g_min_age = g.get('min_age_months')
         g_max_age = g.get('max_age_months')
 
-        # סינון גיל קשיח
-        if child_age is not None and g_min_age is not None and g_max_age is not None:
-            try:
-                if not (int(g_min_age) <= child_age < int(g_max_age)):
-                    continue
-            except (TypeError, ValueError):
-                pass
+        if home_n and g_n == home_n:
+            score += 60
 
-        # סינון שכונה: אם לא מחפשים בכל העיר — רק שכונת ההורה
-        if not city_wide_search and home_n and g_n and g_n != home_n:
-            continue
+        if pref_sector and contains_match(pref_sector, g_sector):
+            score += 20
 
-        # סינון חינוך קשיח כשיש העדפה
-        if pref_edu and g_edu and g_edu != pref_edu:
-            continue
+        if pref_edu and contains_match(pref_edu, g_edu):
+            score += imp_edu * 15
 
-        # סינון צהרון קשיח
-        if needs_tz and imp_tz >= 4 and not has_tz:
-            continue
+        if pref_rel and contains_match(pref_rel, g_rel):
+            score += imp_rel * 15
 
-        # סינון מגדר קשיח
-        if pref_gen and imp_gen >= 4 and g_gen and g_gen not in ('', pref_gen, 'מעורב'):
-            continue
-
-        # ניקוד
-        if home_n and g_n == home_n: score += 40
-        if pref_edu and g_edu == pref_edu: score += 30
-        if pref_rel:
-            g_rel = (g.get('religious_orientation') or g_sector or '').strip()
-            if pref_rel in g_rel or g_rel in pref_rel: score += 25
         if pref_gen and g_gen:
-            score += 20 if pref_gen == g_gen else (5 if g_gen == 'מעורב' else 0)
-        if pref_lang and (g.get('activity_language') or '').strip() == pref_lang: score += 15
-        if needs_tz and has_tz: score += 20
-        if needs_prot and has_prot: score += 10
-        if needs_fri and has_fri: score += 10
+            score += imp_gen * 18 if pref_gen == g_gen else (imp_gen * 5 if g_gen == 'מעורב' else 0)
+
+        if pref_lang and contains_match(pref_lang, g_lang):
+            score += imp_lang * 15
+
+        if needs_tz and has_tz:
+            score += imp_tz * 20
+
+        if needs_prot and has_prot:
+            score += imp_prot * 10
+
+        if needs_fri and has_fri:
+            score += imp_fri * 10
+
         if max_price and price_avg:
             try:
-                if float(price_avg) <= float(max_price): score += 15
-            except (ValueError, TypeError): pass
-        if has_sibling and sibling_gid and str(g.get('id','')) == sibling_gid: score += 50
+                if float(price_avg) <= float(max_price):
+                    score += 15
+            except (ValueError, TypeError):
+                pass
+
+        if has_sibling and sibling_gid and str(g.get('id', '')) == sibling_gid:
+            score += 50
 
         age_label = ''
         if g_min_age is not None and g_max_age is not None:
             age_label = f'{g_min_age}–{g_max_age} חודשים'
 
-        scored.append({
-            'id': str(g.get('id','')),
-            'name': g.get('display_name') or g.get('name',''),
-            'address': g.get('address',''), 'neighborhood': g_n,
-            'sector': g_sector, 'education_type': g_edu,
+        if stage_label == 'same_neighborhood':
+            distance_label = 'באותה שכונה'
+        elif stage_label == 'city_wide_age':
+            distance_label = 'חיפוש מורחב בעיר'
+        else:
+            distance_label = 'חיפוש מורחב'
+
+
+        if home_n and g_n == home_n:
+            match_tags.append("✓ באותה שכונה")
+
+        if pref_sector and contains_match(pref_sector, g_sector):
+            match_tags.append("✓ מגזר מתאים")
+
+        if pref_edu and contains_match(pref_edu, g_edu):
+            match_tags.append("✓ סוג חינוך מתאים")
+
+        if pref_rel and contains_match(pref_rel, g_rel):
+            match_tags.append("✓ זיקה דתית מתאימה")
+
+        if pref_lang and contains_match(pref_lang, g_lang):
+            match_tags.append("✓ שפת פעילות מתאימה")
+
+        if needs_tz and has_tz:
+            match_tags.append("✓ צהרון")
+
+        if needs_fri and has_fri:
+            match_tags.append("✓ פעילות ביום שישי")
+
+        if needs_prot and has_prot:
+            match_tags.append("✓ מרחב מוגן")
+
+        if max_price and price_avg:
+            try:
+                if float(price_avg) <= float(max_price):
+                    match_tags.append("✓ עומד בתקציב")
+            except (ValueError, TypeError):
+                pass
+                
+
+        return {
+            'id': str(g.get('id', '')),
+            'name': g.get('display_name') or g.get('name', ''),
+            'address': g.get('address', ''),
+            'neighborhood': g_n,
+            'sector': g_sector,
+            'education_type': g_edu,
             'has_tzaharon': 'כן' if has_tz else 'לא',
             'friday': 'כן' if has_fri else 'לא',
             'price_avg': price_avg or '',
             'age_label': age_label,
             'score': score,
-            'distance_label': 'באותה שכונה' if home_n and g_n == home_n else ''
-        })
+            'distance_label': distance_label,
+            'match_tags': match_tags[:6]
+        }
+
+    stages = [
+        ('same_neighborhood', True, True),
+        ('city_wide_age', True, False),
+        ('city_wide_no_age', False, False),
+    ]
+
+    scored = []
+    used_stage = ''
+
+    for stage_label, use_age, use_neighborhood in stages:
+        scored = [
+            score_garden(g, stage_label)
+            for g in gardens
+            if hard_constraints_ok(g, use_age=use_age, use_neighborhood=use_neighborhood)
+        ]
+
+        if scored:
+            used_stage = stage_label
+            break
 
     scored.sort(key=lambda x: -x['score'])
-    return jsonify({'gardens': scored[:30], 'total_filtered': len(scored)})
 
+    return jsonify({
+        'gardens': scored[:30],
+        'total_filtered': len(scored),
+        'stage': used_stage
+    })
 # ─── הרשמת הורה ────────────────────────────────────────────────────────────────
 @app.route('/register_parent', methods=['POST'])
 def register_parent():
@@ -228,8 +382,9 @@ def register_parent():
         'preferred_activity_language': data.get('preferred_activity_language',''),
         'preferred_education_type': data.get('preferred_education_type',''),
         'preferred_religious_orientation': data.get('preferred_religious_orientation',''),
-        'preferred_religious_substream': '', 'preferred_gender_composition': data.get('preferred_gender_composition',''),
-        'preferred_sector': '', 'needs_friday': data.get('needs_friday','לא'),
+        'preferred_religious_substream': data.get('preferred_religious_substream',''),
+        'preferred_gender_composition': data.get('preferred_gender_composition',''),
+        'preferred_sector': data.get('preferred_sector',''), 'needs_friday': data.get('needs_friday','לא'),
         'needs_protected_space': data.get('needs_protected_space','לא'),
         'needs_tzaharon': data.get('needs_tzaharon','לא'),
         'declared_sibling_in_garden': data.get('declared_sibling_in_garden','לא'), 'sibling_garden_id': data.get('sibling_garden_id',''), 'sibling_verification_status': '',
@@ -238,16 +393,21 @@ def register_parent():
         'preferred_garden_1_name': data.get('preferred_garden_1_name',''),
         'preferred_garden_2_name': data.get('preferred_garden_2_name',''),
         'preferred_garden_3_name': data.get('preferred_garden_3_name',''),
-        'importance_distance': data.get('importance_distance',3), 'importance_price': data.get('importance_price',3),
-        'importance_activity_language': data.get('importance_activity_language',3),
-        'importance_education_type': data.get('importance_education_type',3),
-        'importance_religious_orientation': data.get('importance_religious_orientation',3),
-        'importance_religious_substream': 3,
-        'importance_gender_composition': data.get('importance_gender_composition',1),
-        'importance_sector': 3, 'importance_friday': 3, 'importance_protected_space': 3,
-        'importance_tzaharon': data.get('importance_tzaharon',3),
-        'friend_request_1': '', 'friend_request_2': '', 'importance_same_friend': 3,
-        'willing_to_trade_distance_for_friend': 'לא', 'allow_manual_far_preference': 'לא',
+        'importance_distance': data.get('importance_distance',0), 'importance_price': data.get('importance_price',0),
+        'importance_activity_language': data.get('importance_activity_language',0),
+        'importance_education_type': data.get('importance_education_type',0),
+        'importance_religious_orientation': data.get('importance_religious_orientation',0),
+        'importance_religious_substream': data.get('importance_religious_substream',0),
+        'importance_gender_composition': data.get('importance_gender_composition',0),
+        'importance_sector': 0,
+        'importance_friday': data.get('importance_friday',0),
+        'importance_protected_space': data.get('importance_protected_space',0),
+        'importance_tzaharon': data.get('importance_tzaharon',0),
+        'friend_request_1': data.get('friend_request_1',''),
+        'friend_request_2': data.get('friend_request_2',''),
+        'importance_same_friend': data.get('importance_same_friend',0),
+        'willing_to_trade_distance_for_friend': data.get('willing_to_trade_distance_for_friend','לא'),
+        'allow_manual_far_preference': 'לא',
         'max_manual_exception_distance_km': '',
         'registered_at': datetime.now().isoformat(timespec='seconds'),
     }
@@ -256,6 +416,7 @@ def register_parent():
     except Exception as e:
         return jsonify({'success': False, 'message': str(e)}), 500
     return jsonify({'success': True, 'parent_id': pid})
+
 
 # ─── ממשק מנהל ─────────────────────────────────────────────────────────────────
 @app.route('/admin/stats')
@@ -292,18 +453,22 @@ def run_matching():
          parent_prefs_df, garden_ranks_df, candidate_df, social_df) = build_preferences(parents_df, gardens_df)
         parent_match, garden_matches, proposal_df = gale_shapley_with_capacities(parent_prefs, garden_ranks, capacities)
         assignment_source = {pid: 'gale_shapley' for pid, gid in parent_match.items() if gid}
-        # בדיקת יציבות על תוצאת GS הטהורה — לפני כל שלב ידני
+
         stability_df, blocking_df = build_stability_check(
             parent_prefs, garden_ranks, parent_match, garden_matches, capacities, parents_df, gardens_df)
+
         mandatory_df, planning_df = mandatory_nearby_assignment(
             parents_df, gardens_df, parent_match, garden_matches, capacities, score_lookup, garden_priority_lookup)
         for _, r in planning_df.iterrows():
             assignment_source[clean_value(r.get('parent_id',''))] = 'requires_planning_review'
+
         manual_df = apply_manual_exception_after_all_close_solution(
             parents_df, gardens_df, parent_match, garden_matches, capacities,
             score_lookup, garden_priority_lookup, pd.DataFrame())
+
         distance_df = build_distance_audit(parents_df, gardens_df, parent_match, assignment_source)
         pref_sat_df = build_preference_satisfaction(parents_df, gardens_df, parent_match, assignment_source)
+
         create_outputs(parents_df, gardens_df, parent_match, garden_matches,
                        score_lookup, garden_priority_lookup, parent_prefs_df, garden_ranks_df,
                        candidate_df, proposal_df, stability_df, blocking_df, capacities,

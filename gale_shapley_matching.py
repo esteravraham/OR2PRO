@@ -22,6 +22,7 @@ DEBUG_OUTPUT = True
 
 TZAHARON_HARD_IMPORTANCE_THRESHOLD = 4
 GENDER_HARD_IMPORTANCE_THRESHOLD = 4
+EDUCATION_HARD_IMPORTANCE_THRESHOLD = 5
 RELIGIOUS_HARD_IMPORTANCE_THRESHOLD = 5
 RELIGIOUS_SUBSTREAM_HARD_IMPORTANCE_THRESHOLD = 5
 SOCIAL_FRIEND_BONUS_PER_IMPORTANCE = 12
@@ -174,20 +175,37 @@ def hard_constraint_check(parent_row, garden_row, check_distance=True):
         if not distance_info["within_normal_distance"]:
             return False, distance_info["distance_reason"]
 
+    preferred_sector = parent_row.get("preferred_sector", "")
+    if not is_any_value(preferred_sector):
+        if not hard_preference_match(preferred_sector, garden_row.get("sector", "")):
+            return False, "sector_required_but_not_matching"
+
+    preferred_education = parent_row.get("preferred_education_type", "")
+    importance_education = get_importance(parent_row, "importance_education_type", default=0)
+    if not is_any_value(preferred_education) and importance_education >= EDUCATION_HARD_IMPORTANCE_THRESHOLD:
+        if not hard_preference_match(preferred_education, garden_row.get("education_type", "")):
+            return False, "education_type_required_but_not_matching"
+
+    preferred_religious = parent_row.get("preferred_religious_orientation", "")
+    importance_religious = get_importance(parent_row, "importance_religious_orientation", default=0)
+    if not is_any_value(preferred_religious) and importance_religious >= RELIGIOUS_HARD_IMPORTANCE_THRESHOLD:
+        if not hard_preference_match(preferred_religious, garden_row.get("religious_orientation", "")):
+            return False, "religious_orientation_required_but_not_matching"
+
     needs_tzaharon = is_yes(parent_row.get("needs_tzaharon", ""))
-    importance_tzaharon = get_importance(parent_row, "importance_tzaharon", default=1)
+    importance_tzaharon = get_importance(parent_row, "importance_tzaharon", default=0)
     if needs_tzaharon and importance_tzaharon >= TZAHARON_HARD_IMPORTANCE_THRESHOLD:
         if not is_yes(garden_row.get("has_tzaharon", "")):
             return False, "tzaharon_required_but_missing"
 
     preferred_gender = parent_row.get("preferred_gender_composition", "")
-    importance_gender = get_importance(parent_row, "importance_gender_composition", default=1)
+    importance_gender = get_importance(parent_row, "importance_gender_composition", default=0)
     if not is_any_value(preferred_gender) and importance_gender >= GENDER_HARD_IMPORTANCE_THRESHOLD:
         if not hard_preference_match(preferred_gender, garden_row.get("gender_composition", "")):
             return False, "gender_composition_required_but_not_matching"
 
     preferred_substream = parent_row.get("preferred_religious_substream", "")
-    importance_substream = get_importance(parent_row, "importance_religious_substream", default=1)
+    importance_substream = get_importance(parent_row, "importance_religious_substream", default=0)
     if not is_any_value(preferred_substream) and importance_substream >= RELIGIOUS_SUBSTREAM_HARD_IMPORTANCE_THRESHOLD:
         if not hard_preference_match(preferred_substream, garden_row.get("religious_substream", "")):
             return False, "religious_substream_required_but_not_matching"
@@ -387,11 +405,16 @@ def age_is_compatible(parent_row, garden_row):
     return True, "age_match"
 
 
-def get_importance(row, column_name, default=3):
+def get_importance(row, column_name, default=0):
+    """
+    Slider importance value.
+    0 = לא רלוונטי / לא נכנס לניקוד.
+    1-5 = רמת חשיבות רגילה.
+    """
     value = to_int(row.get(column_name, default), default=default)
 
-    if value < 1:
-        return 1
+    if value < 0:
+        return 0
 
     if value > 5:
         return 5
@@ -794,11 +817,20 @@ def build_preferences(parents_df, gardens_df):
 
     parents_records = parents_df.to_dict("records")
     gardens_records = gardens_df.to_dict("records")
-    all_garden_ids = set(clean_value(row.get("garden_id", "")) for row in gardens_records)
+
+    all_garden_ids = set(
+        clean_value(row.get("garden_id", ""))
+        for row in gardens_records
+    )
 
     parent_lookup = {
         clean_value(row.get("parent_id", "")): row
         for row in parents_records
+    }
+
+    garden_lookup = {
+        clean_value(row.get("garden_id", "")): row
+        for row in gardens_records
     }
 
     candidate_map = {}
@@ -810,7 +842,12 @@ def build_preferences(parents_df, gardens_df):
         if not parent_id:
             continue
 
-        candidate_garden_rows, filtering_summary, fallback_ids = get_candidate_gardens_for_parent(parent_row, gardens_records, all_garden_ids)
+        candidate_garden_rows, filtering_summary, fallback_ids = get_candidate_gardens_for_parent(
+            parent_row,
+            gardens_records,
+            all_garden_ids
+        )
+
         candidates_for_parent = {}
 
         for garden_row in candidate_garden_rows:
@@ -820,7 +857,12 @@ def build_preferences(parents_df, gardens_df):
                 continue
 
             is_fallback = garden_id in fallback_ids
-            fit_score, reasons, acceptable = calculate_parent_fit_score(parent_row, garden_row, skip_distance=is_fallback)
+
+            fit_score, reasons, acceptable = calculate_parent_fit_score(
+                parent_row,
+                garden_row,
+                skip_distance=is_fallback
+            )
 
             if not acceptable:
                 continue
@@ -842,6 +884,8 @@ def build_preferences(parents_df, gardens_df):
         filtering_by_parent[parent_id] = filtering_summary
 
     social_bonus_rows = apply_social_pairing_bonus(candidate_map, parents_records)
+
+    candidate_pairs_by_garden = {}
 
     for parent_id, candidates_dict in candidate_map.items():
         parent_row = parent_lookup.get(parent_id, {})
@@ -867,18 +911,22 @@ def build_preferences(parents_df, gardens_df):
         parent_preferences[parent_id] = [item["garden_id"] for item in candidates]
 
         for rank, item in enumerate(candidates, start=1):
-            score_lookup[(parent_id, item["garden_id"])] = {
+            garden_id = item["garden_id"]
+
+            score_lookup[(parent_id, garden_id)] = {
                 "parent_fit_score": round(item["parent_fit_score"], 2),
                 "parent_fit_reasons": item["parent_fit_reasons"],
                 "manual_preference_rank": "" if item["manual_preference_rank"] == 999 else item["manual_preference_rank"]
             }
+
+            candidate_pairs_by_garden.setdefault(garden_id, []).append(parent_id)
 
             parent_preference_rows.append({
                 "parent_id": parent_id,
                 "parent_name": parent_row.get("parent_name", ""),
                 "child_name": parent_row.get("child_name", ""),
                 "rank": rank,
-                "garden_id": item["garden_id"],
+                "garden_id": garden_id,
                 "garden_name": item["garden_name"],
                 "manual_preference_rank": "" if item["manual_preference_rank"] == 999 else item["manual_preference_rank"],
                 "parent_fit_score": round(item["parent_fit_score"], 2),
@@ -886,18 +934,18 @@ def build_preferences(parents_df, gardens_df):
                 "parent_fit_reasons": item["parent_fit_reasons"]
             })
 
-    for garden_row in gardens_records:
-        garden_id = clean_value(garden_row.get("garden_id", ""))
+    for garden_id, parent_ids in candidate_pairs_by_garden.items():
+        garden_row = garden_lookup.get(garden_id, {})
 
-        if not garden_id:
+        if not garden_row:
             continue
 
         candidates = []
 
-        for parent_row in parents_records:
-            parent_id = clean_value(parent_row.get("parent_id", ""))
+        for parent_id in parent_ids:
+            parent_row = parent_lookup.get(parent_id, {})
 
-            if not parent_id:
+            if not parent_row:
                 continue
 
             fit_data = score_lookup.get((parent_id, garden_id))

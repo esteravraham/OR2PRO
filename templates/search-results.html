@@ -534,79 +534,85 @@ let allGardens = [];
             filterGardens();
         }
 
-        function filterGardens() {
-            const searchValue = document.getElementById("searchInput").value.trim().toLowerCase();
+function filterGardens() {
+    const searchValue = document.getElementById("searchInput").value.trim().toLowerCase();
 
-            const communityOnly = document.getElementById("communityOnly").checked;
-            const licensedOnly = document.getElementById("licensedOnly").checked;
-            const openCamerasOnly = document.getElementById("openCamerasOnly").checked;
-            const protectedSpaceOnly = document.getElementById("protectedSpaceOnly").checked;
-            const fridayOnly = document.getElementById("fridayOnly").checked;
+    const communityOnly = document.getElementById("communityOnly").checked;
+    const licensedOnly = document.getElementById("licensedOnly").checked;
+    const openCamerasOnly = document.getElementById("openCamerasOnly").checked;
+    const protectedSpaceOnly = document.getElementById("protectedSpaceOnly").checked;
+    const fridayOnly = document.getElementById("fridayOnly").checked;
 
-            const educationFilter = document.getElementById("educationFilter").value;
-            const nutritionFilter = document.getElementById("nutritionFilter").value;
-            const religiousFilter = document.getElementById("religiousFilter").value;
-            const sectorFilter = document.getElementById("sectorFilter").value;
-            const activityLanguageFilter = document.getElementById("activityLanguageFilter").value;
+    const educationFilter = document.getElementById("educationFilter").value;
+    const nutritionFilter = document.getElementById("nutritionFilter").value;
+    const religiousFilter = document.getElementById("religiousFilter").value;
+    const sectorFilter = document.getElementById("sectorFilter").value;
+    const activityLanguageFilter = document.getElementById("activityLanguageFilter").value;
 
-            const filtered = allGardens.filter(garden => {
-                const profile = garden.profile || {};
-                const searchText = garden.search_text || "";
+    const filtered = allGardens.filter(garden => {
+        const profile = garden.profile || {};
+        const searchText = String(garden.search_text || "").toLowerCase();
 
-                const matchesSearch =
-                    searchValue === "" ||
-                    searchText.includes(searchValue) ||
-                    String(garden.name || "").toLowerCase().includes(searchValue) ||
-                    String(garden.display_name || "").toLowerCase().includes(searchValue) ||
-                    String(garden.address || "").toLowerCase().includes(searchValue);
+        const educationType = garden.education_type || profile.education_type || profile.garden_type || "";
+        const nutritionType = garden.nutrition_type || profile.nutrition_type || "";
+        const religiousOrientation = garden.religious_orientation || profile.religious_orientation || "";
+        const sector = garden.sector || profile.sector || "";
+        const activityLanguage = garden.activity_language || profile.activity_language || "";
 
-                const matchesCommunity =
-                    !communityOnly || hasCommunityInfo(garden);
+        const matchesSearch =
+            searchValue === "" ||
+            searchText.includes(searchValue) ||
+            String(garden.name || "").toLowerCase().includes(searchValue) ||
+            String(garden.display_name || "").toLowerCase().includes(searchValue) ||
+            String(garden.address || "").toLowerCase().includes(searchValue);
 
-                const matchesLicense =
-                    !licensedOnly || String(garden.license_status || "").includes("רישיון בתוקף");
+        const matchesCommunity =
+            !communityOnly || hasCommunityInfo(garden);
 
-                const matchesCameras =
-                    !openCamerasOnly || profile.cameras_open_to_parents === "כן";
+        const matchesLicense =
+            !licensedOnly || String(garden.license_status || "").includes("רישיון בתוקף");
 
-                const matchesProtected =
-                    !protectedSpaceOnly || profile.has_protected_space === "כן";
+        const matchesCameras =
+            !openCamerasOnly || profile.cameras_open_to_parents === "כן";
 
-                const matchesFriday =
-                    !fridayOnly || profile.friday === "כן";
+        const matchesProtected =
+            !protectedSpaceOnly || profile.has_protected_space === "כן";
 
-                const matchesEducation =
-                    !educationFilter || profile.education_type === educationFilter;
+        const matchesFriday =
+            !fridayOnly || profile.friday === "כן";
 
-                const matchesNutrition =
-                    !nutritionFilter || profile.nutrition_type === nutritionFilter;
+        const matchesEducation =
+            !educationFilter || educationType === educationFilter;
 
-                const matchesReligious =
-                    !religiousFilter || profile.religious_orientation === religiousFilter;
-                const matchesSector =
-                    !sectorFilter || garden.sector === sectorFilter;
+        const matchesNutrition =
+            !nutritionFilter || nutritionType === nutritionFilter;
 
-                const matchesActivityLanguage =
-                    !activityLanguageFilter || profile.activity_language === activityLanguageFilter;    
+        const matchesReligious =
+            !religiousFilter || religiousOrientation === religiousFilter;
 
-                return (
-                    matchesSearch &&
-                    matchesCommunity &&
-                    matchesLicense &&
-                    matchesCameras &&
-                    matchesProtected &&
-                    matchesFriday &&
-                    matchesEducation &&
-                    matchesNutrition &&
-                    matchesReligious &&
-                    matchesSector &&
-                    matchesActivityLanguage
-                );
-            });
+        const matchesSector =
+            !sectorFilter || sector === sectorFilter;
 
-            renderResults(filtered);
-        }
+        const matchesActivityLanguage =
+            !activityLanguageFilter || activityLanguage === activityLanguageFilter;
 
+        return (
+            matchesSearch &&
+            matchesCommunity &&
+            matchesLicense &&
+            matchesCameras &&
+            matchesProtected &&
+            matchesFriday &&
+            matchesEducation &&
+            matchesNutrition &&
+            matchesReligious &&
+            matchesSector &&
+            matchesActivityLanguage
+        );
+    });
+
+    renderResults(filtered);
+}
         function resetFilters() {
             document.getElementById("searchInput").value = "";
 
