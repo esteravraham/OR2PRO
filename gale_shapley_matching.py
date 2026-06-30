@@ -10,6 +10,7 @@ GARDENS_JSON_FILE = "gardens.json"
 PARENTS_INPUT_FILE = "Parents_Input.xlsx"
 GARDENS_INPUT_FILE = "Gardens_Matching_Input.xlsx"
 OUTPUT_FILE = "Gale_Shapley_Matching_Result.xlsx"
+FULL_OUTPUT_FILE = "Gale_Shapley_Matching_Result_FULL.xlsx"
 
 DEFAULT_CAPACITY = 1
 DEFAULT_MAX_DISTANCE_KM = 2.5
@@ -2053,11 +2054,51 @@ def create_outputs(
         })
     gardens_clean_df = pd.DataFrame(garden_rows).sort_values("ילדים שובצו", ascending=False)
 
+    # ── דוחות נוספים לקובץ המפורט ─────────────────────────────────
+    preference_satisfaction_df = build_preference_satisfaction(parents_df, gardens_df, parent_match, assignment_source)
+    garden_demand_ranking_df = build_garden_demand_ranking(parents_df, final_df)
+    demand_by_criteria_df = build_demand_by_criteria(parents_df)
+    birth_month_audit_df = build_birth_month_audit(parents_df, final_df, distance_audit_df)
+    social_pairing_df = build_social_pairing_check(parents_df, parent_match)
+
+    # קובץ קצר לאתר — נוח לקריאה מהירה
     with pd.ExcelWriter(OUTPUT_FILE, engine="openpyxl") as writer:
         matching_clean_df.to_excel(writer, sheet_name="טבלת שיבוצים", index=False)
         gardens_clean_df.to_excel(writer, sheet_name="סטטוס גנים", index=False)
 
+    # קובץ מפורט לדוח/בדיקה — כל גיליונות האלגוריתם
+    full_output_sheets = [
+        ("Summary", summary_df),
+        ("Final_Matching", final_df),
+        ("Garden_Assignments", assignment_df),
+        ("Stability_Check", stability_summary_df),
+        ("Blocking_Pairs", blocking_pairs_df),
+        ("Complexity", complexity_df),
+        ("Capacity_Utilization", capacity_df),
+        ("Preference_Satisfaction", preference_satisfaction_df),
+        ("Social_Pairing_Check", social_pairing_df),
+        ("Demand_By_Criteria", demand_by_criteria_df),
+        ("Garden_Demand_Ranking", garden_demand_ranking_df),
+        ("Birth_Month_Audit", birth_month_audit_df),
+        ("Social_Bonus", social_bonus_df),
+        ("Mandatory_Assignment", mandatory_assignment_df),
+        ("Planning_Review", planning_review_df),
+        ("Manual_Exception_Log", manual_exception_log_df),
+        ("Distance_Audit", distance_audit_df),
+        ("Proposal_Log", proposal_log_df),
+        ("Candidate_Filtering", candidate_filtering_df),
+        ("Parent_Preferences", parent_preferences_df),
+        ("Garden_Rankings", garden_rankings_df),
+    ]
+
+    with pd.ExcelWriter(FULL_OUTPUT_FILE, engine="openpyxl") as writer:
+        for sheet_name, df in full_output_sheets:
+            if df is None:
+                df = pd.DataFrame()
+            df.to_excel(writer, sheet_name=sheet_name, index=False)
+
     print(f"Done | Created {OUTPUT_FILE}")
+    print(f"Done | Created {FULL_OUTPUT_FILE}")
     print(f"Parents: {parents_total}")
     print(f"Matched total: {matched_total}")
     print(f"Requires planning review: {shortage_total}")

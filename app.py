@@ -8,6 +8,7 @@ SUBMISSIONS_FILE  = "parent_reviews_submissions.json"
 GARDENS_FILE      = "gardens.json"
 PARENTS_FILE      = "Parents_Input.xlsx"
 MATCHING_FILE     = "Gale_Shapley_Matching_Result.xlsx"
+MATCHING_FULL_FILE = "Gale_Shapley_Matching_Result_FULL.xlsx"
 ADMIN_LOG_FILE    = "admin_run_log.json"
 
 # ─── עזר ───────────────────────────────────────────────────────────────────────
@@ -88,12 +89,12 @@ def garden_exists(gid):
 def submit_review():
     data = request.get_json()
     if not data:
-        return jsonify({'success': False, 'message': 'No data'}), 400
+        return jsonify({'success': False, 'message': 'לא התקבלו נתונים'}), 400
     gid = data.get('garden_id')
     if not gid:
-        return jsonify({'success': False, 'message': 'Missing garden_id'}), 400
+        return jsonify({'success': False, 'message': 'חסר מזהה גן'}), 400
     if not garden_exists(gid):
-        return jsonify({'success': False, 'message': 'Garden not found'}), 404
+        return jsonify({'success': False, 'message': 'הגן לא נמצא'}), 404
     subs = load_json(SUBMISSIONS_FILE, [])
     data.update({'submission_id': len(subs)+1,
                  'server_created_at': datetime.now().isoformat(timespec='seconds'),
@@ -211,7 +212,7 @@ def register_parent():
     data = request.get_json() or {}
     for f in ['parent_name','child_name','home_address']:
         if not data.get(f):
-            return jsonify({'success': False, 'message': f'Missing: {f}'}), 400
+            return jsonify({'success': False, 'message': f'חסר שדה חובה: {f}'}), 400
     pid = 'P' + datetime.now().strftime('%Y%m%d%H%M%S') + str(uuid.uuid4())[:4].upper()
     row = {
         'parent_id': pid, 'parent_name': data.get('parent_name',''),
@@ -378,6 +379,12 @@ def download_result():
     if not os.path.exists(MATCHING_FILE):
         return jsonify({'error': 'קובץ לא קיים'}), 404
     return send_file(MATCHING_FILE, as_attachment=True, download_name='Gale_Shapley_Matching_Result.xlsx')
+
+@app.route('/download_matching_result_full')
+def download_result_full():
+    if not os.path.exists(MATCHING_FULL_FILE):
+        return jsonify({'error': 'קובץ מפורט לא קיים'}), 404
+    return send_file(MATCHING_FULL_FILE, as_attachment=True, download_name='Gale_Shapley_Matching_Result_FULL.xlsx')
 
 if __name__ == '__main__':
     app.run(debug=True)

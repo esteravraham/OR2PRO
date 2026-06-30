@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% set active_page = 'about' %}
-{% block title %}About the System{% endblock %}
+{% block title %}אודות המערכת{% endblock %}
 
 {% block extra_css %}
 <style>
@@ -86,50 +86,50 @@
 
 {% block content %}
 <div class="about-page">
-<h1>🌿 About the Ganim Matching System</h1>
+<h1>🌿 אודות מערכת שיבוץ הגנים</h1>
 <div class="intro-box">
-    <p>This system matches children to kindergartens in Ramat Gan using the <strong>Gale-Shapley stable matching algorithm</strong>. Parents submit preferences; the algorithm guarantees every child receives a placement and no family can "trade up" by switching — a property called <em>stability</em>.</p>
+    <p>המערכת משבצת ילדים לגני ילדים ברמת גן באמצעות <strong>אלגוריתם Gale-Shapley לשיבוץ יציב</strong>. ההורים מזינים העדפות, והמערכת בונה רשימות העדפה, מפעילה את האלגוריתם ומייצרת שיבוץ יציב שבו אין זוג הורה־גן שיכולים לשפר את מצבם על חשבון השיבוץ הקיים.</p>
 </div>
 
-<h2>⚡ Algorithm in Action — Real Data</h2>
-<p>The scenario below is taken directly from our actual run. We focus on <strong>גן כוכב</strong> (capacity&nbsp;3 in this demo) and six parents who all wanted it. Watch how the algorithm handles competition through proposals, acceptances, and swaps.</p>
+<h2>⚡ האלגוריתם בפעולה — הדגמה מתוך ההרצה</h2>
+<p>התרחיש הבא מדגים את פעולת האלגוריתם על גן אחד: <strong>גן כוכב</strong>, עם קיבולת של 3 מקומות בדוגמה. כמה הורים מבקשים את אותו גן, והאלגוריתם מטפל בתחרות באמצעות הצעות, קבלות זמניות, דחיות והחלפות.</p>
 
 <div class="viz-container">
     <div class="viz-controls">
-        <button class="btn-viz secondary" onclick="resetViz()">↺ Reset</button>
-        <button class="btn-viz primary" id="btn-next" onclick="nextStep()">Next Step →</button>
-        <button class="btn-viz secondary" id="btn-auto" onclick="autoPlay()">▶ Auto</button>
-        <span class="step-label" id="step-label">Press Next Step to begin</span>
+        <button class="btn-viz secondary" onclick="resetViz()">↺ איפוס</button>
+        <button class="btn-viz primary" id="btn-next" onclick="nextStep()">השלב הבא ←</button>
+        <button class="btn-viz secondary" id="btn-auto" onclick="autoPlay()">▶ הרצה אוטומטית</button>
+        <span class="step-label" id="step-label">לחצו על השלב הבא כדי להתחיל</span>
     </div>
 
     <div class="viz-arena">
 
         <!-- הורים -->
         <div>
-            <p class="col-head">👨‍👩‍👦 Parents</p>
+            <p class="col-head">👨‍👩‍👦 הורים</p>
             <div class="parent-node" id="p0">
                 <div class="pname">רוני (P0011)</div>
-                <div class="pwant">1st choice: גן כוכב ← top priority</div>
+                <div class="pwant">עדיפות ראשונה: גן כוכב</div>
             </div>
             <div class="parent-node" id="p1">
                 <div class="pname">גיא (P0003)</div>
-                <div class="pwant">Tried גן אמנויות first → now here (2nd)</div>
+                <div class="pwant">ניסה קודם את גן אמנויות → עכשיו מציע כאן, עדיפות שנייה</div>
             </div>
             <div class="parent-node" id="p2">
                 <div class="pname">אמיר (P0004)</div>
-                <div class="pwant">Tried הרימון first → now here (2nd)</div>
+                <div class="pwant">ניסה קודם את הרימון → עכשיו מציע כאן, עדיפות שנייה</div>
             </div>
             <div class="parent-node" id="p3">
                 <div class="pname">מור (P0007)</div>
-                <div class="pwant">Tried מיכאלה first → now here (2nd)</div>
+                <div class="pwant">ניסה קודם את מיכאלה → עכשיו מציע כאן, עדיפות שנייה</div>
             </div>
             <div class="parent-node" id="p4">
                 <div class="pname">אמיר ב׳ (P0026)</div>
-                <div class="pwant">Tried מיכאלה, הגן של אביה → here (3rd)</div>
+                <div class="pwant">ניסה קודם את מיכאלה ואת הגן של אביה → עכשיו מציע כאן, עדיפות שלישית</div>
             </div>
             <div class="parent-node" id="p5">
                 <div class="pname">אורי (P0051)</div>
-                <div class="pwant">Tried משפחתון first → now here (2nd)</div>
+                <div class="pwant">ניסה קודם משפחתון → עכשיו מציע כאן, עדיפות שנייה</div>
             </div>
         </div>
 
@@ -147,70 +147,70 @@
 
         <!-- גן -->
         <div class="garden-col">
-            <p class="col-head">🌿 Kindergarten</p>
+            <p class="col-head">🌿 גן</p>
             <div class="garden-node" id="g0">
                 <div class="gname">גן כוכב</div>
-                <div class="gcap">Capacity: 3 slots · Ramat Gan</div>
+                <div class="gcap">קיבולת: 3 מקומות · רמת גן</div>
                 <div class="slots">
-                    <div class="slot" id="slot0">slot 1 — vacant</div>
-                    <div class="slot" id="slot1">slot 2 — vacant</div>
-                    <div class="slot" id="slot2">slot 3 — vacant</div>
+                    <div class="slot" id="slot0">מקום 1 — פנוי</div>
+                    <div class="slot" id="slot1">מקום 2 — פנוי</div>
+                    <div class="slot" id="slot2">מקום 3 — פנוי</div>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="viz-log" id="viz-log">
-        <div class="log-entry" style="color:#888">Press "Next Step" to start...</div>
+        <div class="log-entry" style="color:#888">לחצו על "השלב הבא" כדי להתחיל...</div>
     </div>
 
     <div class="final-result" id="final-result">
-        <h4>✅ Stable matching achieved for גן כוכב — 0 blocking pairs</h4>
+        <h4>✅ התקבל שיבוץ יציב עבור גן כוכב — 0 זוגות חוסמים</h4>
         <div class="final-pairs">
             <div class="pair-badge"><strong>רוני</strong> → <span>גן כוכב ✓</span></div>
             <div class="pair-badge"><strong>גיא</strong> → <span>גן כוכב ✓</span></div>
             <div class="pair-badge"><strong>אמיר</strong> → <span>גן כוכב ✓</span></div>
-            <div class="pair-badge"><strong>מור</strong> → <span>moved to next choice</span></div>
-            <div class="pair-badge"><strong>אמיר ב׳</strong> → <span>moved to next choice</span></div>
-            <div class="pair-badge"><strong>אורי</strong> → <span>moved to next choice</span></div>
+            <div class="pair-badge"><strong>מור</strong> → <span>עבר לבחירה הבאה</span></div>
+            <div class="pair-badge"><strong>אמיר ב׳</strong> → <span>עבר לבחירה הבאה</span></div>
+            <div class="pair-badge"><strong>אורי</strong> → <span>עבר לבחירה הבאה</span></div>
         </div>
     </div>
 </div>
 
-<h2>📖 How Gale-Shapley Works</h2>
-<p>In each round, every unmatched parent proposes to their top remaining kindergarten. Each kindergarten tentatively holds its best applicants (up to capacity) and rejects the rest. Rejected parents move to their next choice. This repeats until everyone is placed.</p>
+<h2>📖 איך Gale-Shapley עובד?</h2>
+<p>בכל סבב, כל הורה שעדיין לא שובץ מציע לגן הבא ברשימת ההעדפות שלו. כל גן מחזיק זמנית את המועמדים הטובים ביותר מבחינתו עד גבול הקיבולת, ודוחה את השאר. הורים שנדחו ממשיכים להציע לגנים הבאים. התהליך נמשך עד שמתקבל שיבוץ סופי.</p>
 
 <div class="concept-grid">
     <div class="concept-card">
-        <h4>Why "deferred" acceptance?</h4>
-        <p>Kindergartens never commit permanently — they hold proposals tentatively and may swap if a better applicant arrives. This deferred approach is what guarantees stability.</p>
+        <h4>למה הקבלה היא זמנית?</h4>
+        <p>הגנים לא מתחייבים מיד באופן סופי. הם מחזיקים מועמדים זמנית, ואם מגיע מועמד שמדורג גבוה יותר, יכולה להתבצע החלפה. מנגנון זה הוא מה שמוביל לשיבוץ יציב.</p>
     </div>
     <div class="concept-card">
-        <h4>What is a blocking pair?</h4>
-        <p>A parent + kindergarten that both prefer each other over their current assignment. Gale-Shapley provably eliminates all blocking pairs — the result is always stable.</p>
+        <h4>מהו זוג חוסם?</h4>
+        <p>זוג חוסם הוא מצב שבו גם ההורה היה מעדיף גן מסוים על פני השיבוץ שקיבל, וגם הגן היה מעדיף את הילד הזה על פני אחד הילדים שכבר שובצו אליו. אלגוריתם Gale-Shapley מונע מצב כזה ביחס לרשימות ההעדפה.</p>
     </div>
     <div class="concept-card">
-        <h4>How our system ranks parents</h4>
-        <p>Each parent receives a <em>fit score</em> based on distance, education type, religious orientation, price, tzaharon, and other preferences — weighted by their stated importance.</p>
+        <h4>איך המערכת מדרגת התאמה</h4>
+        <p>לכל הורה נבנה <em>ציון התאמה</em> לגנים לפי מרחק, סוג חינוך, אופי דתי, מחיר, צהרון, הרכב מגדרי והעדפות נוספות, בהתאם לרמת החשיבות שהוגדרה.</p>
     </div>
     <div class="concept-card">
-        <h4>Distance blocking (our addition)</h4>
-        <p>Before Gale-Shapley runs, each parent sees only kindergartens within their max distance. This cuts 65,000 theoretical pairs down to ~15,000 real candidates.</p>
+        <h4>סינון לפי מרחק ואילוצים</h4>
+        <p>לפני הרצת Gale-Shapley, המערכת מסננת לכל הורה רק גנים שעומדים באילוצים קשיחים כמו מרחק מקסימלי, קיבולת וצהרון חובה. כך מספר הזוגות האפשריים קטן משמעותית.</p>
     </div>
 </div>
 
-<h2>📊 Our Run — Ramat Gan 2026</h2>
+<h2>📊 תוצאות ההרצה — רמת גן 2026</h2>
 <div class="stats-row">
-    <div class="stat-item"><div class="n">500</div><div class="l">Parents registered</div></div>
-    <div class="stat-item"><div class="n">130</div><div class="l">Kindergartens</div></div>
-    <div class="stat-item"><div class="n">500</div><div class="l">Children matched</div></div>
-    <div class="stat-item"><div class="n">0</div><div class="l">Blocking pairs</div></div>
+    <div class="stat-item"><div class="n">500</div><div class="l">הורים במערכת</div></div>
+    <div class="stat-item"><div class="n">130</div><div class="l">גנים</div></div>
+    <div class="stat-item"><div class="n">500</div><div class="l">ילדים שובצו</div></div>
+    <div class="stat-item"><div class="n">0</div><div class="l">זוגות חוסמים</div></div>
 </div>
 <div class="complexity-box">
-    <strong>Complexity gain from distance blocking:</strong><br>
-    Naive: <code>O(n × m)</code> = 500 × 130 = 65,000 pairs<br>
-    After hard distance filter: <code>O(n × k)</code> = ~14,982 pairs (avg 30 per parent)<br>
-    Gale-Shapley then runs on those 14,982 pairs — 2,167 proposals, 279 swaps, stable result.
+    <strong>שיפור סיבוכיות באמצעות סינון מוקדם:</strong><br>
+    ללא סינון: <code>O(n × m)</code> = 500 × 130 = 65,000 pairs<br>
+    לאחר סינון לפי אילוצים קשיחים: <code>O(n × k)</code> = ~14,982 pairs (avg 30 per parent)<br>
+    לאחר מכן Gale-Shapley רץ רק על הזוגות הרלוונטיים — 2,167 הצעות, 279 החלפות, ותוצאה יציבה.
 </div>
 </div>
 {% endblock %}
@@ -225,76 +225,76 @@
 
 const STEPS = [
     {
-        label: "Round 1 — רוני proposes (1st choice)",
+        label: "סבב 1 — רוני מציע לגן כוכב, עדיפות ראשונה",
         action() {
             setPClass(0,'proposing');
             setGarden('receiving');
             setSlot(0,'רוני ✓','taken');
-            log('📤 רוני (P0011) proposes to גן כוכב — 1st choice, top score. Accepted into slot 1.','accept');
+            log('📤 רוני (P0011) מציע לגן כוכב — עדיפות ראשונה וציון גבוה. מתקבל זמנית למקום 1.','accept');
         }
     },
     {
-        label: "גיא, אמיר, מור arrive (2nd choice after rejection elsewhere)",
+        label: "גיא, אמיר ומור מגיעים לאחר דחייה מגן קודם",
         action() {
             setPClass(0,'matched');
             setPClass(1,'proposing'); setPClass(2,'proposing'); setPClass(3,'proposing');
             setGarden('receiving');
             setSlot(1,'גיא ✓','taken');
             setSlot(2,'אמיר ✓','taken');
-            log('📤 גיא, אמיר, מור all propose — 2nd choice after being rejected elsewhere.','propose');
-            log('✓ גן כוכב has 2 free slots → accepts גיא (slot 2) and אמיר (slot 3). Garden is now full.','accept');
-            log('⚠ מור also proposed but garden is full — must be compared.','reject');
+            log('📤 גיא, אמיר ומור מציעים גם הם לגן כוכב לאחר שנדחו מבחירות קודמות.','propose');
+            log('✓ לגן כוכב יש שני מקומות פנויים → הוא מקבל את גיא למקום 2 ואת אמיר למקום 3. עכשיו הגן מלא.','accept');
+            log('⚠ גם מור הציע לגן, אבל הגן מלא — לכן צריך להשוות אותו למועמדים שכבר התקבלו זמנית.','reject');
         }
     },
     {
-        label: "מור rejected — garden prefers רוני, גיא, אמיר",
+        label: "מור נדחה — הגן מעדיף את רוני, גיא ואמיר",
         action() {
             setPClass(1,'matched'); setPClass(2,'matched');
             setPClass(3,'rejected');
             setGarden('full');
-            log('✗ גן כוכב ranks מור lower than all 3 current holders → מור is rejected. Moves to next choice.','reject');
+            log('✗ גן כוכב מדרג את מור נמוך יותר משלושת הילדים שמוחזקים זמנית → מור נדחה ועובר לבחירה הבאה.','reject');
         }
     },
     {
-        label: "אמיר ב׳ proposes (3rd choice — tried 2 others first)",
+        label: "אמיר ב׳ מציע לגן כוכב, עדיפות שלישית",
         action() {
             setPClass(3,'');
             setPClass(4,'proposing');
             setGarden('receiving');
-            log('📤 אמיר ב׳ (P0026) proposes — this is his 3rd choice after מיכאלה and הגן של אביה rejected him.','propose');
+            log('📤 אמיר ב׳ (P0026) מציע לגן כוכב — זו העדיפות השלישית שלו לאחר שנדחה מגנים קודמים.','propose');
         }
     },
     {
-        label: "SWAP — אמיר ב׳ beats אמיר for slot 3",
+        label: "החלפה — אמיר ב׳ מדורג גבוה יותר מאמיר",
         action() {
             setPClass(4,'matched');
             setPClass(2,'rejected');
             setSlot(2,'אמיר ב׳ ✓','swapping');
             setGarden('swapped');
-            log('🔄 SWAP! גן כוכב ranks אמיר ב׳ higher than אמיר (closer distance, higher fit score).','swap');
-            log('   אמיר ב׳ takes slot 3. אמיר is freed and must find another kindergarten.','swap');
+            log('🔄 החלפה! גן כוכב מדרג את אמיר ב׳ גבוה יותר מאמיר, למשל בגלל מרחק קרוב יותר או ציון התאמה גבוה יותר.','swap');
+            log('   אמיר ב׳ נכנס למקום 3. אמיר נדחה וממשיך לחפש גן אחר.','swap');
         }
     },
     {
-        label: "אורי proposes (2nd choice)",
+        label: "אורי מציע לגן כוכב, עדיפות שנייה",
         action() {
             setPClass(2,'');
             setPClass(5,'proposing');
             setGarden('receiving');
-            log('📤 אורי (P0051) proposes — 2nd choice after being rejected from משפחתון.','propose');
+            log('📤 אורי (P0051) מציע לגן כוכב — עדיפות שנייה לאחר דחייה ממשפחתון.','propose');
         }
     },
     {
-        label: "אורי rejected — garden ranks אורי lower than all 3 holders",
+        label: "אורי נדחה — הגן מדרג אותו נמוך יותר מהמועמדים הקיימים",
         action() {
             setPClass(5,'rejected');
             setGarden('full');
-            log('✗ גן כוכב compares אורי against רוני, גיא, אמיר ב׳ — אורי ranks lowest. Rejected.','reject');
-            log('   אורי moves to next choice. אמיר also continues searching.','reject');
+            log('✗ גן כוכב משווה את אורי לרוני, גיא ואמיר ב׳ — אורי מדורג נמוך יותר ולכן נדחה.','reject');
+            log('   אורי עובר לבחירה הבאה. גם אמיר ממשיך לחפש גן אחר.','reject');
         }
     },
     {
-        label: "✅ Final stable matching for גן כוכב",
+        label: "✅ שיבוץ יציב סופי עבור גן כוכב",
         action() {
             setPClass(5,'');
             setPClass(0,'matched'); setPClass(1,'matched'); setPClass(4,'matched');
@@ -302,8 +302,8 @@ const STEPS = [
             setSlot(1,'גיא ✓','taken');
             setSlot(2,'אמיר ב׳ ✓','taken');
             setGarden('full');
-            log('✅ All 3 slots filled. No blocking pairs — stable!','done');
-            log('   מור, אמיר, אורי continue to propose to other kindergartens.','done');
+            log('✅ כל 3 המקומות התמלאו. אין זוגות חוסמים — השיבוץ יציב!','done');
+            log('   מור, אמיר ואורי ממשיכים להציע לגנים אחרים.','done');
             document.getElementById('final-result').style.display='block';
             document.getElementById('btn-next').disabled=true;
             clearAuto();
@@ -324,7 +324,7 @@ function setGarden(cls) {
 }
 function setSlot(i, text, cls) {
     const el = document.getElementById('slot'+i);
-    el.textContent = 'slot '+(i+1)+' — '+text;
+    el.textContent = 'מקום '+(i+1)+' — '+text;
     el.className = 'slot '+(cls||'');
 }
 function log(text, type) {
@@ -342,28 +342,28 @@ function resetViz() {
     for(let i=0;i<6;i++) setPClass(i,'');
     setGarden('');
     setSlot(0,'vacant',''); setSlot(1,'vacant',''); setSlot(2,'vacant','');
-    document.getElementById('viz-log').innerHTML='<div class="log-entry" style="color:#888">Press "Next Step" to start...</div>';
+    document.getElementById('viz-log').innerHTML='<div class="log-entry" style="color:#888">לחצו על "השלב הבא" כדי להתחיל...</div>';
     document.getElementById('final-result').style.display='none';
     document.getElementById('btn-next').disabled=false;
-    document.getElementById('btn-auto').textContent='▶ Auto';
-    document.getElementById('step-label').textContent='Press Next Step to begin';
+    document.getElementById('btn-auto').textContent='▶ הרצה אוטומטית';
+    document.getElementById('step-label').textContent='לחצו על השלב הבא כדי להתחיל';
 }
 
 function nextStep() {
     currentStep++;
     if(currentStep>=STEPS.length){currentStep=STEPS.length-1;return;}
     const s = STEPS[currentStep];
-    document.getElementById('step-label').textContent = 'Step '+(currentStep+1)+'/'+STEPS.length+': '+s.label;
+    document.getElementById('step-label').textContent = 'שלב '+(currentStep+1)+'/'+STEPS.length+': '+s.label;
     s.action();
 }
 
 function clearAuto(){
     clearTimeout(autoTimer); autoTimer=null;
-    document.getElementById('btn-auto').textContent='▶ Auto';
+    document.getElementById('btn-auto').textContent='▶ הרצה אוטומטית';
 }
 function autoPlay(){
     if(autoTimer){clearAuto();return;}
-    document.getElementById('btn-auto').textContent='⏸ Pause';
+    document.getElementById('btn-auto').textContent='⏸ עצירה';
     function tick(){
         if(currentStep>=STEPS.length-1){clearAuto();return;}
         nextStep();
