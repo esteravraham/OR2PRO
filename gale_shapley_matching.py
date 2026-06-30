@@ -544,6 +544,12 @@ def calculate_parent_fit_score(parent_row, garden_row, skip_distance=False):
         else:
             reasons.append("protected_space_missing")
 
+    if is_yes(parent_row.get("declared_sibling_in_garden")):
+        sibling_gid = clean_value(parent_row.get("sibling_garden_id", ""))
+        if sibling_gid and sibling_gid == clean_value(garden_row.get("garden_id", "")):
+            score += 150
+            reasons.append("sibling_in_garden")
+
     return score, reasons, True
 
 

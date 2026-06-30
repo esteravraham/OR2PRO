@@ -113,6 +113,8 @@ def suggest_gardens():
     p = request.get_json() or {}
     gardens = load_gardens()
     home_n = (p.get('home_neighborhood') or '').strip()
+    has_sibling = p.get('declared_sibling_in_garden') == 'כן'
+    sibling_gid = str(p.get('sibling_garden_id') or '').strip()
     needs_tz = p.get('needs_tzaharon') == 'כן'
     imp_tz = int(p.get('importance_tzaharon') or 3)
     pref_edu = (p.get('preferred_education_type') or '').strip()
@@ -184,6 +186,7 @@ def suggest_gardens():
             try:
                 if float(price_avg) <= float(max_price): score += 15
             except (ValueError, TypeError): pass
+        if has_sibling and sibling_gid and str(g.get('id','')) == sibling_gid: score += 50
 
         age_label = ''
         if g_min_age is not None and g_max_age is not None:
@@ -228,7 +231,7 @@ def register_parent():
         'preferred_sector': '', 'needs_friday': data.get('needs_friday','לא'),
         'needs_protected_space': data.get('needs_protected_space','לא'),
         'needs_tzaharon': data.get('needs_tzaharon','לא'),
-        'declared_sibling_in_garden': '', 'sibling_garden_id': '', 'sibling_verification_status': '',
+        'declared_sibling_in_garden': data.get('declared_sibling_in_garden','לא'), 'sibling_garden_id': data.get('sibling_garden_id',''), 'sibling_verification_status': '',
         'preferred_garden_1': data.get('preferred_garden_1',''), 'preferred_garden_2': data.get('preferred_garden_2',''),
         'preferred_garden_3': data.get('preferred_garden_3',''),
         'preferred_garden_1_name': data.get('preferred_garden_1_name',''),
