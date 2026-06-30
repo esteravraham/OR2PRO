@@ -251,7 +251,7 @@ def build_gardens_dataframe_from_json():
             "neighborhood": first_non_empty(garden.get("neighborhood"), profile.get("neighborhood")),
             "x": first_non_empty(garden.get("x"), garden.get("longitude"), profile.get("x"), profile.get("longitude")),
             "y": first_non_empty(garden.get("y"), garden.get("latitude"), profile.get("y"), profile.get("latitude")),
-            "capacity": DEFAULT_CAPACITY,
+            "capacity": to_int(garden.get("capacity"), default=DEFAULT_CAPACITY),
             "min_age_months": first_non_empty(profile.get("min_age_months"), garden.get("min_age_months")),
             "max_age_months": first_non_empty(profile.get("max_age_months"), garden.get("max_age_months")),
             "sector": first_non_empty(garden.get("sector"), profile.get("sector")),
@@ -271,54 +271,9 @@ def build_gardens_dataframe_from_json():
 
 
 def ensure_gardens_input_file():
-    json_df = build_gardens_dataframe_from_json()
-
-    if os.path.exists(GARDENS_INPUT_FILE):
-        existing_df = pd.read_excel(GARDENS_INPUT_FILE)
-
-        for column in GARDEN_COLUMNS:
-            if column not in existing_df.columns:
-                existing_df[column] = ""
-
-        existing_df = existing_df[GARDEN_COLUMNS]
-        existing_df["garden_id"] = existing_df["garden_id"].apply(clean_value)
-
-        if json_df.empty:
-            existing_df.to_excel(GARDENS_INPUT_FILE, index=False)
-            return existing_df
-
-        existing_by_id = existing_df.set_index("garden_id", drop=False).to_dict("index")
-    else:
-        if json_df.empty:
-            raise FileNotFoundError(f"Missing both {GARDENS_JSON_FILE} and {GARDENS_INPUT_FILE}")
-        existing_by_id = {}
-
-    rows = []
-
-    for _, json_row in json_df.iterrows():
-        garden_id = clean_value(json_row.get("garden_id", ""))
-        existing_row = existing_by_id.get(garden_id, {})
-        row = {}
-
-        for column in GARDEN_COLUMNS:
-            existing_value = existing_row.get(column, "")
-            json_value = json_row.get(column, "")
-
-            if column == "capacity":
-                if clean_value(existing_value) != "":
-                    row[column] = to_int(existing_value, default=DEFAULT_CAPACITY)
-                else:
-                    row[column] = DEFAULT_CAPACITY
-            elif clean_value(existing_value) != "":
-                row[column] = existing_value
-            else:
-                row[column] = json_value
-
-        rows.append(row)
-
-    gardens_df = pd.DataFrame(rows, columns=GARDEN_COLUMNS)
-    gardens_df.to_excel(GARDENS_INPUT_FILE, index=False)
-
+    gardens_df = build_gardens_dataframe_from_json()
+    if gardens_df.empty:
+        raise FileNotFoundError(f"Missing {GARDENS_JSON_FILE}")
     return gardens_df
 
 

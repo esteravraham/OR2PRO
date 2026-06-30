@@ -73,7 +73,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "98624",
@@ -141,7 +142,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "99762",
@@ -209,7 +211,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "94193",
@@ -277,7 +280,8 @@
       "friday": "כן",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "56143",
@@ -345,7 +349,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "56168",
@@ -413,7 +418,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "81182",
@@ -481,7 +487,8 @@
       "friday": "כן",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "94839",
@@ -549,7 +556,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "73650",
@@ -617,7 +625,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "82313",
@@ -685,7 +694,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "55855",
@@ -753,7 +763,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "11554",
@@ -821,7 +832,8 @@
       "friday": "כן",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "11555",
@@ -889,7 +901,8 @@
       "friday": "כן",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "11753",
@@ -957,7 +970,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "15800",
@@ -1025,7 +1039,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "11579",
@@ -1093,7 +1108,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "99549",
@@ -1161,7 +1177,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "10995",
@@ -1229,7 +1246,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "99135",
@@ -1297,7 +1315,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "11441",
@@ -1377,7 +1396,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "11233",
@@ -1445,7 +1465,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "11632",
@@ -1513,7 +1534,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "11559",
@@ -1581,7 +1603,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "20297",
@@ -1653,7 +1676,8 @@
       "friday": "כן",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "11408",
@@ -1721,7 +1745,8 @@
       "friday": "כן",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "79178",
@@ -1789,7 +1814,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "94763",
@@ -1857,7 +1883,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "96735",
@@ -1925,7 +1952,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "93864",
@@ -1993,7 +2021,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "86322",
@@ -2061,7 +2090,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "10399",
@@ -2129,7 +2159,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "96701",
@@ -2204,7 +2235,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "10883",
@@ -2272,7 +2304,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "95794",
@@ -2351,7 +2384,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "75044",
@@ -2419,7 +2453,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "57174",
@@ -2487,7 +2522,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "11553",
@@ -2555,7 +2591,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "79905",
@@ -2623,7 +2660,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "11724",
@@ -2691,7 +2729,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "34462",
@@ -2759,7 +2798,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "10673",
@@ -2832,7 +2872,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "24992",
@@ -2900,7 +2941,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "11497",
@@ -2968,7 +3010,8 @@
       "friday": "כן",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "98848",
@@ -3036,7 +3079,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "26492",
@@ -3104,7 +3148,8 @@
       "friday": "כן",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "83519",
@@ -3172,7 +3217,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "11823",
@@ -3240,7 +3286,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "84764",
@@ -3308,7 +3355,8 @@
       "friday": "כן",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "98764",
@@ -3376,7 +3424,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "20453",
@@ -3444,7 +3493,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "11557",
@@ -3512,7 +3562,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "98533",
@@ -3580,7 +3631,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "98491",
@@ -3654,7 +3706,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "11421",
@@ -3722,7 +3775,8 @@
       "friday": "כן",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "97451",
@@ -3790,7 +3844,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "12591",
@@ -3858,7 +3913,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "75978",
@@ -3926,7 +3982,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "11691",
@@ -3994,7 +4051,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "57620",
@@ -4062,7 +4120,8 @@
       "friday": "כן",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "56150",
@@ -4136,7 +4195,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "80036",
@@ -4204,7 +4264,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "11562",
@@ -4272,7 +4333,8 @@
       "friday": "כן",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "30338",
@@ -4340,7 +4402,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "25619",
@@ -4408,7 +4471,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "14902",
@@ -4476,7 +4540,8 @@
       "friday": "כן",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "11777",
@@ -4544,7 +4609,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "75028",
@@ -4612,7 +4678,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "36038",
@@ -4680,7 +4747,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "97014",
@@ -4748,7 +4816,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "13730",
@@ -4816,7 +4885,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "10200",
@@ -4884,7 +4954,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "10373",
@@ -4957,7 +5028,8 @@
       "friday": "כן",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "11362",
@@ -5025,7 +5097,8 @@
       "friday": "כן",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "89581",
@@ -5093,7 +5166,8 @@
       "friday": "כן",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "17517",
@@ -5161,7 +5235,8 @@
       "friday": "כן",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "20701",
@@ -5232,7 +5307,8 @@
       "friday": "כן",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "43372",
@@ -5300,7 +5376,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "94474",
@@ -5368,7 +5445,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "11749",
@@ -5436,7 +5514,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "84749",
@@ -5509,7 +5588,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "57919",
@@ -5577,7 +5657,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "10848",
@@ -5645,7 +5726,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "82321",
@@ -5713,7 +5795,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "90035",
@@ -5781,7 +5864,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "10872",
@@ -5849,7 +5933,8 @@
       "friday": "כן",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "80960",
@@ -5917,7 +6002,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "11735",
@@ -5985,7 +6071,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "98731",
@@ -6053,7 +6140,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "95273",
@@ -6121,7 +6209,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "88526",
@@ -6189,7 +6278,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "10011",
@@ -6257,7 +6347,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "11688",
@@ -6325,7 +6416,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "99259",
@@ -6393,7 +6485,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "25403",
@@ -6461,7 +6554,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "83527",
@@ -6529,7 +6623,8 @@
       "friday": "כן",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "94607",
@@ -6597,7 +6692,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "94680",
@@ -6665,7 +6761,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "11517",
@@ -6733,7 +6830,8 @@
       "friday": "כן",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "11481",
@@ -6801,7 +6899,8 @@
       "friday": "כן",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "11599",
@@ -6869,7 +6968,8 @@
       "friday": "כן",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "26922",
@@ -6937,7 +7037,8 @@
       "friday": "כן",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "10836",
@@ -7005,7 +7106,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "10137",
@@ -7073,7 +7175,8 @@
       "friday": "כן",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "10877",
@@ -7141,7 +7244,8 @@
       "friday": "כן",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "88898",
@@ -7209,7 +7313,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "10516",
@@ -7277,7 +7382,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "10869",
@@ -7345,7 +7451,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "26757",
@@ -7413,7 +7520,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "10882",
@@ -7481,7 +7589,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "94938",
@@ -7549,7 +7658,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "11577",
@@ -7621,7 +7731,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "22988",
@@ -7689,7 +7800,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "94425",
@@ -7757,7 +7869,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "11175",
@@ -7825,7 +7938,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "48074",
@@ -7893,7 +8007,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "82701",
@@ -7961,7 +8076,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "11595",
@@ -8029,7 +8145,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "11051",
@@ -8097,7 +8214,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "31393",
@@ -8165,7 +8283,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "55905",
@@ -8233,7 +8352,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "59501",
@@ -8301,7 +8421,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "84111",
@@ -8369,7 +8490,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "11173",
@@ -8437,7 +8559,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "94151",
@@ -8505,7 +8628,8 @@
       "friday": "כן",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "11086",
@@ -8573,7 +8697,8 @@
       "friday": "כן",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "74062",
@@ -8646,7 +8771,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "78923",
@@ -8714,7 +8840,8 @@
       "friday": "כן",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     },
     {
       "id": "10133",
@@ -8780,7 +8907,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "75267",
@@ -8852,7 +8980,8 @@
       "friday": "כן",
       "gender_composition": "מעורב",
       "min_age_months": 18,
-      "max_age_months": 36
+      "max_age_months": 36,
+      "capacity": 3
     },
     {
       "id": "75069",
@@ -8920,7 +9049,8 @@
       "friday": "לא",
       "gender_composition": "מעורב",
       "min_age_months": 0,
-      "max_age_months": 18
+      "max_age_months": 18,
+      "capacity": 3
     }
   ]
 }
