@@ -1,4 +1,3 @@
-parent_reviews_submissions.json
 gardens_backup.json
 __pycache__/
-*.xlsx
+_archive/*.xlsx
